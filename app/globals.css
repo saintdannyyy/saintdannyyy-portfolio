@@ -85,7 +85,7 @@
 
   /* Radial gradient for more depth */
   .background-radial {
-    background: radial-gradient(ellipse at top, #000000 0%, #000000 25%, #3e1616 50% #230f0f 75%, #000000 100%);
+    background: radial-gradient(ellipse at top, #000000 0%, #381919 25%, #3e1616 50% #230f0f 75%, #000000 100%);
     min-height: 100vh;
   }
 
