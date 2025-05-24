@@ -77,14 +77,20 @@
   }
 
   .portfolio-bg-animated {
-    background: linear-gradient(135deg, #0c0c0c, #2d1b69, #1a1a2e, #16213e, #0f0f23);
+    background: linear-gradient(135deg, #0c0c0c, #691b1b, #2e1a1a, #3e1616, #230f0f);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     min-height: 100vh;
   }
 
+  /* Radial gradient for more depth */
+  .background-radial {
+    background: radial-gradient(ellipse at top, #000000 0%, #000000 25%, #3e1616 50% #230f0f 75%, #000000 100%);
+    min-height: 100vh;
+  }
+
   .portfolio-bg-tailwind {
-    @apply bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen;
+    @apply bg-gradient-to-br from-black via-red-900 to-black min-h-screen;
   }
 }
 
