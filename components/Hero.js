@@ -5,12 +5,12 @@ import { Highlighter } from "./magicui/highlighter";
 
 export default function Hero() {
   return (
-    <div className="flex items-center justify-between w-[80%] mx-auto px-6 py-20 min-h-[80vh]">
+    <div className="flex items-center justify-between w-[80%] mx-auto px-6 py-20 min-h-[100vh]">
       {/* Left Content */}
       <div className="flex-1 max-w-2xl">
         <p className="text-gray-300 text-lg mb-4">Hey there, I'm</p>
 
-        <p className="text-6xl md:text-7xl font-normal leading-tight mb-6">
+        <p className="text-6xl md:text-7xl font-semibold leading-tight mb-6">
           <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
             Daniel Addo
           </span>
@@ -19,8 +19,9 @@ export default function Hero() {
         <div className="mb-8">
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
             <Highlighter
-              action="highlight"
+              action="underline"
               color="#662E9B"
+              stroke={2}
               animationDuration={1000}
               strokeWidth={3}
             >
