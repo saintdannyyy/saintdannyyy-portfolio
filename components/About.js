@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
 
 export default function About() {
   return (
@@ -18,26 +19,27 @@ export default function About() {
     >
       {/* left section */}
       <div className="flex min-w-[40%] justify-center items-center relative">
-        {/* ShineBorder should wrap the content */}
-        <ShineBorder
-          className="relative w-[300px] h-[300px] rounded-3xl"
-          shineColor={["#3b82f6", "#06b6d4", "#3b82f6"]}
-          borderWidth={2}
-          duration={3}
-        >
-          <div className="w-full h-full bg-black rounded-3xl flex items-center justify-center p-1">
+        {/* Background Container */}
+        <div className="relative w-[300px] h-[350px] rounded-3xl flex items-center justify-center p-1 shadow-2xl">
+          <ShineBorder
+            shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+            borderWidth={3}
+            duration={12}
+          />
+          <div className="absolute pl-5 pt-5">
             <Image
               src="/saintdannyyy.jpg"
               alt="Profile pic"
-              width={280}
-              height={280}
+              width={300}
+              height={300}
               className="rounded-3xl object-cover"
               style={{ objectFit: "cover" }}
             />
           </div>
-        </ShineBorder>
+        </div>
       </div>
       <div>
+        <Separator className="my-2 w-12" />
         <h4>About Me</h4>
         <p className="text-6xl md:text-7xl font-semibold leading-tight mb-6">
           <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
@@ -59,9 +61,9 @@ export default function About() {
           </Link>
         </div>
         <p className="w-[50%]">
-          Hey there—thanks for stopping by! I'm a software engineer who lives
-          for that "aha!" moment when code clicks and ideas come alive. Over the
-          past 5+ years I've helped startups and established teams ship
+          Hey there—thanks for stopping by! I’m a software engineer who lives
+          for that “aha!” moment when code clicks and ideas come alive. Over the
+          past 5+ years I’ve helped startups and established teams ship
           everything from lightning-fast single-page apps to data-driven backend
           services. My toolbox is equal parts JavaScript/TypeScript, React,
           Node, and Go, with a sprinkle of DevOps (Docker, Kubernetes, CI/CD) to
