@@ -23,6 +23,7 @@ import {
 import Link from "next/link";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
 
 // Custom Icons for social media
 const Icons = {
@@ -84,6 +85,9 @@ export default function Home() {
 
       {/* Experience Section */}
       <Experience />
+
+      {/* Projects Section */}
+      <Projects />
 
       {/* Enhanced Dock with full functionality */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
