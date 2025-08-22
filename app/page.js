@@ -24,6 +24,8 @@ import Link from "next/link";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
+import TechStack from "@/components/TechStack";
+import Footer from "@/components/Footer";
 
 // Custom Icons for social media
 const Icons = {
@@ -77,6 +79,8 @@ export default function Home() {
   return (
     <div className="flex z-10 flex-col w-screen h-screen bg-black text-white">
       {/* Main Body */}
+      {/* Header section  */}
+      <Header />
       {/* Hero Section */}
       <Hero />
 
@@ -88,6 +92,12 @@ export default function Home() {
 
       {/* Projects Section */}
       <Projects />
+
+      {/* TechStack Section */}
+      <TechStack />
+
+      {/* Footer section */}
+      <Footer />
 
       {/* Enhanced Dock with full functionality */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
