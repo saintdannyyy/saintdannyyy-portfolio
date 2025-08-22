@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ShineBorder } from "./magicui/shine-border";
 import {
+    ArrowUpRight,
   FileIcon,
   GithubIcon,
   Linkedin,
@@ -74,7 +75,7 @@ export default function About() {
             variant="primary"
             className="relative px-4 py-4 bg-[#463357] font-medium rounded-full"
           >
-            Download Resume <FileIcon />
+            Download Resume <ArrowUpRight />
           </Button>
         </p>
       </div>
