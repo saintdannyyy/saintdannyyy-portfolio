@@ -1,0 +1,112 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "description": "A full-stack e-commerce solution built with modern technologies. Features include user authentication, payment integration, inventory management, and real-time order tracking.",
+      "image": "/projects/ecommerce.jpg",
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe", "Redis", "Docker"],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2024",
+      "liveUrl": "https://ecommerce-demo.com",
+      "githubUrl": "https://github.com/yourusername/ecommerce-platform",
+      "featured": true,
+      "highlights": [
+        "Handles 10k+ concurrent users",
+        "99.9% uptime",
+        "Real-time inventory sync"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "AI-Powered Dashboard",
+      "description": "An intelligent analytics dashboard that uses machine learning to provide insights and predictions. Built with React and Python, featuring data visualization and automated reporting.",
+      "image": "/projects/ai-dashboard.jpg",
+      "technologies": ["React", "Python", "TensorFlow", "PostgreSQL", "Chart.js", "FastAPI"],
+      "category": "AI/ML",
+      "status": "Completed",
+      "year": "2024",
+      "liveUrl": "https://ai-dashboard-demo.com",
+      "githubUrl": "https://github.com/yourusername/ai-dashboard",
+      "featured": true,
+      "highlights": [
+        "90% prediction accuracy",
+        "Real-time data processing",
+        "Interactive visualizations"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Mobile Banking App",
+      "description": "A secure mobile banking application with biometric authentication, transaction history, and budget tracking. Built using React Native with robust security measures.",
+      "image": "/projects/banking-app.jpg",
+      "technologies": ["React Native", "Node.js", "JWT", "Biometrics", "SQLite", "Express"],
+      "category": "Mobile",
+      "status": "Completed",
+      "year": "2023",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/yourusername/banking-app",
+      "featured": false,
+      "highlights": [
+        "Bank-grade security",
+        "Biometric authentication",
+        "Offline transaction sync"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Task Management SaaS",
+      "description": "A collaborative project management tool with real-time updates, team collaboration features, and advanced reporting. Supports multiple projects and team hierarchies.",
+      "image": "/projects/task-management.jpg",
+      "technologies": ["Vue.js", "Laravel", "MySQL", "WebSockets", "AWS", "Tailwind"],
+      "category": "SaaS",
+      "status": "In Progress",
+      "year": "2024",
+      "liveUrl": "https://taskmanager-demo.com",
+      "githubUrl": "https://github.com/yourusername/task-manager",
+      "featured": true,
+      "highlights": [
+        "Real-time collaboration",
+        "Advanced analytics",
+        "Multi-tenant architecture"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Weather Forecast App",
+      "description": "A beautiful weather application with location-based forecasts, weather maps, and severe weather alerts. Features smooth animations and offline caching.",
+      "image": "/projects/weather-app.jpg",
+      "technologies": ["React", "TypeScript", "OpenWeather API", "PWA", "Framer Motion"],
+      "category": "Web App",
+      "status": "Completed",
+      "year": "2023",
+      "liveUrl": "https://weather-app-demo.com",
+      "githubUrl": "https://github.com/yourusername/weather-app",
+      "featured": false,
+      "highlights": [
+        "Offline functionality",
+        "Location-based alerts",
+        "Beautiful animations"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Cryptocurrency Tracker",
+      "description": "A real-time cryptocurrency tracking application with portfolio management, price alerts, and market analysis. Supports multiple exchanges and coins.",
+      "image": "/projects/crypto-tracker.jpg",
+      "technologies": ["Next.js", "TypeScript", "WebSocket", "CoinGecko API", "Chart.js"],
+      "category": "FinTech",
+      "status": "Completed",
+      "year": "2023",
+      "liveUrl": "https://crypto-tracker-demo.com",
+      "githubUrl": "https://github.com/yourusername/crypto-tracker",
+      "featured": false,
+      "highlights": [
+        "Real-time price updates",
+        "Portfolio tracking",
+        "Price alerts system"
+      ]
+    }
+  ]
+}
