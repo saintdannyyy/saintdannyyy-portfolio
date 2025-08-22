@@ -74,12 +74,7 @@ const DATA = {
 export default function Home() {
   return (
     <div className="flex z-10 flex-col w-screen h-screen bg-black text-white">
-      {/* Header Section*/}
-      {/* <div className="flex justify-center top-1 w-full bg-[#141301]">
-        <Header className="z-10" />
-      </div> */}
       {/* Main Body */}
-      {/* <div className="flex w-full justify-center relative"> */}
       {/* Hero Section */}
       <Hero />
 
@@ -143,7 +138,6 @@ export default function Home() {
           </Dock>
         </TooltipProvider>
       </div>
-      {/* </div> */}
     </div>
   );
 }
