@@ -21,6 +21,7 @@ import {
   FolderOpen,
 } from "lucide-react";
 import Link from "next/link";
+import About from "@/components/About";
 
 // Custom Icons for social media
 const Icons = {
@@ -63,7 +64,7 @@ const DATA = {
       },
       Email: {
         name: "Send Email",
-        url: "mailto:your.email@example.com",
+        url: "mailto:danieltesla746@gmail.com",
         icon: Mail,
       },
     },
@@ -74,75 +75,75 @@ export default function Home() {
   return (
     <div className="flex z-10 flex-col w-screen h-screen bg-black text-white">
       {/* Header Section*/}
-      <div className="flex justify-center top-1 w-full bg-[#141301]">
+      {/* <div className="flex justify-center top-1 w-full bg-[#141301]">
         <Header className="z-10" />
-      </div>
+      </div> */}
       {/* Main Body */}
-      <div className="flex w-full justify-center relative">
-        {/* Hero Section */}
-        <Hero />
+      {/* <div className="flex w-full justify-center relative"> */}
+      {/* Hero Section */}
+      <Hero />
 
-        {/* Enhanced Dock with full functionality */}
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-          <TooltipProvider>
-            <Dock direction="middle">
-              {/* Navigation Items */}
-              {DATA.navbar.map((item) => (
-                <DockIcon key={item.label}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href={item.href}
-                        aria-label={item.label}
-                        className={cn(
-                          buttonVariants({ variant: "ghost", size: "icon" }),
-                          "size-12 rounded-full hover:bg-white/10 transition-colors"
-                        )}
-                      >
-                        <item.icon className="size-4" />
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{item.label}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </DockIcon>
-              ))}
+      {/* About Section */}
+      <About />
 
-              {/* Separator */}
-              <Separator
-                orientation="vertical"
-                className="h-full bg-white/20"
-              />
+      {/* Enhanced Dock with full functionality */}
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <TooltipProvider>
+          <Dock direction="middle" strokeWidth={0}>
+            {/* Navigation Items */}
+            {DATA.navbar.map((item) => (
+              <DockIcon key={item.label}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={item.href}
+                      aria-label={item.label}
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-12 rounded-full hover:bg-white/10 transition-colors"
+                      )}
+                    >
+                      <item.icon className="size-4" />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </DockIcon>
+            ))}
 
-              {/* Social Media Links */}
-              {Object.entries(DATA.contact.social).map(([name, social]) => (
-                <DockIcon key={name}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.name}
-                        className={cn(
-                          buttonVariants({ variant: "ghost", size: "icon" }),
-                          "size-12 rounded-full hover:bg-white/10 transition-colors"
-                        )}
-                      >
-                        <social.icon className="size-4" />
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{social.name}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </DockIcon>
-              ))}
-            </Dock>
-          </TooltipProvider>
-        </div>
+            {/* Separator */}
+            <Separator orientation="vertical" className="h-full bg-white/20" />
+
+            {/* Social Media Links */}
+            {Object.entries(DATA.contact.social).map(([name, social]) => (
+              <DockIcon key={name}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.name}
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-12 rounded-full hover:bg-white/10 transition-colors"
+                      )}
+                    >
+                      <social.icon className="size-4" />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{social.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </DockIcon>
+            ))}
+          </Dock>
+        </TooltipProvider>
       </div>
+      {/* </div> */}
     </div>
   );
 }
