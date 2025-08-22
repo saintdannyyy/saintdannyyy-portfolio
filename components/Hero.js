@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from "lucide-react";
+import { Highlighter } from "./magicui/highlighter";
 
 export default function Hero() {
   return (
@@ -17,7 +18,14 @@ export default function Hero() {
 
         <div className="mb-8">
           <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
-            Software Engineer
+            <Highlighter
+              action="highlight"
+              color="#662E9B"
+              animationDuration={1000}
+              strokeWidth={3}
+            >
+              Software Engineer
+            </Highlighter>
           </h2>
           <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
             Building elegant, future-proof software that turns complex problems
