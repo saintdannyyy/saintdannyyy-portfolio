@@ -117,7 +117,7 @@ export default function Hero() {
                 action="underline"
                 color="#662E9B"
                 stroke={2}
-                animationDuration={1000}
+                animationDuration={5000}
                 strokeWidth={3}
               >
                 Software Engineer
