@@ -17,7 +17,7 @@ export default function Header() {
           </div>
 
           {/* Name */}
-          <h1 className="text-xl font-semibold text-white">
+          <h1 className="text-xl font-semibold text-white font-comic">
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
               Saintdannyyy
             </span>

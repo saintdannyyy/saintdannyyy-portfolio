@@ -84,13 +84,13 @@ export default function Footer() {
                   className="object-cover"
                 />
               </div>
-              <h3 className="text-xl font-bold">
+              <h3 className="text-xl font-bold font-comic">
                 <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
                   Saintdannyyy
                 </span>
               </h3>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="text-gray-400 text-sm leading-relaxed mb-6 font-comic">
               Full-stack developer passionate about building innovative
               solutions that make a difference. Let's create something amazing
               together.

@@ -265,12 +265,12 @@ export default function Projects() {
       <div className="w-[80%] mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 font-comic">
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
               Projects
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8 font-comic">
             A showcase of my recent work, featuring full-stack applications,
             mobile apps, and innovative solutions.
           </p>
