@@ -13,12 +13,12 @@ const experiences = [
     company: "Codlogics Software Engineering",
     position: "Software Engineer Intern",
     location: "Dzorwulu",
-    startDate: "2022",
-    endDate: "2024",
+    startDate: "Sept 2022",
+    endDate: "December 2024",
     duration: "2 years",
     description:
       "Contributed to payment integrations, developed a management system for a mechanic workshop, and supported access control systems and attendance management.",
-    technologies: ["PHP", "Python", "Node.js"],
+    technologies: ["REACT", "PHP", "JavaScript", "MySQL", "Python", "Node.js"],
     achievements: [
       "Contributed to consistent performance of access control and attendance systems",
       "Integrated payment system into existing ecommerce site",
@@ -30,59 +30,57 @@ const experiences = [
     company: "Zest",
     position: "Front End Engineer",
     location: "Remote",
-    startDate: "2020",
-    endDate: "2022",
-    duration: "1 year",
+    startDate: "April 2024",
+    endDate: "December 2024",
+    duration: "8 months",
     description:
-      "Built the pos side of Zest focused on help small bussinesses thrive in the ghanaian market",
-    technologies: ["Nextjs", "TailwindCSS", "Shadcn", "JavaScript"],
+      "Built the pos side of Zest; an application focused on helping small bussinesses thrive in the Ghanaian market",
+    technologies: [
+      "Nextjs",
+      "TailwindCSS",
+      "Shadcn",
+      "JavaScript",
+      "Notion",
+      "Figma",
+    ],
     achievements: [
-      "Delivered 15+ major features on schedule",
-      "Improved application load time by 60%",
-      "Implemented comprehensive testing suite",
+      "Built a responsive web app using Next.js and Tailwind CSS with optimized performance and SEO.",
+      "Integrated product search, category filtering, and an efficient checkout component connected to an API working with a NodeJS backend.",
+      "Comprehensive testing using tools like Postman",
     ],
   },
   {
     id: 3,
-    company: "Digital Agency Pro",
-    position: "Frontend Developer",
+    company: "Trestle Academy Ghana",
+    position: "Software Engineer Intern",
     location: "Remote",
-    startDate: "2019",
-    endDate: "2020",
-    duration: "1 year",
+    startDate: "May 2023",
+    endDate: "Nov 2023",
+    duration: "6 months",
     description:
-      "Developed responsive web applications for diverse clients across industries. Focused on creating intuitive user experiences and optimizing for performance. Worked closely with designers and backend developers.",
-    technologies: [
-      "Vue.js",
-      "JavaScript",
-      "SASS",
-      "Webpack",
-      "Firebase",
-      "Figma",
-    ],
+      "Gained hands-on experience with web and mobile development technologies.",
+    technologies: ["HTML", "JavaScript", "Flutter"],
     achievements: [
-      "Delivered 20+ client projects",
-      "Achieved 95%+ client satisfaction rate",
-      "Reduced bounce rate by 30% on average",
+      "Built a pokemon site",
+      "Obtained mentorship from industry working senior developers",
     ],
   },
-  {
-    id: 4,
-    company: "CodeBootcamp Inc",
-    position: "Junior Web Developer",
-    location: "New York, NY",
-    startDate: "2018",
-    endDate: "2019",
-    duration: "1 year",
-    description:
-      "Started my professional journey building educational platforms and learning management systems. Gained experience in full-stack development while contributing to open-source projects.",
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery"],
-    achievements: [
-      "Built 5+ educational web applications",
-      "Contributed to 3 open-source projects",
-      "Graduated from senior developer mentorship program",
-    ],
-  },
+  // {
+  //   id: 4,
+  //   company: "CodeBootcamp Inc",
+  //   position: "Junior Web Developer",
+  //   location: "New York, NY",
+  //   startDate: "2018",
+  //   endDate: "2019",
+  //   duration: "1 year",
+  //   description:
+  //     "Started my professional journey building educational platforms and learning management systems. Gained experience in full-stack development while contributing to open-source projects.",
+  //   technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery"],
+  //   achievements: [
+  //     "Built a pokemon site",
+  //     "Obtained mentorship from industry working senior developers",
+  //   ],
+  // },
 ];
 
 export default function Experience() {
@@ -91,12 +89,12 @@ export default function Experience() {
       <div className="w-[80%] mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 font-comic">
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
               Experiences
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto font-comic">
             My professional journey through different roles and companies,
             building innovative solutions and growing as a developer.
           </p>
@@ -121,10 +119,10 @@ export default function Experience() {
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div>
                           <CardTitle className="text-xl text-white mb-2 flex items-center gap-2">
-                            <Building className="w-5 h-5 text-[#662E9B]" />
+                            <Building className="w-5 h-5 text-[#c299e8]" />
                             {exp.position}
                           </CardTitle>
-                          <CardDescription className="text-lg font-semibold text-[#EA3546]">
+                          <CardDescription className="text-lg font-semibold text-[#c7a9f0]">
                             {exp.company}
                           </CardDescription>
                         </div>
