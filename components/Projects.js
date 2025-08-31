@@ -266,11 +266,11 @@ export default function Projects() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-4 font-comic">
-            <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent drop-shadow-lg">
               Projects
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8 font-comic">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8 font-comic drop-shadow">
             A showcase of my recent work, featuring full-stack applications,
             mobile apps, and innovative solutions.
           </p>
@@ -285,7 +285,7 @@ export default function Projects() {
                 className={`${
                   filter === category
                     ? "bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white"
-                    : "border-gray-700 hover:border-gray-600 hover:bg-gray-800/50"
+                    : "border-gray-700 hover:border-gray-600 hover:bg-gray-800/50 text-gray-600"
                 } transition-all duration-300`}
               >
                 {category}
