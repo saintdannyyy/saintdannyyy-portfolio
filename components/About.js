@@ -25,6 +25,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { useEffect, useState } from "react";
+import { Badge } from "./ui/badge";
 
 export default function About() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -57,15 +58,14 @@ export default function About() {
       id: "software-engineer",
       title: "Software Engineer",
       subtitle: "Building Digital Solutions",
+      image: "/saintdannyyy.jpg",
       skills: [
         "Full Stack Development",
-        "React & Next.js",
-        "Node.js & Express",
-        "Database Design",
-        "DevOps & CI/CD",
+        "Web & Mobile Development",
+        "AI Integration",
       ],
       description:
-        "Crafting scalable web applications and turning complex problems into elegant code solutions. I build the digital infrastructure that powers modern businesses.",
+        "Crafting scalable web and mobile applications and turning complex problems into elegant code solutions.",
       mainIcon: Code,
       floatingIcons: [Code, Star, Clock],
       colors: {
@@ -81,13 +81,8 @@ export default function About() {
       id: "videographer",
       title: "Videographer",
       subtitle: "Visual Storyteller",
-      skills: [
-        "Cinematic Production",
-        "Video Editing",
-        "Color Grading",
-        "Motion Graphics",
-        "Documentary",
-      ],
+      image: "/video.jpg",
+      skills: ["Cinematic Production", "Events Coverage", "Video Editing"],
       description:
         "Capturing life's moments and transforming them into compelling visual narratives. Every frame tells a story, every cut creates emotion.",
       mainIcon: Camera,
@@ -105,15 +100,15 @@ export default function About() {
       id: "sound-engineer",
       title: "Sound Engineer",
       subtitle: "Audio Architect",
+      image: "/sound.PNG",
       skills: [
-        "Audio Production",
         "Mixing & Mastering",
         "Sound Design",
         "Live Recording",
         "Post-Production",
       ],
       description:
-        "Sculpting soundscapes and engineering crystal-clear audio experiences. From studio recordings to live events, I make every note perfect.",
+        "Engineering crystal-clear audio experiences during live events, I make every note perfect.",
       mainIcon: Headphones,
       floatingIcons: [Headphones, Mic, Music],
       colors: {
@@ -129,15 +124,15 @@ export default function About() {
       id: "content-creator",
       title: "Content Creator",
       subtitle: "Digital Innovator",
+      image: "/content.jpg",
       skills: [
         "Content Strategy",
         "Social Media",
         "Brand Development",
         "Creative Direction",
-        "Digital Marketing",
       ],
       description:
-        "Creating engaging content that connects brands with audiences. I blend creativity with strategy to build meaningful digital experiences.",
+        "Creating engaging content that spread the knowledge of the ever evolving world of tech.",
       mainIcon: Star,
       floatingIcons: [Star, Palette, Camera],
       colors: {
@@ -170,15 +165,6 @@ export default function About() {
           }}
         />
         <div
-          className={`absolute bottom-20 right-20 w-80 h-80 rounded-full opacity-8 blur-3xl animate-pulse bg-gradient-to-br ${currentPersona.colors.secondary} transition-all duration-2000`}
-          style={{
-            animationDuration: "8s",
-            animationDelay: "2s",
-            animation:
-              "float 25s ease-in-out infinite reverse, morphing 12s ease-in-out infinite",
-          }}
-        />
-        <div
           className={`absolute top-1/2 left-1/3 w-64 h-64 rounded-full opacity-5 blur-2xl animate-pulse bg-gradient-to-br ${currentPersona.colors.accent} transition-all duration-2000`}
           style={{
             animationDuration: "10s",
@@ -187,7 +173,6 @@ export default function About() {
               "float 30s ease-in-out infinite, breathe 15s ease-in-out infinite",
           }}
         />
-
         {/* Additional atmospheric layers */}
         <div
           className={`absolute top-1/4 right-1/3 w-72 h-72 rounded-full opacity-4 blur-3xl bg-gradient-to-br ${currentPersona.colors.primary} transition-all duration-2000`}
@@ -440,7 +425,6 @@ export default function About() {
           }}
         />
       </div>
-
       {/* Left Section - Profile Image with sliding animations */}
       <div className="flex min-w-[40%] justify-center items-center relative">
         <div
@@ -460,22 +444,40 @@ export default function About() {
             duration={10}
           />
           <div className="absolute pl-5 pt-5">
-            <Image
-              src="/saintdannyyy.jpg"
-              alt="Profile pic"
-              width={300}
-              height={300}
-              className={`rounded-3xl object-cover transition-all duration-1000 ${
-                currentPersona.id === "software-engineer"
-                  ? "brightness-90 contrast-125 hue-rotate-15"
-                  : currentPersona.id === "videographer"
-                  ? "brightness-110 contrast-110 saturate-110"
-                  : currentPersona.id === "sound-engineer"
-                  ? "brightness-95 contrast-105 hue-rotate-30"
-                  : "brightness-105 contrast-110 saturate-125"
-              }`}
-              style={{ objectFit: "cover" }}
-            />
+            <div className="relative">
+              <Image
+                key={currentPersona.id}
+                src={currentPersona.image}
+                alt={`${currentPersona.title} Profile`}
+                width={300}
+                height={300}
+                className={`rounded-3xl object-cover transition-all duration-1000 ${
+                  currentPersona.id === "software-engineer"
+                    ? "brightness-90 contrast-125 hue-rotate-15"
+                    : currentPersona.id === "videographer"
+                    ? "brightness-110 contrast-110 saturate-110"
+                    : currentPersona.id === "sound-engineer"
+                    ? "brightness-95 contrast-105 hue-rotate-30"
+                    : "brightness-105 contrast-110 saturate-125"
+                }`}
+                style={{ objectFit: "cover" }}
+              />
+
+              {/* Persona indicator overlay */}
+              <div
+                className={`absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-1000 ${
+                  currentPersona.id === "software-engineer"
+                    ? "bg-blue-500/80 shadow-blue-500/50"
+                    : currentPersona.id === "videographer"
+                    ? "bg-orange-500/80 shadow-orange-500/50"
+                    : currentPersona.id === "sound-engineer"
+                    ? "bg-green-500/80 shadow-green-500/50"
+                    : "bg-yellow-500/80 shadow-yellow-500/50"
+                } shadow-lg backdrop-blur-sm`}
+              >
+                <currentPersona.mainIcon className="w-4 h-4 text-white" />
+              </div>
+            </div>
           </div>
 
           {/* Floating Icons around image with smooth transitions */}
@@ -503,24 +505,20 @@ export default function About() {
           </div>
         </div>
       </div>
-
       {/* Right Section - Content with sliding animations */}
       <div className="flex-1 overflow-hidden">
-        <Separator className="my-2 w-12" />
-        <h4
-          className={`transition-colors duration-1000 ${currentPersona.colors.text}`}
+        <Badge
+          className={`px-4 py-2 mb-2 rounded-full text-md font-medium border transition-all duration-500 ${currentPersona.colors.text} border-current`}
         >
           About Me
-        </h4>
+        </Badge>
 
-        <p className="text-6xl md:text-7xl font-semibold leading-tight mb-6">
-          <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
-            Daniel Addo
-          </span>
+        <p className="text-3xl text-white font-semibold leading-tight mb-3 font-comic">
+          I am a ...
         </p>
 
         {/* Sliding Title and Subtitle */}
-        <div className="mb-6 relative h-20 overflow-hidden">
+        <div className="mb-0 relative h-20 overflow-hidden">
           {personas.map((persona, index) => (
             <div
               key={persona.id}
@@ -545,7 +543,7 @@ export default function About() {
         </div>
 
         {/* Sliding Skills Tags */}
-        <div className="mb-6 relative h-16 overflow-hidden">
+        <div className="mb-2 relative h-10 overflow-hidden">
           {personas.map((persona, index) => (
             <div
               key={`skills-${persona.id}`}
@@ -581,22 +579,22 @@ export default function About() {
 
         {/* Social Links */}
         <div className="flex space-x-3 mb-6">
-          <Link href="https://github.com/yourusername">
+          <Link href="https://github.com/saintdannyyy">
             <GithubIcon
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
             />
           </Link>
-          <Link href="https://linkedin.com/in/yourusername">
+          <Link href="https://linkedin.com/in/saintdannyyy">
             <Linkedin
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
             />
           </Link>
-          <Link href="https://twitter.com/yourusername">
+          <Link href="https://twitter.com/saintdannyyy">
             <TwitterIcon
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
             />
           </Link>
-          <Link href="https://youtube.com/yourusername">
+          <Link href="https://youtube.com/saintdannyyy">
             <YoutubeIcon
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
             />
@@ -604,11 +602,11 @@ export default function About() {
         </div>
 
         {/* Sliding Description */}
-        <div className="w-[85%] mb-6 relative min-h-[120px] overflow-hidden">
+        <div className="w-[85%] mb-4 relative min-h-[120px] overflow-hidden">
           {personas.map((persona, index) => (
             <p
               key={`desc-${persona.id}`}
-              className={`text-gray-400 leading-relaxed absolute inset-0 transition-all duration-1000 delay-300 transform ${
+              className={`text-gray-200 leading-relaxed absolute inset-0 transition-all duration-1000 delay-300 transform ${
                 index === currentSlide
                   ? "translate-y-0 opacity-100"
                   : index < currentSlide
