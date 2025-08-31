@@ -125,8 +125,9 @@ export default function Hero() {
             </h2>
           </div>
           <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
-            Building elegant, future-proof software that turns complex problems
-            into seamless user experiences. ✨
+            I'm passionate about building innovative platforms that solve
+            real-world problems, with expertise spanning AI, full-stack
+            development, and product building.✨
           </p>
         </div>
 
