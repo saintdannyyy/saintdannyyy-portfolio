@@ -51,22 +51,30 @@ const experiences = [
       "Gained hands-on experience with web and mobile development technologies.",
     technologies: ["HTML", "JavaScript", "Flutter"],
   },
-  // {
-  //   id: 4,
-  //   company: "CodeBootcamp Inc",
-  //   position: "Junior Web Developer",
-  //   location: "New York, NY",
-  //   startDate: "2018",
-  //   endDate: "2019",
-  //   duration: "1 year",
-  //   description:
-  //     "Started my professional journey building educational platforms and learning management systems. Gained experience in full-stack development while contributing to open-source projects.",
-  //   technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery"],
-  //   achievements: [
-  //     "Built a pokemon site",
-  //     "Obtained mentorship from industry working senior developers",
-  //   ],
-  // },
+  {
+    id: 4,
+    company: "Freelance Developer",
+    position: "Software Engineer",
+    location: "Remote",
+    startDate: "2022",
+    endDate: "Present",
+    duration: "3 year",
+    description:
+      "Worked on various freelance projects, honing skills in full-stack and mobile development and delivering high-quality solutions to clients.",
+    technologies: [
+      "HTML",
+      "CSS",
+      "REACT",
+      "NEXT",
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "POSTGRESQL",
+      "NODEJS",
+      "WORDPRESS",
+      "jQuery",
+    ],
+  },
 ];
 
 export default function Experience() {
@@ -92,17 +100,17 @@ export default function Experience() {
         {/* Timeline Container */}
         <div className="relative">
           {/* Vertical Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#EA3546] via-[#662E9B] to-[#F86624] opacity-30"></div>
+          <div className="absolute left-2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#EA3546] via-[#662E9B] to-[#F86624] opacity-30"></div>
 
           {/* Timeline Items */}
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div key={exp.id} className="relative flex items-start group">
                 {/* Timeline Dot */}
-                <div className="absolute left-6 w-4 h-4 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-full border-4 border-black z-10 group-hover:scale-125 transition-transform duration-300"></div>
+                <div className="absolute left-0 w-5 h-5 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-full border-4 border-black z-10 group-hover:scale-125 transition-transform duration-300"></div>
 
                 {/* Content Card */}
-                <div className="ml-20 w-full">
+                <div className="ml-10 w-full">
                   <Card className="bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
                     <CardHeader>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
