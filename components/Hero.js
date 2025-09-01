@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <div
       ref={containerRef}
-      className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 mt-32 lg:mt-0 min-h-screen overflow-hidden"
+      className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 sm:py-16 lg:py-20 mt-32 lg:mt-0 min-h-[70%] md:min-h-screen overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
