@@ -28,7 +28,6 @@ import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
 
 export default function About() {
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
@@ -42,15 +41,6 @@ export default function About() {
 
     return () => clearInterval(slideTimer);
   }, [isAutoPlay]);
-
-  // Real-time clock
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   // Define personas with different skills and themes
   const personas = [
@@ -377,19 +367,6 @@ export default function About() {
           </div>
         )}
 
-        {/* Time Indicator */}
-        <div
-          className={`absolute top-10 right-10 flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md transition-all duration-1000 ${currentPersona.colors.bg} ${currentPersona.colors.text} border border-current/20`}
-        >
-          <Clock className="w-5 h-5" />
-          <span className="text-sm font-medium">
-            {currentTime.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </span>
-        </div>
-
         {/* Enhanced Progress Indicators */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex gap-3 bg-black/20 backdrop-blur-md p-3 rounded-full border border-white/10">
           {personas.map((_, index) => (
@@ -504,6 +481,33 @@ export default function About() {
             <currentPersona.mainIcon className="w-8 h-8" />
           </div>
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-4 items-center">
+          <Button
+            variant="primary"
+            className={`relative px-6 py-4 font-medium rounded-full transition-all duration-500 bg-gradient-to-r ${currentPersona.colors.secondary} hover:scale-105 ${currentPersona.colors.glow}`}
+          >
+            Download Resume <ArrowUpRight />
+          </Button>
+
+          <button
+            onClick={() => setIsAutoPlay(!isAutoPlay)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md transition-all duration-500 ${currentPersona.colors.bg} ${currentPersona.colors.text} hover:opacity-70`}
+          >
+            {isAutoPlay ? (
+              <>
+                <Clock className="w-4 h-4" />
+                <span className="text-sm">Auto Playing</span>
+              </>
+            ) : (
+              <>
+                <Star className="w-4 h-4" />
+                <span className="text-sm">Manual Mode</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
       {/* Right Section - Content with sliding animations */}
       <div className="flex-1 overflow-hidden w-full lg:w-auto text-center lg:text-left order-1 lg:order-2">
@@ -545,7 +549,7 @@ export default function About() {
         </div>
 
         {/* Sliding Skills Tags */}
-        <div className="mb-2 sm:mb-10 relative h-10 overflow-visible">
+        <div className="mb-2 relative h-10 overflow-visible">
           {personas.map((persona, index) => (
             <div
               key={`skills-${persona.id}`}
@@ -579,26 +583,8 @@ export default function About() {
           ))}
         </div>
 
-        {/* Sliding Description */}
-        <div className="hidden md:block w-[85%] mb-4 relative min-h-[120px] overflow-hidden">
-          {personas.map((persona, index) => (
-            <p
-              key={`desc-${persona.id}`}
-              className={`text-gray-200 leading-relaxed absolute inset-0 transition-all duration-1000 delay-300 transform ${
-                index === currentSlide
-                  ? "translate-y-0 opacity-100"
-                  : index < currentSlide
-                  ? "-translate-y-full opacity-0"
-                  : "translate-y-full opacity-0"
-              }`}
-            >
-              {persona.description}
-            </p>
-          ))}
-        </div>
-
         {/* Social Links */}
-        <div className="flex space-x-3 mb-6 sm:mb-0 sm:mt-10">
+        <div className="flex space-x-3 mt-10 md:mt-0 mb-6">
           <Link href="https://github.com/saintdannyyy">
             <GithubIcon
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
@@ -619,6 +605,24 @@ export default function About() {
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
             />
           </Link>
+        </div>
+
+        {/* Sliding Description */}
+        <div className="hidden md:block w-[85%] mb-4 relative min-h-[120px] overflow-hidden">
+          {personas.map((persona, index) => (
+            <p
+              key={`desc-${persona.id}`}
+              className={`text-gray-200 leading-relaxed absolute inset-0 transition-all duration-1000 delay-300 transform ${
+                index === currentSlide
+                  ? "translate-y-0 opacity-100"
+                  : index < currentSlide
+                  ? "-translate-y-full opacity-0"
+                  : "translate-y-full opacity-0"
+              }`}
+            >
+              {persona.description}
+            </p>
+          ))}
         </div>
 
         {/* Action Buttons */}
