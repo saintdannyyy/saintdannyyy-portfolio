@@ -19,11 +19,6 @@ const experiences = [
     description:
       "Contributed to payment integrations, developed a management system for a mechanic workshop, and supported access control systems and attendance management.",
     technologies: ["REACT", "PHP", "JavaScript", "MySQL", "Python", "Node.js"],
-    achievements: [
-      "Contributed to consistent performance of access control and attendance systems",
-      "Integrated payment system into existing ecommerce site",
-      "BBuilt full scale application for mechanic workshop management",
-    ],
   },
   {
     id: 2,
@@ -43,11 +38,6 @@ const experiences = [
       "Notion",
       "Figma",
     ],
-    achievements: [
-      "Built a responsive web app using Next.js and Tailwind CSS with optimized performance and SEO.",
-      "Integrated product search, category filtering, and an efficient checkout component connected to an API working with a NodeJS backend.",
-      "Comprehensive testing using tools like Postman",
-    ],
   },
   {
     id: 3,
@@ -60,10 +50,6 @@ const experiences = [
     description:
       "Gained hands-on experience with web and mobile development technologies.",
     technologies: ["HTML", "JavaScript", "Flutter"],
-    achievements: [
-      "Built a pokemon site",
-      "Obtained mentorship from industry working senior developers",
-    ],
   },
   // {
   //   id: 4,
@@ -170,25 +156,6 @@ export default function Experience() {
                             </span>
                           ))}
                         </div>
-                      </div>
-
-                      {/* Achievements */}
-                      <div>
-                        <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                          <ChevronRight className="w-4 h-4 text-[#662E9B]" />
-                          Key Achievements
-                        </h4>
-                        <ul className="space-y-2">
-                          {exp.achievements.map((achievement, achIndex) => (
-                            <li
-                              key={achIndex}
-                              className="text-gray-300 flex items-start gap-2"
-                            >
-                              <span className="w-1.5 h-1.5 bg-[#EA3546] rounded-full mt-2 flex-shrink-0"></span>
-                              <span>{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
                       </div>
                     </CardContent>
                   </Card>
