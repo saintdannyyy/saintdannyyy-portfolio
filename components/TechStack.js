@@ -1,359 +1,43 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
 import { Badge } from "./ui/badge";
-import {
-  Code,
-  Database,
-  Cloud,
-  Smartphone,
-  Palette,
-  Settings,
-  Star,
-  TrendingUp,
-  Zap,
-} from "lucide-react";
 
-// Tech stack data organized by categories
-const techStackData = {
-  Frontend: {
-    icon: <Code className="w-6 h-6" />,
-    description: "Creating beautiful, responsive user interfaces",
-    technologies: [
-      {
-        name: "React",
-        level: 95,
-        experience: "4+ years",
-        color: "bg-blue-500",
-        featured: true,
-      },
-      {
-        name: "Next.js",
-        level: 90,
-        experience: "3+ years",
-        color: "bg-gray-800",
-        featured: true,
-      },
-      {
-        name: "Vue.js",
-        level: 85,
-        experience: "2+ years",
-        color: "bg-green-500",
-        featured: false,
-      },
-      {
-        name: "TypeScript",
-        level: 88,
-        experience: "3+ years",
-        color: "bg-blue-600",
-        featured: true,
-      },
-      {
-        name: "JavaScript",
-        level: 95,
-        experience: "5+ years",
-        color: "bg-yellow-500",
-        featured: true,
-      },
-      {
-        name: "HTML5",
-        level: 98,
-        experience: "5+ years",
-        color: "bg-orange-500",
-        featured: false,
-      },
-      {
-        name: "CSS3",
-        level: 92,
-        experience: "5+ years",
-        color: "bg-blue-400",
-        featured: false,
-      },
-      {
-        name: "Tailwind CSS",
-        level: 90,
-        experience: "2+ years",
-        color: "bg-cyan-500",
-        featured: true,
-      },
-      {
-        name: "SASS/SCSS",
-        level: 85,
-        experience: "3+ years",
-        color: "bg-pink-500",
-        featured: false,
-      },
-    ],
-  },
-  Backend: {
-    icon: <Database className="w-6 h-6" />,
-    description: "Building robust server-side applications and APIs",
-    technologies: [
-      {
-        name: "Node.js",
-        level: 92,
-        experience: "4+ years",
-        color: "bg-green-600",
-        featured: true,
-      },
-      {
-        name: "Express.js",
-        level: 90,
-        experience: "4+ years",
-        color: "bg-gray-700",
-        featured: true,
-      },
-      {
-        name: "Python",
-        level: 85,
-        experience: "3+ years",
-        color: "bg-blue-500",
-        featured: true,
-      },
-      {
-        name: "FastAPI",
-        level: 80,
-        experience: "2+ years",
-        color: "bg-green-500",
-        featured: false,
-      },
-      {
-        name: "Django",
-        level: 75,
-        experience: "2+ years",
-        color: "bg-green-700",
-        featured: false,
-      },
-      {
-        name: "PHP",
-        level: 78,
-        experience: "2+ years",
-        color: "bg-purple-600",
-        featured: false,
-      },
-      {
-        name: "Laravel",
-        level: 75,
-        experience: "2+ years",
-        color: "bg-red-500",
-        featured: false,
-      },
-      {
-        name: "GraphQL",
-        level: 82,
-        experience: "2+ years",
-        color: "bg-pink-600",
-        featured: true,
-      },
-      {
-        name: "REST APIs",
-        level: 95,
-        experience: "4+ years",
-        color: "bg-indigo-500",
-        featured: true,
-      },
-    ],
-  },
-  Database: {
-    icon: <Database className="w-6 h-6" />,
-    description: "Managing and optimizing data storage solutions",
-    technologies: [
-      {
-        name: "MongoDB",
-        level: 88,
-        experience: "3+ years",
-        color: "bg-green-600",
-        featured: true,
-      },
-      {
-        name: "PostgreSQL",
-        level: 85,
-        experience: "3+ years",
-        color: "bg-blue-600",
-        featured: true,
-      },
-      {
-        name: "MySQL",
-        level: 90,
-        experience: "4+ years",
-        color: "bg-orange-500",
-        featured: true,
-      },
-      {
-        name: "Redis",
-        level: 80,
-        experience: "2+ years",
-        color: "bg-red-600",
-        featured: false,
-      },
-      {
-        name: "Firebase",
-        level: 85,
-        experience: "2+ years",
-        color: "bg-yellow-500",
-        featured: false,
-      },
-      {
-        name: "SQLite",
-        level: 88,
-        experience: "3+ years",
-        color: "bg-blue-400",
-        featured: false,
-      },
-    ],
-  },
-  "Cloud & DevOps": {
-    icon: <Cloud className="w-6 h-6" />,
-    description: "Deploying and scaling applications in the cloud",
-    technologies: [
-      {
-        name: "AWS",
-        level: 82,
-        experience: "2+ years",
-        color: "bg-orange-500",
-        featured: true,
-      },
-      {
-        name: "Docker",
-        level: 85,
-        experience: "2+ years",
-        color: "bg-blue-500",
-        featured: true,
-      },
-      {
-        name: "Kubernetes",
-        level: 75,
-        experience: "1+ year",
-        color: "bg-blue-600",
-        featured: false,
-      },
-      {
-        name: "Vercel",
-        level: 90,
-        experience: "3+ years",
-        color: "bg-gray-800",
-        featured: true,
-      },
-      {
-        name: "Netlify",
-        level: 88,
-        experience: "2+ years",
-        color: "bg-teal-500",
-        featured: false,
-      },
-      {
-        name: "GitHub Actions",
-        level: 80,
-        experience: "2+ years",
-        color: "bg-gray-700",
-        featured: false,
-      },
-      {
-        name: "CI/CD",
-        level: 82,
-        experience: "2+ years",
-        color: "bg-purple-600",
-        featured: true,
-      },
-    ],
-  },
-  Mobile: {
-    icon: <Smartphone className="w-6 h-6" />,
-    description: "Creating cross-platform mobile applications",
-    technologies: [
-      {
-        name: "React Native",
-        level: 85,
-        experience: "2+ years",
-        color: "bg-blue-500",
-        featured: true,
-      },
-      {
-        name: "Expo",
-        level: 88,
-        experience: "2+ years",
-        color: "bg-gray-800",
-        featured: true,
-      },
-      {
-        name: "Flutter",
-        level: 70,
-        experience: "1+ year",
-        color: "bg-blue-400",
-        featured: false,
-      },
-      {
-        name: "Ionic",
-        level: 72,
-        experience: "1+ year",
-        color: "bg-blue-600",
-        featured: false,
-      },
-    ],
-  },
-  "Tools & Others": {
-    icon: <Settings className="w-6 h-6" />,
-    description: "Development tools and additional technologies",
-    technologies: [
-      {
-        name: "Git",
-        level: 95,
-        experience: "5+ years",
-        color: "bg-orange-600",
-        featured: true,
-      },
-      {
-        name: "VS Code",
-        level: 98,
-        experience: "5+ years",
-        color: "bg-blue-500",
-        featured: true,
-      },
-      {
-        name: "Figma",
-        level: 80,
-        experience: "2+ years",
-        color: "bg-purple-500",
-        featured: false,
-      },
-      {
-        name: "Jest",
-        level: 82,
-        experience: "2+ years",
-        color: "bg-red-500",
-        featured: false,
-      },
-      {
-        name: "Webpack",
-        level: 78,
-        experience: "2+ years",
-        color: "bg-blue-600",
-        featured: false,
-      },
-      {
-        name: "Vite",
-        level: 85,
-        experience: "1+ year",
-        color: "bg-purple-600",
-        featured: true,
-      },
-      {
-        name: "Postman",
-        level: 90,
-        experience: "3+ years",
-        color: "bg-orange-500",
-        featured: false,
-      },
-    ],
-  },
-};
+// Tech stack data with icons and colors
+const techStackData = [
+  { name: "HTML", icon: "🌐", color: "bg-orange-500" },
+  { name: "CSS", icon: "🎨", color: "bg-blue-400" },
+  { name: "JavaScript", icon: "⚡", color: "bg-yellow-500" },
+  { name: "TypeScript", icon: "📘", color: "bg-blue-600" },
+  { name: "ReactJS", icon: "⚛️", color: "bg-cyan-500" },
+  { name: "NextJS", icon: "🔺", color: "bg-gray-800" },
+  { name: "Tailwind CSS", icon: "💨", color: "bg-teal-500" },
+  { name: "Vite", icon: "⚡", color: "bg-purple-600" },
+  { name: "Framer Motion", icon: "🎬", color: "bg-purple-500" },
+  { name: "React Native", icon: "�", color: "bg-blue-500" },
+  { name: "Expo", icon: "🚀", color: "bg-black" },
+  { name: "EAS", icon: "☁️", color: "bg-indigo-600" },
+  { name: "NodeJS", icon: "💚", color: "bg-green-600" },
+  { name: "ExpressJS", icon: "🚂", color: "bg-gray-700" },
+  { name: "Python", icon: "�", color: "bg-yellow-600" },
+  { name: "FastAPI", icon: "🚀", color: "bg-green-500" },
+  { name: "PHP", icon: "🐘", color: "bg-purple-700" },
+  { name: "MySQL", icon: "�️", color: "bg-blue-600" },
+  { name: "PostgreSQL", icon: "�", color: "bg-blue-700" },
+  { name: "MongoDB", icon: "🍃", color: "bg-green-500" },
+  { name: "Supabase", icon: "⚡", color: "bg-emerald-600" },
+  { name: "Swagger", icon: "📋", color: "bg-green-600" },
+  { name: "Git", icon: "🌿", color: "bg-orange-600" },
+  { name: "Github", icon: "🐙", color: "bg-gray-800" },
+  { name: "Vercel", icon: "▲", color: "bg-black" },
+  { name: "Netlify", icon: "🌊", color: "bg-teal-600" },
+  { name: "Render", icon: "🏗️", color: "bg-purple-600" },
+  { name: "Hugging Face", icon: "🤗", color: "bg-yellow-500" },
+  { name: "Figma", icon: "�", color: "bg-red-500" },
+  { name: "Postman", icon: "📮", color: "bg-orange-500" },
+  { name: "Linux", icon: "🐧", color: "bg-yellow-600" },
+  { name: "Shadcn", icon: "🎭", color: "bg-slate-700" },
+];
 
 // Custom hook for intersection observer
 const useIntersectionObserver = (options) => {
@@ -379,221 +63,197 @@ const useIntersectionObserver = (options) => {
   return [ref, isIntersecting];
 };
 
-// Skill Bar Component
-const SkillBar = ({ skill, index, isVisible }) => {
+// Animated Tech Badge Component
+const AnimatedTechBadge = ({ tech, index, isVisible }) => {
   return (
     <div
-      className={`group transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+      className={`transform transition-all duration-700 ease-out ${
+        isVisible
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-8 scale-95"
       }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      style={{
+        transitionDelay: `${index * 150}ms`,
+        animationDelay: `${index * 150}ms`,
+      }}
     >
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <span className="text-white font-medium">{skill.name}</span>
-          {skill.featured && (
-            <Star className="w-3 h-3 text-yellow-500 fill-current" />
-          )}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-gray-400 text-sm">{skill.experience}</span>
-          <span className="text-gray-300 text-sm font-semibold">
-            {skill.level}%
-          </span>
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-        <div
-          className={`h-2 rounded-full transition-all duration-1000 ease-out ${
-            skill.color
-          } ${isVisible ? `w-[${skill.level}%]` : "w-0"}`}
-          style={{
-            width: isVisible ? `${skill.level}%` : "0%",
-            transitionDelay: `${index * 100 + 300}ms`,
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-// Category Card Component
-const CategoryCard = ({ category, data, index }) => {
-  const [ref, isVisible] = useIntersectionObserver({
-    threshold: 0.3,
-    rootMargin: "0px 0px -50px 0px",
-  });
-
-  return (
-    <div
-      ref={ref}
-      className={`transform transition-all duration-800 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      style={{ transitionDelay: `${index * 200}ms` }}
-    >
-      <Card className="bg-gray-900/50 border-gray-800 hover:border-gray-700 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 h-full">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-xl text-white">
-            <div className="p-2 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-lg">
-              {data.icon}
-            </div>
-            {category}
-          </CardTitle>
-          <CardDescription className="text-gray-400">
-            {data.description}
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          {data.technologies.map((skill, skillIndex) => (
-            <SkillBar
-              key={skill.name}
-              skill={skill}
-              index={skillIndex}
-              isVisible={isVisible}
-            />
-          ))}
-
-          {/* Featured Technologies Summary */}
-          <div className="mt-6 pt-4 border-t border-gray-800">
-            <div className="flex flex-wrap gap-2">
-              {data.technologies
-                .filter((tech) => tech.featured)
-                .map((tech, techIndex) => (
-                  <Badge
-                    key={techIndex}
-                    className="bg-gradient-to-r from-[#EA3546]/20 to-[#662E9B]/20 border border-[#662E9B]/30 text-gray-300 hover:bg-[#662E9B]/30 transition-colors duration-200"
-                  >
-                    <Star className="w-3 h-3 mr-1 text-yellow-500 fill-current" />
-                    {tech.name}
-                  </Badge>
-                ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-};
-
-// Stats Component
-const TechStats = () => {
-  const totalTechnologies = Object.values(techStackData).reduce(
-    (total, category) => total + category.technologies.length,
-    0
-  );
-
-  const featuredTechnologies = Object.values(techStackData).reduce(
-    (total, category) =>
-      total + category.technologies.filter((tech) => tech.featured).length,
-    0
-  );
-
-  const averageExperience =
-    Object.values(techStackData).reduce((total, category) => {
-      const categoryAvg =
-        category.technologies.reduce((sum, tech) => sum + tech.level, 0) /
-        category.technologies.length;
-      return total + categoryAvg;
-    }, 0) / Object.keys(techStackData).length;
-
-  const stats = [
-    {
-      icon: <Code className="w-6 h-6" />,
-      label: "Technologies",
-      value: totalTechnologies,
-      suffix: "+",
-    },
-    {
-      icon: <Star className="w-6 h-6" />,
-      label: "Featured Skills",
-      value: featuredTechnologies,
-      suffix: "",
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6" />,
-      label: "Average Proficiency",
-      value: Math.round(averageExperience),
-      suffix: "%",
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-      {stats.map((stat, index) => (
-        <Card
-          key={index}
-          className="bg-gradient-to-br from-gray-900/80 to-gray-800/50 border-gray-700 text-center"
-        >
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-center mb-3">
-              <div className="p-3 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-full">
-                {stat.icon}
-              </div>
-            </div>
-            <div className="text-3xl font-bold text-white mb-1">
-              {stat.value}
-              {stat.suffix}
-            </div>
-            <div className="text-gray-400">{stat.label}</div>
-          </CardContent>
-        </Card>
-      ))}
+      <Badge
+        className={`
+          ${tech.color} 
+          text-white 
+          px-4 py-2 
+          text-sm 
+          font-medium 
+          border-0 
+          shadow-lg 
+          hover:scale-105 
+          hover:shadow-xl 
+          transition-all 
+          duration-300 
+          cursor-pointer
+          backdrop-blur-sm
+          flex 
+          items-center 
+          gap-2
+          group
+        `}
+      >
+        <span className="text-base group-hover:animate-bounce">
+          {tech.icon}
+        </span>
+        <span className="font-comic">{tech.name}</span>
+      </Badge>
     </div>
   );
 };
 
 // Main TechStack Component
 export default function TechStack() {
+  const [ref, isVisible] = useIntersectionObserver({
+    threshold: 0.2,
+    rootMargin: "0px 0px -100px 0px",
+  });
+
+  const [titleVisible, setTitleVisible] = useState(false);
+
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => setTitleVisible(true), 200);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
   return (
     <div
       className="w-full py-10 sm:py-16 lg:py-20 bg-transparent"
       id="tech-stack"
+      ref={ref}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Section Header with Typewriter Effect */}
         <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-comic">
+          <div className="mb-4">
+            <span
+              className={`
+                text-sm sm:text-base 
+                font-medium 
+                text-gray-400 
+                uppercase 
+                tracking-wider 
+                transition-all 
+                duration-700 
+                font-comic
+                ${
+                  titleVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4"
+                }
+              `}
+            >
+              My Stack
+            </span>
+          </div>
+
+          <h2
+            className={`
+              text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+              font-bold 
+              mb-4 
+              font-comic
+              transition-all 
+              duration-1000
+              ${
+                titleVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }
+            `}
+            style={{ transitionDelay: "300ms" }}
+          >
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
-              Tech Stack
+              Tools & Inspirations
             </span>
           </h2>
-          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-8 lg:mb-12 font-comic px-4">
-            A comprehensive overview of the technologies, frameworks, and tools
-            I use to build innovative solutions.
-          </p>
-
-          {/* Stats */}
-          <TechStats />
         </div>
 
-        {/* Technology Categories Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {Object.entries(techStackData).map(([category, data], index) => (
-            <CategoryCard
-              key={category}
-              category={category}
-              data={data}
+        {/* Animated Tech Stack Grid */}
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-6xl mx-auto">
+          {techStackData.map((tech, index) => (
+            <AnimatedTechBadge
+              key={tech.name}
+              tech={tech}
               index={index}
+              isVisible={isVisible}
+            />
+          ))}
+        </div>
+
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Floating particles */}
+          {Array.from({ length: 15 }, (_, i) => (
+            <div
+              key={i}
+              className={`
+                absolute 
+                w-2 h-2 
+                bg-gradient-to-r from-[#EA3546] to-[#662E9B] 
+                rounded-full 
+                opacity-20 
+                animate-float
+                ${isVisible ? "animate-pulse" : ""}
+              `}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 4}s`,
+              }}
             />
           ))}
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-gray-400 mb-6">
-            Interested in working with these technologies? Let's build something
-            amazing together.
+        <div
+          className={`
+            text-center 
+            mt-16 
+            transition-all 
+            duration-1000
+            ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }
+          `}
+          style={{ transitionDelay: `${techStackData.length * 150 + 500}ms` }}
+        >
+          <p className="text-gray-400 mb-6 font-comic">
+            These are the tools that power my creative process and bring ideas
+            to life. <br /> Interested in working with these technologies? Let's
+            build something amazing together.
           </p>
-          <button className="px-8 py-3 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-full text-white font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 flex items-center gap-2 mx-auto">
-            <Zap className="w-4 h-4" />
-            Let's Collaborate
+          <button className="px-8 py-3 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-full text-white font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 flex items-center gap-2 mx-auto font-comic">
+            ⚡ Let's Collaborate
           </button>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-20px) rotate(180deg);
+          }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
