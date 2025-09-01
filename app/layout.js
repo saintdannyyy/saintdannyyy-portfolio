@@ -1,29 +1,42 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Saintdannyyy",
-  description: "Saintdannyyy's portfolio website",
+  description:
+    "Discover the portfolio and projects of Saintdannyyy. Explore professional achievements, skills, and insights.",
+  keywords: [
+    "Saintdannyyy",
+    "portfolio",
+    "developer",
+    "projects",
+    "software engineer",
+    "web development",
+    "JavaScript",
+    "Ghana",
+    "Next.js",
+  ],
+  authors: [{ name: "Saintdannyyy" }],
+  openGraph: {
+    title: "Saintdannyyy",
+    description:
+      "Explore the professional portfolio and projects of Saintdannyyy.",
+    type: "website",
+    locale: "en_US",
+    url: "https://saintdannyyy.vercel.app",
+    siteName: "Saintdannyyy",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Saintdannyyy",
+    description:
+      "Explore the professional portfolio and projects of Saintdannyyy.",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-comic antialiased bg-black`}
-      >
-        {children}
-      </body>
+      <body className={`font-comic antialiased bg-black`}>{children}</body>
     </html>
   );
 }
