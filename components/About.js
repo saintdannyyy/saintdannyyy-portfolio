@@ -426,7 +426,7 @@ export default function About() {
         />
       </div>
       {/* Left Section - Profile Image with sliding animations */}
-      <div className="flex w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1">
+      <div className="flex w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1 mt-10 md:mt-0">
         <div
           className={`relative w-[280px] h-[320px] sm:w-[300px] sm:h-[350px] lg:w-[320px] lg:h-[380px] rounded-3xl flex items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
         >
@@ -518,11 +518,11 @@ export default function About() {
         </p>
 
         {/* Sliding Title and Subtitle */}
-        <div className="mb-0 relative h-20 overflow-hidden">
+        <div className="mb-0 relative h-20 text-left overflow-hidden">
           {personas.map((persona, index) => (
             <div
               key={persona.id}
-              className={`absolute inset-0 transition-all duration-1000 transform ${
+              className={`absolute text-left inset-0 transition-all duration-1000 transform ${
                 index === currentSlide
                   ? "translate-x-0 opacity-100"
                   : index < currentSlide
@@ -531,11 +531,13 @@ export default function About() {
               }`}
             >
               <h3
-                className={`text-3xl font-bold bg-gradient-to-r ${persona.colors.primary} bg-clip-text text-transparent mb-2`}
+                className={`text-3xl text-left font-bold bg-gradient-to-r ${persona.colors.primary} bg-clip-text text-transparent mb-2`}
               >
                 {persona.title}
               </h3>
-              <p className={`text-lg ${persona.colors.text} opacity-80`}>
+              <p
+                className={`text-lg text-left ${persona.colors.text} opacity-80`}
+              >
                 {persona.subtitle}
               </p>
             </div>
@@ -543,11 +545,11 @@ export default function About() {
         </div>
 
         {/* Sliding Skills Tags */}
-        <div className="mb-2 relative h-10 overflow-hidden">
+        <div className="mb-2 sm:mb-10 relative h-10 overflow-visible">
           {personas.map((persona, index) => (
             <div
               key={`skills-${persona.id}`}
-              className={`absolute inset-0 transition-all duration-1000 delay-200 transform ${
+              className={`absolute sm:mb-8 inset-0 transition-all duration-1000 delay-200 transform ${
                 index === currentSlide
                   ? "translate-x-0 opacity-100"
                   : index < currentSlide
@@ -559,7 +561,7 @@ export default function About() {
                 {persona.skills.map((skill, skillIndex) => (
                   <span
                     key={skill}
-                    className={`px-3 py-1 rounded-full text-sm font-medium border transition-all duration-500 ${persona.colors.bg} ${persona.colors.text} border-current`}
+                    className={`px-3 py-1 sm:mb-8 rounded-full text-sm font-medium border transition-all duration-500 ${persona.colors.bg} ${persona.colors.text} border-current`}
                     style={{
                       transitionDelay: `${skillIndex * 100 + 400}ms`,
                       opacity: index === currentSlide ? 1 : 0,
@@ -577,8 +579,26 @@ export default function About() {
           ))}
         </div>
 
+        {/* Sliding Description */}
+        <div className="hidden md:block w-[85%] mb-4 relative min-h-[120px] overflow-hidden">
+          {personas.map((persona, index) => (
+            <p
+              key={`desc-${persona.id}`}
+              className={`text-gray-200 leading-relaxed absolute inset-0 transition-all duration-1000 delay-300 transform ${
+                index === currentSlide
+                  ? "translate-y-0 opacity-100"
+                  : index < currentSlide
+                  ? "-translate-y-full opacity-0"
+                  : "translate-y-full opacity-0"
+              }`}
+            >
+              {persona.description}
+            </p>
+          ))}
+        </div>
+
         {/* Social Links */}
-        <div className="flex space-x-3 mb-6">
+        <div className="flex space-x-3 mb-6 sm:mb-0 sm:mt-10">
           <Link href="https://github.com/saintdannyyy">
             <GithubIcon
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
@@ -599,24 +619,6 @@ export default function About() {
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
             />
           </Link>
-        </div>
-
-        {/* Sliding Description */}
-        <div className="w-[85%] mb-4 relative min-h-[120px] overflow-hidden">
-          {personas.map((persona, index) => (
-            <p
-              key={`desc-${persona.id}`}
-              className={`text-gray-200 leading-relaxed absolute inset-0 transition-all duration-1000 delay-300 transform ${
-                index === currentSlide
-                  ? "translate-y-0 opacity-100"
-                  : index < currentSlide
-                  ? "-translate-y-full opacity-0"
-                  : "translate-y-full opacity-0"
-              }`}
-            >
-              {persona.description}
-            </p>
-          ))}
         </div>
 
         {/* Action Buttons */}
