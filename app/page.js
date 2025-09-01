@@ -100,9 +100,13 @@ export default function Home() {
       <Footer />
 
       {/* Enhanced Dock with full functionality */}
-      <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-50">
         <TooltipProvider>
-          <Dock direction="middle" strokeWidth={0}>
+          <Dock
+            direction="middle"
+            strokeWidth={0}
+            className="border-t border-white/30"
+          >
             {/* Navigation Items */}
             {DATA.navbar.map((item) => (
               <DockIcon key={item.label}>
