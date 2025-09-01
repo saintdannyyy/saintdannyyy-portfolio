@@ -29,7 +29,7 @@ export default function Footer() {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/saintdannyyy",
+      url: "https://www.linkedin.com/in/daniel-ntiri-addo/",
       icon: <Linkedin className="w-5 h-5" />,
       hoverColor: "hover:text-blue-400",
     },
@@ -45,17 +45,17 @@ export default function Footer() {
     {
       icon: <Mail className="w-4 h-4" />,
       text: "hello@saintdannyyy.dev",
-      href: "mailto:hello@saintdannyyy.dev",
+      href: "mailto:danieltesla746@gmail.com",
     },
     {
       icon: <MapPin className="w-4 h-4" />,
-      text: "San Francisco, CA",
+      text: "Ghana",
       href: null,
     },
     {
       icon: <Phone className="w-4 h-4" />,
-      text: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      text: "+233 20 224 8817",
+      href: "tel:+233202248817",
     },
   ];
 
@@ -141,7 +141,7 @@ export default function Footer() {
               your next project.
             </p>
             <Link
-              href="mailto:hello@saintdannyyy.dev"
+              href="mailto:danieltesla746@gmail.com"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-lg text-white text-sm font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
             >
               <Mail className="w-4 h-4" />
@@ -179,7 +179,7 @@ export default function Footer() {
             <p className="text-gray-500 text-xs">
               Built with Next.js, Tailwind CSS, and deployed on Vercel.
               <Link
-                href="https://github.com/saintdannyyy/portfolio"
+                href="https://github.com/saintdannyyy/saintdannyyy-portfolio"
                 target="_blank"
                 className="text-[#662E9B] hover:text-[#EA3546] transition-colors duration-300 ml-1"
               >
