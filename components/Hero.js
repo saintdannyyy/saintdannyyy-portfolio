@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <div
       ref={containerRef}
-      className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 min-h-screen overflow-hidden"
+      className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 mt-32 lg:mt-0 min-h-screen overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -79,7 +79,7 @@ export default function Hero() {
 
       {/* Left Content */}
       <div
-        className={`flex-1 w-full lg:max-w-2xl relative z-10 text-center lg:text-left mb-10 lg:mb-0 transition-all duration-1000 ${
+        className={`flex-1 w-full lg:max-w-2xl relative z-10 text-center lg:text-left transition-all duration-1000 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
@@ -161,9 +161,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Magical Profile Image */}
+      {/* Magical Profile Image - Only visible on md+ screens */}
       <div
-        className={`hidden md:flex flex-1 justify-center items-center relative mt-10 lg:mt-0 transition-all duration-1000 delay-700 ${
+        className={`hidden md:flex md:flex-1 justify-center items-center relative transition-all duration-1000 delay-700 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
