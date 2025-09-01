@@ -3,15 +3,15 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/20 border-b border-white/10">
-      <div className="flex items-center justify-center p-4">
-        <div className="flex items-center gap-4">
+      <div className="flex items-start justify-self-start p-2">
+        <div className="flex items-start gap-4">
           {/* Profile Picture */}
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/20">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white/20">
             <Image
               src="/saintdannyyy.jpg"
               alt="Saintdannyyy"
-              width={40}
-              height={40}
+              width={50}
+              height={50}
               className="object-cover"
             />
           </div>
