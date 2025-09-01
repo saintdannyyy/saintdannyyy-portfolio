@@ -403,7 +403,7 @@ export default function About() {
         />
       </div>
       {/* Left Section - Profile Image with sliding animations */}
-      <div className="flex w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1 mt-10 md:mt-0">
+      <div className="flex flex-col w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1 mt-10 md:mt-0">
         <div
           className={`relative w-[280px] h-[320px] sm:w-[300px] sm:h-[350px] lg:w-[320px] lg:h-[380px] rounded-3xl flex items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
         >
@@ -482,8 +482,8 @@ export default function About() {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-4 items-center">
+        {/* Mobile Action Buttons - Only visible on mobile */}
+        <div className="flex lg:hidden gap-4 items-center mt-6 justify-center">
           <Button
             variant="primary"
             className={`relative px-6 py-4 font-medium rounded-full transition-all duration-500 bg-gradient-to-r ${currentPersona.colors.secondary} hover:scale-105 ${currentPersona.colors.glow}`}
@@ -491,7 +491,7 @@ export default function About() {
             Download Resume <ArrowUpRight />
           </Button>
 
-          <button
+          {/* <button
             onClick={() => setIsAutoPlay(!isAutoPlay)}
             className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-md transition-all duration-500 ${currentPersona.colors.bg} ${currentPersona.colors.text} hover:opacity-70`}
           >
@@ -506,7 +506,7 @@ export default function About() {
                 <span className="text-sm">Manual Mode</span>
               </>
             )}
-          </button>
+          </button> */}
         </div>
       </div>
       {/* Right Section - Content with sliding animations */}
@@ -625,8 +625,8 @@ export default function About() {
           ))}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-4 items-center">
+        {/* Action Buttons - Desktop Only */}
+        <div className="hidden lg:flex gap-4 items-center">
           <Button
             variant="primary"
             className={`relative px-6 py-4 font-medium rounded-full transition-all duration-500 bg-gradient-to-r ${currentPersona.colors.secondary} hover:scale-105 ${currentPersona.colors.glow}`}
