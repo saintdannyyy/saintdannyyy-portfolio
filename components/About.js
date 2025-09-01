@@ -426,7 +426,7 @@ export default function About() {
         />
       </div>
       {/* Left Section - Profile Image with sliding animations */}
-      <div className="flex w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-1 lg:order-1">
+      <div className="flex w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1">
         <div
           className={`relative w-[280px] h-[320px] sm:w-[300px] sm:h-[350px] lg:w-[320px] lg:h-[380px] rounded-3xl flex items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
         >
@@ -506,7 +506,7 @@ export default function About() {
         </div>
       </div>
       {/* Right Section - Content with sliding animations */}
-      <div className="flex-1 overflow-hidden w-full lg:w-auto text-center lg:text-left order-2 lg:order-2">
+      <div className="flex-1 overflow-hidden w-full lg:w-auto text-center lg:text-left order-1 lg:order-2">
         <Badge
           className={`px-3 py-1 sm:px-4 sm:py-2 mb-2 rounded-full text-sm sm:text-md font-medium border transition-all duration-500 ${currentPersona.colors.text} border-current`}
         >
