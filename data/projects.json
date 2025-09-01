@@ -40,7 +40,7 @@
       "id": 3,
       "title": "OTConekt",
       "description": "OTConekt is a cross-platform mobile tele-rehabilitation app that connects individuals seeking occupational therapy with licensed therapists. Built using React Native (Expo) and powered by Supabase, this project focuses on accessibility, flexibility, and seamless virtual care.",
-      "image": "/projects/otconkt.png",
+      "image": "/projects/otconekt.png",
       "technologies": ["React Native", "Expo", "Supabase"],
       "category": "Mobile",
       "status": "Completed",
