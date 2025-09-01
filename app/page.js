@@ -58,12 +58,12 @@ const DATA = {
     social: {
       GitHub: {
         name: "GitHub",
-        url: "https://github.com/yourusername",
+        url: "https://github.com/saintdannyyy",
         icon: Icons.github,
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://linkedin.com/in/yourusername",
+        url: "https://www.linkedin.com/in/daniel-ntiri-addo/",
         icon: Icons.linkedin,
       },
       Email: {
@@ -100,7 +100,7 @@ export default function Home() {
       <Footer />
 
       {/* Enhanced Dock with full functionality */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+      <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50">
         <TooltipProvider>
           <Dock direction="middle" strokeWidth={0}>
             {/* Navigation Items */}
