@@ -16,6 +16,14 @@ export const metadata = {
     "Next.js",
   ],
   authors: [{ name: "Saintdannyyy" }],
+  icons: {
+    icon: [
+      { url: "/favicon.jpg", sizes: "any" },
+      { url: "/favicon.ico", sizes: "16x16", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon.jpg",
+    apple: "/favicon.jpg",
+  },
   openGraph: {
     title: "Saintdannyyy",
     description:
