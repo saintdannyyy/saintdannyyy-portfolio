@@ -41,14 +41,6 @@ export default function Footer() {
     },
   ];
 
-  const quickLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Tech Stack", href: "#tech-stack" },
-  ];
-
   const contactInfo = [
     {
       icon: <Mail className="w-4 h-4" />,
@@ -69,9 +61,9 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900/80 backdrop-blur-sm border-t border-gray-800">
-      <div className="w-[90%] mx-auto px-6 py-12">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
@@ -111,26 +103,6 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-              <Code className="w-4 h-4 text-[#662E9B]" />
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm hover:translate-x-1 inline-block transform"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Contact Info */}

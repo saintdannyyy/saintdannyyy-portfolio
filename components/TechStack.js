@@ -549,16 +549,19 @@ const TechStats = () => {
 // Main TechStack Component
 export default function TechStack() {
   return (
-    <div className="w-full py-20 bg-transparent" id="tech-stack">
-      <div className="w-[80%] mx-auto px-6">
+    <div
+      className="w-full py-10 sm:py-16 lg:py-20 bg-transparent"
+      id="tech-stack"
+    >
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 font-comic">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-comic">
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
               Tech Stack
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-12 font-comic">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-8 lg:mb-12 font-comic px-4">
             A comprehensive overview of the technologies, frameworks, and tools
             I use to build innovative solutions.
           </p>

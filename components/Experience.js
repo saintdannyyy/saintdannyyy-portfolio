@@ -85,16 +85,19 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <div className="w-full py-20 bg-transparent" id="experience">
-      <div className="w-[80%] mx-auto px-6">
+    <div
+      className="w-full py-10 sm:py-16 lg:py-20 bg-transparent"
+      id="experience"
+    >
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 font-comic">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-comic">
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
               Experiences
             </span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto font-comic">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto font-comic px-4">
             My professional journey through different roles and companies,
             building innovative solutions and growing as a developer.
           </p>

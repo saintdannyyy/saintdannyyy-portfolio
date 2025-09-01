@@ -150,7 +150,7 @@ export default function About() {
 
   return (
     <div
-      className={`relative flex justify-between items-center w-[80%] mx-auto px-6 py-20 min-h-[80vh] space-x-10 transition-all duration-1000 bg-gradient-to-br ${currentPersona.colors.bg} overflow-hidden`}
+      className={`relative flex flex-col lg:flex-row justify-between items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 min-h-[80vh] lg:space-x-10 space-y-8 lg:space-y-0 transition-all duration-1000 bg-gradient-to-br ${currentPersona.colors.bg} overflow-hidden`}
       id="about"
     >
       {/* Enhanced Animated Background Elements */}
@@ -426,9 +426,9 @@ export default function About() {
         />
       </div>
       {/* Left Section - Profile Image with sliding animations */}
-      <div className="flex min-w-[40%] justify-center items-center relative">
+      <div className="flex w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-1 lg:order-1">
         <div
-          className={`relative w-[300px] h-[350px] rounded-3xl flex items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
+          className={`relative w-[280px] h-[320px] sm:w-[300px] sm:h-[350px] lg:w-[320px] lg:h-[380px] rounded-3xl flex items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
         >
           <ShineBorder
             shineColor={
@@ -506,14 +506,14 @@ export default function About() {
         </div>
       </div>
       {/* Right Section - Content with sliding animations */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden w-full lg:w-auto text-center lg:text-left order-2 lg:order-2">
         <Badge
-          className={`px-4 py-2 mb-2 rounded-full text-md font-medium border transition-all duration-500 ${currentPersona.colors.text} border-current`}
+          className={`px-3 py-1 sm:px-4 sm:py-2 mb-2 rounded-full text-sm sm:text-md font-medium border transition-all duration-500 ${currentPersona.colors.text} border-current`}
         >
           About Me
         </Badge>
 
-        <p className="text-3xl text-white font-semibold leading-tight mb-3 font-comic">
+        <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold leading-tight mb-3 font-comic">
           I am a ...
         </p>
 

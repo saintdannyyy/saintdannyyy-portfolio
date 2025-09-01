@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <div
       ref={containerRef}
-      className="relative flex items-center justify-between w-[80%] mx-auto px-6 py-20 min-h-[100vh] overflow-hidden"
+      className="relative flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 min-h-screen overflow-hidden"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -79,19 +79,19 @@ export default function Hero() {
 
       {/* Left Content */}
       <div
-        className={`flex-1 max-w-2xl relative z-10 transition-all duration-1000 ${
+        className={`flex-1 w-full lg:max-w-2xl relative z-10 text-center lg:text-left mb-10 lg:mb-0 transition-all duration-1000 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
         {/* Greeting with Icon */}
-        <div className="flex items-center gap-2 mb-4">
-          <Sparkles className="w-5 h-5 text-[#EA3546] animate-pulse" />
-          <p className="text-gray-300 text-lg">Hey there, I'm</p>
+        <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+          <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#EA3546] animate-pulse" />
+          <p className="text-gray-300 text-base sm:text-lg">Hey there, I'm</p>
         </div>
 
         {/* Animated Name */}
         <div className="relative mb-6">
-          <p className="text-6xl md:text-7xl font-semibold leading-tight">
+          <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight">
             <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 inline-block">
               Daniel Addo
             </span>
@@ -133,7 +133,7 @@ export default function Hero() {
 
         {/* Enhanced Buttons */}
         <div
-          className={`flex gap-4 flex-wrap transition-all duration-1000 delay-500 ${
+          className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-1000 delay-500 ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
@@ -163,7 +163,7 @@ export default function Hero() {
 
       {/* Magical Profile Image */}
       <div
-        className={`flex-1 flex justify-center items-center relative transition-all duration-1000 delay-700 ${
+        className={`hidden md:flex flex-1 justify-center items-center relative mt-10 lg:mt-0 transition-all duration-1000 delay-700 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
       >
@@ -175,7 +175,7 @@ export default function Hero() {
           <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-[#EA3546]/30 via-[#662E9B]/30 to-[#F86624]/30 blur-lg animate-pulse" />
 
           {/* Image Container */}
-          <div className="relative w-80 h-80 rounded-full bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] p-1 group-hover:scale-105 transition-transform duration-500">
+          <div className="relative w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] p-1 group-hover:scale-105 transition-transform duration-500">
             <div className="w-full h-full bg-black rounded-full p-2">
               <Image
                 src="/saintdannyyy.jpg"
@@ -192,19 +192,19 @@ export default function Hero() {
             className="absolute top-4 right-4 animate-bounce"
             style={{ animationDelay: "0s" }}
           >
-            <Code className="w-6 h-6 text-[#EA3546]" />
+            <Code className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-[#EA3546]" />
           </div>
           <div
             className="absolute bottom-8 left-4 animate-bounce"
             style={{ animationDelay: "1s" }}
           >
-            <Zap className="w-5 h-5 text-[#F86624]" />
+            <Zap className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-[#F86624]" />
           </div>
           <div
             className="absolute top-1/2 left-0 animate-bounce"
             style={{ animationDelay: "2s" }}
           >
-            <Sparkles className="w-4 h-4 text-[#662E9B]" />
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#662E9B]" />
           </div>
         </div>
       </div>
