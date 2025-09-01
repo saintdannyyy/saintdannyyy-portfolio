@@ -74,7 +74,7 @@ export default function About() {
       image: "/video.jpg",
       skills: ["Cinematic Production", "Events Coverage", "Video Editing"],
       description:
-        "Capturing life's moments and transforming them into compelling visual narratives. Every frame tells a story, every cut creates emotion.",
+        "Capturing life's moments and transforming them into compelling visual narratives.",
       mainIcon: Camera,
       floatingIcons: [Camera, Video, Palette],
       colors: {
@@ -140,7 +140,7 @@ export default function About() {
 
   return (
     <div
-      className={`relative flex flex-col lg:flex-row justify-between items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 min-h-[80vh] lg:space-x-10 space-y-8 lg:space-y-0 transition-all duration-1000 bg-gradient-to-br ${currentPersona.colors.bg} overflow-hidden`}
+      className={`relative flex flex-col lg:flex-row justify-between items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 md:py-16 lg:py-20 min-h-screen lg:space-x-10 space-y-2 lg:space-y-0 transition-all duration-1000 bg-gradient-to-br ${currentPersona.colors.bg}`}
       id="about"
     >
       {/* Enhanced Animated Background Elements */}
@@ -403,9 +403,9 @@ export default function About() {
         />
       </div>
       {/* Left Section - Profile Image with sliding animations */}
-      <div className="flex flex-col w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1 mt-10 md:mt-0">
+      <div className="flex flex-col w-full lg:w-auto lg:min-w-[40%] justify-center items-center relative order-2 lg:order-1">
         <div
-          className={`relative w-[280px] h-[320px] sm:w-[300px] sm:h-[350px] lg:w-[320px] lg:h-[380px] rounded-3xl flex items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
+          className={`relative w-[200px] h-[250px] sm:w-[300px] lg:w-[320px] md:h-[380px] rounded-3xl flex  flex-1items-center justify-center p-1 shadow-2xl transition-all duration-1000 ${currentPersona.colors.glow}`}
         >
           <ShineBorder
             shineColor={
@@ -420,8 +420,42 @@ export default function About() {
             borderWidth={3}
             duration={10}
           />
-          <div className="absolute pl-5 pt-5">
-            <div className="relative">
+          <div className="absolute pl-5 pt-3">
+            <div className="md:hidden relative">
+              <Image
+                key={currentPersona.id}
+                src={currentPersona.image}
+                alt={`${currentPersona.title} Profile`}
+                width={200}
+                height={200}
+                className={`rounded-3xl object-cover transition-all duration-1000 ${
+                  currentPersona.id === "software-engineer"
+                    ? "brightness-90 contrast-125 hue-rotate-15"
+                    : currentPersona.id === "videographer"
+                    ? "brightness-110 contrast-110 saturate-110"
+                    : currentPersona.id === "sound-engineer"
+                    ? "brightness-95 contrast-105 hue-rotate-30"
+                    : "brightness-105 contrast-110 saturate-125"
+                }`}
+                style={{ objectFit: "cover" }}
+              />
+
+              {/* Persona indicator overlay */}
+              <div
+                className={`absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-1000 ${
+                  currentPersona.id === "software-engineer"
+                    ? "bg-blue-500/80 shadow-blue-500/50"
+                    : currentPersona.id === "videographer"
+                    ? "bg-orange-500/80 shadow-orange-500/50"
+                    : currentPersona.id === "sound-engineer"
+                    ? "bg-green-500/80 shadow-green-500/50"
+                    : "bg-yellow-500/80 shadow-yellow-500/50"
+                } shadow-lg backdrop-blur-sm`}
+              >
+                <currentPersona.mainIcon className="w-4 h-4 text-white" />
+              </div>
+            </div>
+            <div className="hidden md:block relative">
               <Image
                 key={currentPersona.id}
                 src={currentPersona.image}
@@ -442,7 +476,7 @@ export default function About() {
 
               {/* Persona indicator overlay */}
               <div
-                className={`absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-1000 ${
+                className={`absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-1000 ${
                   currentPersona.id === "software-engineer"
                     ? "bg-blue-500/80 shadow-blue-500/50"
                     : currentPersona.id === "videographer"
@@ -510,7 +544,7 @@ export default function About() {
         </div>
       </div>
       {/* Right Section - Content with sliding animations */}
-      <div className="flex-1 overflow-hidden w-full lg:w-auto text-center lg:text-left order-1 lg:order-2">
+      <div className="flex-1 w-full lg:w-auto text-center lg:text-left order-1 lg:order-2">
         <Badge
           className={`px-3 py-1 sm:px-4 sm:py-2 mb-2 rounded-full text-sm sm:text-md font-medium border transition-all duration-500 ${currentPersona.colors.text} border-current`}
         >
@@ -549,7 +583,7 @@ export default function About() {
         </div>
 
         {/* Sliding Skills Tags */}
-        <div className="mb-2 relative h-10 overflow-visible">
+        <div className="relative h-20 md:h-10 overflow-hidden">
           {personas.map((persona, index) => (
             <div
               key={`skills-${persona.id}`}
@@ -565,7 +599,7 @@ export default function About() {
                 {persona.skills.map((skill, skillIndex) => (
                   <span
                     key={skill}
-                    className={`px-3 py-1 sm:mb-8 rounded-full text-sm font-medium border transition-all duration-500 ${persona.colors.bg} ${persona.colors.text} border-current`}
+                    className={`px-2 py-1 sm:mb-8 rounded-full text-sm font-medium border transition-all duration-500 ${persona.colors.bg} ${persona.colors.text} border-current`}
                     style={{
                       transitionDelay: `${skillIndex * 100 + 400}ms`,
                       opacity: index === currentSlide ? 1 : 0,
@@ -584,7 +618,7 @@ export default function About() {
         </div>
 
         {/* Social Links */}
-        <div className="flex space-x-3 mt-10 md:mt-0 mb-6">
+        <div className="flex space-x-3 mb-2">
           <Link href="https://github.com/saintdannyyy">
             <GithubIcon
               className={`transition-colors duration-500 ${currentPersona.colors.text} hover:opacity-70`}
@@ -608,7 +642,7 @@ export default function About() {
         </div>
 
         {/* Sliding Description */}
-        <div className="hidden md:block w-[85%] mb-4 relative min-h-[120px] overflow-hidden">
+        <div className="block md:block w-[90%] relative min-h-[80px] overflow-hidden">
           {personas.map((persona, index) => (
             <p
               key={`desc-${persona.id}`}
