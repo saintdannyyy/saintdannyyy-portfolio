@@ -37,7 +37,7 @@ export default function About() {
 
     const slideTimer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % personas.length);
-    }, 4000); // Change slide every 4 seconds
+    }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(slideTimer);
   }, [isAutoPlay]);
