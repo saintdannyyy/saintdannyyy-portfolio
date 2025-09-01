@@ -20,6 +20,23 @@
     },
     {
       "id": 2,
+      "title": "PicMorph",
+      "description": "A web application for image conversions from one format to another.",
+      "image": "/projects/picmorph.png",
+      "technologies": ["REACTJS", "TailwindCSS", "NodeJS", "FFMPEG"],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2025",
+      "liveUrl": "https://picmorph-five.vercel.app/",
+      "githubUrl": "https://github.com/saintdannyyy/PicMorph",
+      "featured": true,
+      "highlights": [
+        "Real-time Image Conversion",
+        "Quality Loss Reduction"
+      ]
+    },
+    {
+      "id": 3,
       "title": "Mechanic Worshop Management System",
       "description": "Developed a web application for Mr Nash; an automobile expert at Dzorwulu to manage his workshop.",
       "image": "/projects/mechanic.png",
@@ -37,7 +54,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "OTConekt",
       "description": "OTConekt is a cross-platform mobile tele-rehabilitation app that connects individuals seeking occupational therapy with licensed therapists. Built using React Native (Expo) and powered by Supabase, this project focuses on accessibility, flexibility, and seamless virtual care.",
       "image": "/projects/otconekt.png",
@@ -55,7 +72,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "title": "Zest",
       "description": "The Point of Sale Application that helps small businesses in Africa thrive.",
       "image": "/projects/zest.svg",
