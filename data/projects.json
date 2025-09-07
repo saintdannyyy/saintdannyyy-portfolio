@@ -37,45 +37,51 @@
     },
     {
       "id": 3,
-      "title": "Mechanic Worshop Management System",
-      "description": "Developed a web application for Mr Nash; an automobile expert at Dzorwulu to manage his workshop.",
+      "title": "Mechanic Workshop Management System",
+      "description": "A comprehensive web-based management system for automotive repair shops and mechanic workshops. Developed for Mr Nash, an automobile expert at Dzorwulu, to streamline workshop operations including customer management, vehicle tracking, service scheduling, invoicing, and business analytics.",
       "image": "/projects/mechanic.png",
-      "technologies": ["HTML", "Bootstrap", "JavaScript", "MySQL", "PHP", "Highcharts", "Fpdf"],
+      "technologies": ["PHP", "MySQL", "HTML5", "CSS3", "Bootstrap 5", "JavaScript", "Highcharts", "Chart.js", "FPDF", "Font Awesome"],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
       "liveUrl": "https://mechanic.codlogics.com/Mechanic",
-      "githubUrl": "https://github.com/saintdannyyy",
+      "githubUrl": "https://github.com/saintdannyyy/Mechanic",
       "featured": true,
       "highlights": [
-        "Automation of manual processes",
-        "Real-time data processing",
-        "Interactive visualizations"
+        "Complete Customer & Vehicle Management System with Registration & Profiles",
+        "Job Card & Invoice Generation with PDF Export Functionality",
+        "Service & Repair Tracking with Real-time Status Updates",
+        "Business Analytics Dashboard with Revenue Trends & Performance Metrics",
+        "Receipt Storage & Management with Automated Processing",
+        "REST API Endpoints for Data Management & Search Functionality"
       ]
     },
     {
       "id": 4,
       "title": "OTConekt",
-      "description": "OTConekt is a cross-platform mobile tele-rehabilitation app that connects individuals seeking occupational therapy with licensed therapists. Built using React Native (Expo) and powered by Supabase, this project focuses on accessibility, flexibility, and seamless virtual care.",
-      "image": "/projects/otconekt.png",
-      "technologies": ["React Native", "Expo", "Supabase"],
-      "category": "Mobile",
-      "status": "Completed",
-      "year": "2025",
-      "liveUrl": "https://otconekt.vercel.app/",
-      "githubUrl": "https://github.com/saintdannyyy/OTConekt",
-      "featured": false,
-      "highlights": [
-        "In-App Messaging ",
-        "In-App Video Calls",
-        "Cross-Platform Accessibility"
-      ]
+        "description": "OTConekt is a cross-platform mobile tele-rehabilitation app connecting individuals seeking occupational therapy with licensed therapists. Features include secure authentication, tailored onboarding, therapist profiles, appointment booking, in-app messaging, progress tracking. Built with React Native (Expo) and Supabase for accessibility and seamless virtual care.",
+        "image": "/projects/otconekt.png",
+        "technologies": ["React Native", "Expo", "Supabase", "Firebase Cloud Messaging (planned)", "Jitsi Meet"],
+        "category": ["Mobile", "Telehealth"],
+        "status": "On Going",
+        "year": "2025",
+        "liveUrl": "https://otconekt.vercel.app/",
+        "githubUrl": "https://github.com/saintdannyyy/OTConekt",
+        "featured": true,
+        "highlights": [
+          "Therapist Profiles with scheduling and credentials",
+          "Appointment Booking and calendar integration",
+          "In-App Messaging for real-time communication",
+          "Progress Logs and tracking tools",
+          "Admin Dashboard for moderation (optional)",
+          "Planned: Push Notifications & Video Calls"
+        ]
     },
     {
       "id": 5,
       "title": "Zest",
       "description": "The Point of Sale Application that helps small businesses in Africa thrive.",
-      "image": "/projects/zest.svg",
+      "image": "/projects/zest.png",
       "technologies": ["Next.js", "TailwindCSS", "Shadcn", "PostMan"],
       "category": "SaaS",
       "status": "Completed",
@@ -85,6 +91,44 @@
       "featured": true,
       "highlights": [
         "Point of Sale"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "City of Sellingstar School (COSS)",
+      "description": "A comprehensive web platform with advanced CMS for City of Sellingstar School, an early years educational institution serving children aged 6 months to 5 years in Ghana. Features a complete admin dashboard for content management, appointment booking system, and gallery management.",
+      "image": "/projects/coss.png",
+      "technologies": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "FontAwesome"],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2024",
+      "liveUrl": "https://cossghana.com",
+      "githubUrl": "https://github.com/saintdannyyy/coss",
+      "featured": true,
+      "highlights": [
+        "Complete CMS with Admin Dashboard for Dynamic Page & Section Management",
+        "Appointment Booking & Mail Management",
+        "Responsive Design with Modern UI"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Wellness Community Academy",
+      "description": "A comprehensive wellness platform providing health resources, courses, and eBooks with affiliate management system. Features commission tracking, payout processing, and analytics for wellness program promotion.",
+      "image": "/projects/wellness.png",
+      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap", "DataTables", "SweetAlert2", "Paystack", "Chart.js", "PHPMailer"],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2025",
+      "liveUrl": "https://wellnesscommunityacademy.com",
+      "githubUrl": "https://github.com/saintdannyyy/wellnesscommunityacademy",
+      "featured": true,
+      "highlights": [
+        "Advanced Affiliate Management System with 15% Direct & 2% Indirect Referral Commission",
+        "Admin Dashboard with Real-time Analytics & Data Visualization",
+        "Integrated Payment Processing with Paystack for Mobile Money & Card Payments",
+        "Comprehensive eBook & Course Management System",
+        "Automated Email Notifications & Appointment Booking"
       ]
     }
   ]
