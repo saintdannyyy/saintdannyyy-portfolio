@@ -178,7 +178,7 @@ export default function Hero() {
           <div className="relative w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] p-1 group-hover:scale-105 transition-transform duration-500">
             <div className="w-full h-full bg-black rounded-full p-2">
               <Image
-                src="/saintdannyyy.jpg"
+                src="/hero.jpg"
                 alt="Profile pic"
                 width={300}
                 height={300}
