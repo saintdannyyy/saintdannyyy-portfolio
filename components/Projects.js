@@ -318,9 +318,14 @@ export default function Projects() {
           <p className="text-gray-400 mb-6 text-sm sm:text-base">
             Want to see more projects or discuss a collaboration?
           </p>
-          <Button className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#EA3546] to-[#662E9B] hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
-            View All Projects
-            <ArrowRight className="w-4 h-4 ml-2" />
+          <Button
+            asChild
+            className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#EA3546] to-[#662E9B] hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+          >
+            <Link href="/projects">
+              View All Projects
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
           </Button>
         </div>
       </div>
