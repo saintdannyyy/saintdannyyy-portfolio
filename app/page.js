@@ -52,7 +52,7 @@ const DATA = {
   navbar: [
     { href: "#", icon: HomeIcon, label: "Home" },
     { href: "#about", icon: User, label: "About" },
-    { href: "#projects", icon: FolderOpen, label: "Projects" },
+    { href: "/projects", icon: FolderOpen, label: "Projects" },
   ],
   contact: {
     social: {
