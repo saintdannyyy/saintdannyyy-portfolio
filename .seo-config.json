@@ -1,0 +1,61 @@
+{
+  "siteUrl": "https://saintdannyyy.vercel.app",
+  "features": {
+    "sitemap": true,
+    "robots": true,
+    "meta": true
+  },
+  "paths": {
+    "sitemap": "./public/sitemap.xml",
+    "robots": "./public/robots.txt"
+  },
+  "sitemap": {
+    "include": [],
+    "exclude": [
+      "/admin/*",
+      "/api/*"
+    ],
+    "additionalPaths": [],
+    "changefreq": "weekly",
+    "priority": 0.7
+  },
+  "robots": {
+    "userAgent": "*",
+    "disallow": [
+      "/admin",
+      "/api"
+    ],
+    "allow": [],
+    "crawlDelay": null,
+    "host": null
+  },
+  "metadata": {
+    "title": "Your Title",
+    "description": "Your Description",
+    "keywords": [
+      "nextjs",
+      "react",
+      "seo"
+    ],
+    "author": "Your Name",
+    "openGraph": {
+      "title": "Your Title",
+      "description": "Your Description",
+      "image": "https://saintdannyyy.vercel.app/openGraph-image.jpg",
+      "type": "website"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Your Title",
+      "description": "Your Description",
+      "image": "https://saintdannyyy.vercel.app/openGraph-image.jpg"
+    }
+  },
+  "googleSearchConsole": {
+    "enabled": true,
+    "method": "html",
+    "value": "googled05624a60ca869df.html",
+    "originalInput": "googled05624a60ca869df.html",
+    "fileName": "googled05624a60ca869df.html"
+  }
+}

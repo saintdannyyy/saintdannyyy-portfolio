@@ -1,21 +1,41 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Saintdannyyy",
+  title: "Daniel Ntiri Addo | Software Engineer, Full Stack Developer & Tech Innovator",
   description:
-    "Discover the portfolio and projects of Saintdannyyy. Explore professional achievements, skills, and insights.",
+    "Daniel Ntiri Addo is a Ghanaian software engineer, full stack developer, and digital innovator. Explore his professional portfolio, cutting-edge projects, and technical expertise in web, mobile, and AI development. Connect for collaboration, consulting, and technology solutions.",
   keywords: [
+    "Daniel Ntiri Addo",
+    "Addo Daniel",
     "Saintdannyyy",
-    "portfolio",
-    "developer",
-    "projects",
-    "software engineer",
-    "web development",
-    "JavaScript",
-    "Ghana",
-    "Next.js",
+    "Saint Danny",
+    "Ghana software engineer",
+    "Ghana web developer",
+    "full stack developer",
+    "AI developer",
+    "mobile app developer",
+    "Next.js portfolio",
+    "React developer",
+    "tech consultant",
+    "digital innovation",
+    "technology solutions",
+    "project showcase",
+    "collaboration",
+    "hire developer Ghana",
+    "software projects",
+    "coding portfolio",
+    "professional achievements",
+    "modern web development",
+    "cloud solutions",
+    "open source",
+    "tech entrepreneur",
+    "backend developer",
+    "frontend developer",
+    "API development",
+    "UI/UX designer",
+    "Ghana tech talent"
   ],
-  authors: [{ name: "Saintdannyyy" }],
+  authors: [{ name: "Daniel Ntiri Addo" }],
   icons: {
     icon: [
       { url: "/favicon.jpg", sizes: "any" },
@@ -25,19 +45,24 @@ export const metadata = {
     apple: "/favicon.jpg",
   },
   openGraph: {
-    title: "Saintdannyyy",
+    title: "Daniel Ntiri Addo | Software Engineer & Tech Innovator",
     description:
-      "Explore the professional portfolio and projects of Saintdannyyy.",
+      "Discover the portfolio, technical skills, and innovative projects of Daniel Ntiri Addo, a leading Ghanaian software engineer and full stack developer. View web, mobile, and AI solutions, and connect for collaboration or consulting.",
     type: "website",
     locale: "en_US",
     url: "https://saintdannyyy.vercel.app",
-    siteName: "Saintdannyyy",
+    siteName: "Daniel Ntiri Addo Portfolio",
+    images: [
+      {
+        url: "https://saintdannyyy.vercel.app/openGraph-image.jpg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Saintdannyyy",
+    title: "Daniel Ntiri Addo | Software Engineer & Tech Innovator",
     description:
-      "Explore the professional portfolio and projects of Saintdannyyy.",
+      "Explore the portfolio, technical skills, and innovative projects of Daniel Ntiri Addo, Ghanaian software engineer and full stack developer. Connect for collaboration, consulting, and technology solutions.",
   },
 };
 
