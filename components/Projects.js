@@ -26,19 +26,33 @@ const useScrollDrivenProjects = (projects) => {
     if (!container || projects.length === 0) return;
 
     const handleScroll = () => {
-      const scrollTop = container.scrollTop;
-      const containerHeight = container.clientHeight;
-      const projectHeight = containerHeight; // Each project takes full container height
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.top + containerRect.height / 2;
 
-      const newIndex = Math.min(
-        Math.floor(scrollTop / projectHeight),
-        projects.length - 1
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      // Check each project visual to see which is closest to center
+      const projectElements = container.querySelectorAll(
+        "[data-project-index]"
       );
+      projectElements.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(elementCenter - containerCenter);
 
-      setActiveProjectIndex(newIndex);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveProjectIndex(closestIndex);
     };
 
     container.addEventListener("scroll", handleScroll);
+    handleScroll(); // Set initial state
+
     return () => container.removeEventListener("scroll", handleScroll);
   }, [projects.length]);
 
@@ -46,7 +60,12 @@ const useScrollDrivenProjects = (projects) => {
 };
 
 // Project Visual Component (Left side - scrolling images)
-const ProjectVisuals = ({ projects, activeIndex, containerRef }) => {
+const ProjectVisuals = ({
+  projects,
+  activeProjectIndex,
+  containerRef,
+  onProjectChange,
+}) => {
   const getProjectGradient = (project, index) => {
     const gradients = [
       "linear-gradient(188.62deg, #6B0D33 49.9%, #EA3546 81.7%, #F86624 93.88%, #F9D793 113.5%)",
@@ -59,88 +78,123 @@ const ProjectVisuals = ({ projects, activeIndex, containerRef }) => {
   };
 
   return (
-    <div className="lg:w-[60%] h-full">
+    <div className="w-[60%] relative">
       <div
         ref={containerRef}
-        className="h-full overflow-y-auto scrollbar-hide"
+        className="h-screen overflow-y-auto scrollbar-hide scroll-smooth"
         style={{ scrollSnapType: "y mandatory" }}
       >
-        {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className="w-full h-full flex items-center justify-center p-8"
-            style={{ scrollSnapAlign: "start" }}
-          >
-            <Link
-              href={project.liveUrl || project.githubUrl || "#"}
-              target={project.liveUrl ? "_blank" : "_self"}
-              rel={project.liveUrl ? "noopener noreferrer" : ""}
-              className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1.5 shadow-2xl w-full max-w-4xl h-[560px] lg:rounded-3xl lg:p-2 border-white/15 hover:border-white/25 transition-all duration-500"
+        <div className="space-y-8 p-8">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              data-project-index={index}
+              className="h-[80vh] flex-shrink-0 relative rounded-2xl overflow-hidden"
+              style={{ scrollSnapAlign: "center" }}
             >
-              {/* Top gradient border */}
-              <div
-                className="absolute inset-x-0 top-0 h-px"
-                style={{
-                  background:
-                    "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
-                }}
-              />
-
-              {/* Main content container */}
-              <div className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl from-black/40 to-transparent transition-all duration-300 bg-gradient-to-b">
-                {/* Custom gradient background */}
+              <Link
+                href={project.liveUrl || project.githubUrl || "#"}
+                target={project.liveUrl ? "_blank" : "_self"}
+                rel={project.liveUrl ? "noopener noreferrer" : ""}
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1.5 shadow-2xl w-full h-full lg:rounded-3xl lg:p-2 border-white/15 hover:border-white/25 transition-all duration-500 block"
+              >
+                {/* Top gradient border */}
                 <div
-                  className="absolute inset-0 -z-1 opacity-80"
-                  style={{
-                    background: getProjectGradient(project, index),
-                  }}
-                />
-
-                {/* Top gradient line */}
-                <div
-                  className="absolute inset-x-0 top-px z-10 h-[0.8px] opacity-70"
+                  className="absolute inset-x-0 top-0 h-px"
                   style={{
                     background:
-                      "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
+                      "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
                   }}
                 />
 
-                {/* Title and arrow (visible on large screens) */}
-                <div className="hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-white">
-                  <h3 className="max-w-[90%] text-3xl font-bold tracking-wide">
-                    {project.description}
-                  </h3>
-                  <ArrowRight className="size-6" />
-                </div>
-
-                {/* Project Image */}
-                <div className="relative w-full max-w-[85%] translate-y-5 -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3 transition-all duration-300 will-change-transform">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={1203}
-                    height={753}
-                    className="w-full rounded-t-lg border-[1.5px] border-white/20 shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+                {/* Main content container */}
+                <div className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl from-black/40 to-transparent transition-all duration-300 bg-gradient-to-b">
+                  {/* Custom gradient background */}
+                  <div
+                    className="absolute inset-0 -z-1 opacity-80"
                     style={{
-                      boxShadow: `0 0 30px ${
-                        index === activeIndex
-                          ? "rgba(59,130,246,0.5)"
-                          : "rgba(0,0,0,0.3)"
-                      }`,
+                      background: getProjectGradient(project, index),
                     }}
                   />
+
+                  {/* Top gradient line */}
+                  <div
+                    className="absolute inset-x-0 top-px z-10 h-[0.8px] opacity-70"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
+                    }}
+                  />
+
+                  {/* Title and arrow (visible on large screens) */}
+                  <div className="hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-white">
+                    <h3 className="max-w-[90%] text-3xl font-bold tracking-wide">
+                      {project.description}
+                    </h3>
+                    <ArrowRight className="size-6" />
+                  </div>
+
+                  {/* Project Image */}
+                  <div className="relative w-full max-w-[85%] translate-y-5 -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3 transition-all duration-300 will-change-transform">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={1203}
+                      height={753}
+                      className="w-full rounded-t-lg border-[1.5px] border-white/20"
+                      style={{
+                        boxShadow: `0 0 30px ${
+                          index === activeProjectIndex
+                            ? "rgba(59,130,246,0.5)"
+                            : "rgba(0,0,0,0.3)"
+                        }`,
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30">
+        <div className="flex flex-col space-y-2">
+          {projects.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-8 rounded-full transition-all duration-300 ${
+                index === activeProjectIndex
+                  ? "bg-white shadow-lg"
+                  : "bg-white/30"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-// Project Details Component (Right side - fixed content that changes)
-const ProjectDetails = ({ project, index }) => {
+// Project Details Component (Right side - fixed content that changes with animations)
+const ProjectDetails = ({ project, index, isActive }) => {
+  const [displayProject, setDisplayProject] = useState(project);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Animate project details when active project changes
+  useEffect(() => {
+    if (displayProject.id !== project.id) {
+      setIsAnimating(true);
+
+      // Fade out old content
+      setTimeout(() => {
+        setDisplayProject(project);
+        setIsAnimating(false);
+      }, 150);
+    }
+  }, [project, displayProject.id]);
+
   const getStatusIcon = (status) => {
     switch (status) {
       case "Completed":
@@ -164,11 +218,23 @@ const ProjectDetails = ({ project, index }) => {
   };
 
   return (
-    <div className="lg:w-[40%] h-full bg-black/20 backdrop-blur-sm border-l border-white/10 p-8 lg:p-12 flex flex-col justify-center">
-      <div className="space-y-3 max-w-lg">
-        {/* Project Badge and Status */}
-        <div className="flex items-center gap-3">
-          {project.featured && (
+    <div className="w-[40%] p-8 flex flex-col justify-center bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md">
+      <div
+        className={`max-w-md mx-auto transition-all duration-300 ease-out ${
+          isAnimating
+            ? "opacity-0 translate-y-4 scale-95"
+            : "opacity-100 translate-y-0 scale-100"
+        }`}
+      >
+        {/* Project Badge and Status with staggered animation */}
+        <div
+          className={`flex items-center gap-3 mb-4 transition-all duration-500 delay-100 ${
+            isAnimating
+              ? "opacity-0 translate-x-4"
+              : "opacity-100 translate-x-0"
+          }`}
+        >
+          {displayProject.featured && (
             <Badge className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white border-0">
               <Star className="w-3 h-3 mr-1" />
               Featured
@@ -176,62 +242,98 @@ const ProjectDetails = ({ project, index }) => {
           )}
           <Badge
             className={`${getStatusColor(
-              project.status
+              displayProject.status
             )} border backdrop-blur-sm`}
           >
-            {getStatusIcon(project.status)}
-            <span className="ml-1">{project.status}</span>
+            {getStatusIcon(displayProject.status)}
+            <span className="ml-1">{displayProject.status}</span>
           </Badge>
         </div>
 
-        {/* Project Title */}
-        <div className="space-y-2">
-          <h2 className="text-lg lg:text-3xl font-bold text-white leading-tight">
-            {project.title}
+        {/* Project Title with slide-in animation */}
+        <div
+          className={`space-y-2 mb-4 transition-all duration-500 delay-200 ${
+            isAnimating
+              ? "opacity-0 translate-x-4"
+              : "opacity-100 translate-x-0"
+          }`}
+        >
+          <h2 className="text-3xl font-bold text-white leading-tight">
+            {displayProject.title}
           </h2>
           <p className="text-white/80 text-sm leading-relaxed">
-            {project.description}
+            {displayProject.description}
           </p>
         </div>
 
-        {/* Category and Year */}
-        <div className="flex items-center gap-3 text-white/60">
+        {/* Category and Year with fade-in animation */}
+        <div
+          className={`flex items-center gap-3 text-white/60 mb-6 transition-all duration-500 delay-300 ${
+            isAnimating
+              ? "opacity-0 translate-y-2"
+              : "opacity-100 translate-y-0"
+          }`}
+        >
           <Badge
             variant="outline"
             className="text-white/70 border-white/30 bg-white/10 backdrop-blur-sm"
           >
-            {project.category}
+            {displayProject.category}
           </Badge>
           <span>•</span>
-          <span>{project.year}</span>
+          <span>{displayProject.year}</span>
         </div>
 
-        {/* Key Highlights */}
-        {project.highlights && (
-          <div className="space-y-1">
+        {/* Key Highlights with staggered animation */}
+        {displayProject.highlights && (
+          <div
+            className={`space-y-3 mb-6 transition-all duration-500 delay-400 ${
+              isAnimating
+                ? "opacity-0 translate-y-4"
+                : "opacity-100 translate-y-0"
+            }`}
+          >
             <h4 className="text-white font-semibold text-lg">Key Highlights</h4>
-            <ul className="space-y-1">
-              {project.highlights.slice(0, 4).map((highlight, hlIndex) => (
-                <li
-                  key={hlIndex}
-                  className="text-white/80 flex items-start gap-3"
-                >
-                  <span className="text-[#EA3546] mt-1">✓</span>
-                  <span>{highlight}</span>
-                </li>
-              ))}
+            <ul className="space-y-2">
+              {displayProject.highlights
+                .slice(0, 3)
+                .map((highlight, hlIndex) => (
+                  <li
+                    key={hlIndex}
+                    className={`text-white/80 flex items-start gap-3 transition-all duration-300 ${
+                      isAnimating
+                        ? "opacity-0 translate-x-4"
+                        : "opacity-100 translate-x-0"
+                    }`}
+                    style={{ transitionDelay: `${500 + hlIndex * 100}ms` }}
+                  >
+                    <span className="text-[#EA3546] mt-1">✓</span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
             </ul>
           </div>
         )}
 
-        {/* Technologies */}
-        <div className="space-y-1">
+        {/* Technologies with cascading animation */}
+        <div
+          className={`space-y-3 mb-6 transition-all duration-500 delay-500 ${
+            isAnimating
+              ? "opacity-0 translate-y-4"
+              : "opacity-100 translate-y-0"
+          }`}
+        >
           <h4 className="text-white font-semibold text-lg">Technologies</h4>
           <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, techIndex) => (
+            {displayProject.technologies.map((tech, techIndex) => (
               <Badge
                 key={techIndex}
-                className="bg-white/10 backdrop-blur-sm text-white/90 border-white/20 hover:bg-white/20 transition-colors duration-200"
+                className={`bg-white/10 backdrop-blur-sm text-white/90 border-white/20 hover:bg-white/20 transition-all duration-300 ${
+                  isAnimating
+                    ? "opacity-0 scale-95 translate-y-2"
+                    : "opacity-100 scale-100 translate-y-0"
+                }`}
+                style={{ transitionDelay: `${600 + techIndex * 50}ms` }}
               >
                 {tech}
               </Badge>
@@ -239,15 +341,21 @@ const ProjectDetails = ({ project, index }) => {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-4 pt-2">
-          {project.liveUrl && (
+        {/* Action Buttons with bounce-in animation */}
+        <div
+          className={`flex gap-4 pt-2 transition-all duration-500 delay-700 ${
+            isAnimating
+              ? "opacity-0 translate-y-4 scale-95"
+              : "opacity-100 translate-y-0 scale-100"
+          }`}
+        >
+          {displayProject.liveUrl && (
             <Button
               asChild
               className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 border-0 flex-1"
             >
               <Link
-                href={project.liveUrl}
+                href={displayProject.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -257,14 +365,14 @@ const ProjectDetails = ({ project, index }) => {
             </Button>
           )}
 
-          {project.githubUrl && (
+          {displayProject.githubUrl && (
             <Button
               asChild
               variant="outline"
-              className="border-white/30 hover:border-white/50 hover:bg-white/10 text-gray-800 backdrop-blur-sm flex-1"
+              className="border-white/30 hover:border-white/50 hover:bg-white/10 text-white backdrop-blur-sm flex-1"
             >
               <Link
-                href={project.githubUrl}
+                href={displayProject.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -325,7 +433,7 @@ export default function Projects() {
   return (
     <div className="w-full bg-transparent" id="projects">
       {/* Section Header */}
-      <div className="text-center">
+      <div className="text-center mb-8">
         <p className="mb-3 text-xs font-normal tracking-widest text-white/70 uppercase md:text-sm">
           FEATURED CASE STUDIES
         </p>
@@ -341,20 +449,29 @@ export default function Projects() {
         </p>
       </div>
 
-      {/* Main Projects Display */}
-      <div className="flex h-screen max-h-screen w-[90%] mx-auto my-8 px-10 py-10 bg-black/20 backdrop-blur-sm border border-white/10 rounded-3xl shadow-lg overflow-hidden">
-        {/* Left side - Scrolling Project Visuals */}
-        <ProjectVisuals
-          projects={filteredProjects}
-          activeIndex={activeProjectIndex}
-          containerRef={containerRef}
-        />
+      {/* Scroll-driven Projects Display */}
+      <div className="min-h-screen bg-black/10 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-red-900/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,theme(colors.purple.600/0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,theme(colors.red.600/0.15),transparent_50%)]" />
 
-        {/* Right side - Project Details */}
-        <ProjectDetails
-          project={filteredProjects[activeProjectIndex]}
-          index={activeProjectIndex}
-        />
+        <div className="relative flex h-screen">
+          {/* Left side - Scrolling project visuals */}
+          <ProjectVisuals
+            projects={filteredProjects}
+            activeProjectIndex={activeProjectIndex}
+            containerRef={containerRef}
+            onProjectChange={(index) => {}}
+          />
+
+          {/* Right side - Fixed project details with animations */}
+          <ProjectDetails
+            project={filteredProjects[activeProjectIndex]}
+            index={activeProjectIndex}
+            isActive={true}
+          />
+        </div>
       </div>
 
       {/* Call to Action */}
