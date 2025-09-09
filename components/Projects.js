@@ -33,6 +33,10 @@ function useScrollHijackProjects(total, opts = { threshold: 0.3 }) {
     const el = sectionRef.current;
     if (!el || total <= 0) return;
 
+    // Only enable scroll hijacking on desktop (lg screens and above)
+    const isDesktop = window.innerWidth >= 1024;
+    if (!isDesktop) return;
+
     let frame = 0;
     let wheelDelta = 0;
 
@@ -131,12 +135,24 @@ function useScrollHijackProjects(total, opts = { threshold: 0.3 }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("keydown", onKey);
+
+    // Handle window resize to disable hijacking on mobile
+    const onResize = () => {
+      const isDesktop = window.innerWidth >= 1024;
+      if (!isDesktop && isHijacked) {
+        setIsHijacked(false);
+        document.body.style.overflow = "";
+      }
+    };
+    window.addEventListener("resize", onResize);
+
     onScroll();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
       document.body.style.overflow = "";
       if (frame) cancelAnimationFrame(frame);
     };
@@ -511,6 +527,7 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [filter, setFilter] = useState("All");
   const [filtered, setFiltered] = useState([]);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // Load projects and auto-filter to featured only
   useEffect(() => {
@@ -521,10 +538,24 @@ export default function Projects() {
     setFiltered(featuredProjects);
   }, []);
 
+  // Handle responsive behavior
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   const total = filtered.length;
   const { sectionRef, activeIndex, progress, isHijacked, snapTo } =
     useScrollHijackProjects(total, { threshold: 0.3 });
-  const sectionHeight = `${Math.max(total * 100, 300)}vh`;
+
+  // Only set custom height for desktop, mobile uses natural content height
+  const sectionHeight = isDesktop ? `${Math.max(total * 100, 300)}vh` : "auto";
 
   // Categories for filtering (though we're showing featured only)
   const categories = useMemo(() => {
@@ -550,7 +581,9 @@ export default function Projects() {
       className="w-full bg-transparent lg:[height:var(--section-height)]"
       id="projects"
       ref={sectionRef}
-      style={{ "--section-height": sectionHeight }}
+      style={{
+        "--section-height": sectionHeight,
+      }}
     >
       {/* Section Header */}
       <div className="text-center">
