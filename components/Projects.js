@@ -16,56 +16,52 @@ import {
 } from "lucide-react";
 import projectsData from "../data/projects.json";
 
-// Custom hook for scroll-driven animations
-const useScrollDrivenProjects = (projects) => {
+// Custom hook for page-scroll-driven projects
+const usePageScrollDrivenProjects = (projects) => {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container || projects.length === 0) return;
-
     const handleScroll = () => {
-      const containerRect = container.getBoundingClientRect();
-      const containerCenter = containerRect.top + containerRect.height / 2;
+      const section = sectionRef.current;
+      if (!section || projects.length === 0) return;
 
-      let closestIndex = 0;
-      let closestDistance = Infinity;
+      const sectionRect = section.getBoundingClientRect();
+      const sectionTop = sectionRect.top;
+      const sectionHeight = sectionRect.height;
+      const windowHeight = window.innerHeight;
 
-      // Check each project visual to see which is closest to center
-      const projectElements = container.querySelectorAll(
-        "[data-project-index]"
-      );
-      projectElements.forEach((element, index) => {
-        const rect = element.getBoundingClientRect();
-        const elementCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(elementCenter - containerCenter);
+      // Check if section is in viewport
+      if (sectionTop <= windowHeight && sectionTop + sectionHeight >= 0) {
+        // Calculate how much of the section has been scrolled through
+        const scrolledIntoSection = Math.max(0, windowHeight - sectionTop);
+        const totalScrollableHeight = sectionHeight + windowHeight;
+        const scrollProgress = Math.min(
+          scrolledIntoSection / totalScrollableHeight,
+          1
+        );
 
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
-        }
-      });
+        // Map scroll progress to project index
+        const newActiveIndex = Math.min(
+          Math.floor(scrollProgress * projects.length),
+          projects.length - 1
+        );
 
-      setActiveProjectIndex(closestIndex);
+        setActiveProjectIndex(Math.max(0, newActiveIndex));
+      }
     };
 
-    container.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll(); // Set initial state
 
-    return () => container.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [projects.length]);
 
-  return [containerRef, activeProjectIndex];
+  return [sectionRef, activeProjectIndex];
 };
 
-// Project Visual Component (Left side - scrolling images)
-const ProjectVisuals = ({
-  projects,
-  activeProjectIndex,
-  containerRef,
-  onProjectChange,
-}) => {
+// Project Visual Component (Left side - visuals that change with page scroll)
+const ProjectVisuals = ({ projects, activeProjectIndex, onProjectChange }) => {
   const getProjectGradient = (project, index) => {
     const gradients = [
       "linear-gradient(188.62deg, #6B0D33 49.9%, #EA3546 81.7%, #F86624 93.88%, #F9D793 113.5%)",
@@ -77,84 +73,63 @@ const ProjectVisuals = ({
     return gradients[index % gradients.length];
   };
 
+  const currentProject = projects[activeProjectIndex];
+
   return (
-    <div className="w-[60%] relative">
-      <div
-        ref={containerRef}
-        className="h-screen overflow-y-auto scrollbar-hide scroll-smooth"
-        style={{ scrollSnapType: "y mandatory" }}
-      >
-        <div className="space-y-8 p-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              data-project-index={index}
-              className="h-[80vh] flex-shrink-0 relative rounded-2xl overflow-hidden"
-              style={{ scrollSnapAlign: "center" }}
-            >
-              <Link
-                href={project.liveUrl || project.githubUrl || "#"}
-                target={project.liveUrl ? "_blank" : "_self"}
-                rel={project.liveUrl ? "noopener noreferrer" : ""}
-                className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1.5 shadow-2xl w-full h-full lg:rounded-3xl lg:p-2 border-white/15 hover:border-white/25 transition-all duration-500 block"
-              >
-                {/* Top gradient border */}
-                <div
-                  className="absolute inset-x-0 top-0 h-px"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
-                  }}
-                />
+    <div className="w-[60%] relative flex items-center justify-center p-8">
+      <div className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1.5 shadow-2xl w-full max-w-4xl h-[80vh] lg:rounded-3xl lg:p-2 border-white/15 hover:border-white/25 transition-all duration-500">
+        {/* Top gradient border */}
+        <div
+          className="absolute inset-x-0 top-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
+          }}
+        />
 
-                {/* Main content container */}
-                <div className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl from-black/40 to-transparent transition-all duration-300 bg-gradient-to-b">
-                  {/* Custom gradient background */}
-                  <div
-                    className="absolute inset-0 -z-1 opacity-80"
-                    style={{
-                      background: getProjectGradient(project, index),
-                    }}
-                  />
+        {/* Main content container */}
+        <div className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl from-black/40 to-transparent transition-all duration-500 bg-gradient-to-b">
+          {/* Custom gradient background */}
+          <div
+            className="absolute inset-0 -z-1 opacity-80 transition-all duration-500"
+            style={{
+              background: getProjectGradient(
+                currentProject,
+                activeProjectIndex
+              ),
+            }}
+          />
 
-                  {/* Top gradient line */}
-                  <div
-                    className="absolute inset-x-0 top-px z-10 h-[0.8px] opacity-70"
-                    style={{
-                      background:
-                        "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
-                    }}
-                  />
+          {/* Top gradient line */}
+          <div
+            className="absolute inset-x-0 top-px z-10 h-[0.8px] opacity-70"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
+            }}
+          />
 
-                  {/* Title and arrow (visible on large screens) */}
-                  <div className="hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-white">
-                    <h3 className="max-w-[90%] text-3xl font-bold tracking-wide">
-                      {project.description}
-                    </h3>
-                    <ArrowRight className="size-6" />
-                  </div>
+          {/* Title and arrow (visible on large screens) */}
+          <div className="hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-white">
+            <h3 className="max-w-[90%] text-3xl font-bold tracking-wide transition-all duration-500">
+              {currentProject.description}
+            </h3>
+            <ArrowRight className="size-6" />
+          </div>
 
-                  {/* Project Image */}
-                  <div className="relative w-full max-w-[85%] translate-y-5 -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3 transition-all duration-300 will-change-transform">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={1203}
-                      height={753}
-                      className="w-full rounded-t-lg border-[1.5px] border-white/20"
-                      style={{
-                        boxShadow: `0 0 30px ${
-                          index === activeProjectIndex
-                            ? "rgba(59,130,246,0.5)"
-                            : "rgba(0,0,0,0.3)"
-                        }`,
-                      }}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+          {/* Project Image */}
+          <div className="relative w-full max-w-[85%] translate-y-5 -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3 transition-all duration-500 will-change-transform">
+            <Image
+              src={currentProject.image}
+              alt={currentProject.title}
+              width={1203}
+              height={753}
+              className="w-full rounded-t-lg border-[1.5px] border-white/20 transition-all duration-500"
+              style={{
+                boxShadow: "0 0 30px rgba(59,130,246,0.5)",
+              }}
+            />
+          </div>
         </div>
       </div>
 
@@ -419,8 +394,8 @@ export default function Projects() {
     ...new Set(projects.map((project) => project.category)),
   ];
 
-  const [containerRef, activeProjectIndex] =
-    useScrollDrivenProjects(filteredProjects);
+  const [sectionRef, activeProjectIndex] =
+    usePageScrollDrivenProjects(filteredProjects);
 
   if (filteredProjects.length === 0) {
     return (
@@ -431,9 +406,14 @@ export default function Projects() {
   }
 
   return (
-    <div className="w-full bg-transparent" id="projects">
+    <div
+      ref={sectionRef}
+      className="w-full bg-transparent"
+      id="projects"
+      style={{ height: `${filteredProjects.length * 100}vh` }} // Make section tall enough for scroll effect
+    >
       {/* Section Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 pt-20">
         <p className="mb-3 text-xs font-normal tracking-widest text-white/70 uppercase md:text-sm">
           FEATURED CASE STUDIES
         </p>
@@ -449,28 +429,29 @@ export default function Projects() {
         </p>
       </div>
 
-      {/* Scroll-driven Projects Display */}
-      <div className="min-h-screen bg-black/10 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-red-900/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,theme(colors.purple.600/0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,theme(colors.red.600/0.15),transparent_50%)]" />
+      {/* Sticky Projects Display that responds to page scroll */}
+      <div className="sticky top-0 h-screen">
+        <div className="h-screen bg-black/10 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden mx-4">
+          {/* Background effects */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-red-900/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,theme(colors.purple.600/0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,theme(colors.red.600/0.15),transparent_50%)]" />
 
-        <div className="relative flex h-screen">
-          {/* Left side - Scrolling project visuals */}
-          <ProjectVisuals
-            projects={filteredProjects}
-            activeProjectIndex={activeProjectIndex}
-            containerRef={containerRef}
-            onProjectChange={(index) => {}}
-          />
+          <div className="relative flex h-full">
+            {/* Left side - Project visuals that change with page scroll */}
+            <ProjectVisuals
+              projects={filteredProjects}
+              activeProjectIndex={activeProjectIndex}
+              onProjectChange={(index) => {}}
+            />
 
-          {/* Right side - Fixed project details with animations */}
-          <ProjectDetails
-            project={filteredProjects[activeProjectIndex]}
-            index={activeProjectIndex}
-            isActive={true}
-          />
+            {/* Right side - Fixed project details with animations */}
+            <ProjectDetails
+              project={filteredProjects[activeProjectIndex]}
+              index={activeProjectIndex}
+              isActive={true}
+            />
+          </div>
         </div>
       </div>
 
