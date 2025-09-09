@@ -201,222 +201,196 @@ function BulletIcon() {
 function ProjectVisuals({ projects, idx }) {
   const p = projects[idx];
   return (
-    <div className="w-full lg:w-[60%] relative flex items-center justify-center p-6 sm:p-8">
-      <div className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1.5 shadow-2xl w-full max-w-4xl h-[78vh] lg:rounded-3xl lg:p-2 border-white/15 hover:border-white/25 transition-all duration-500">
-        {/* shimmering top line */}
-        <div
-          className="absolute inset-x-0 top-0 h-px"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
-          }}
-        />
-
-        {/* glass body */}
-        <div className="relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl from-black/40 to-transparent transition-all duration-700 bg-gradient-to-b">
-          {/* gradient wash */}
+    <div className="lg:w-[70%] h-full">
+      <div className="w-full h-full flex items-center justify-center p-8">
+        <Link
+          href={p?.liveUrl || p?.githubUrl || "#"}
+          target={p?.liveUrl ? "_blank" : "_self"}
+          rel={p?.liveUrl ? "noopener noreferrer" : ""}
+          className="group relative cursor-pointer overflow-hidden rounded-2xl border bg-[#f2f2f20c] p-1.5 shadow-2xl w-full max-w-4xl h-[560px] lg:rounded-3xl lg:p-2 border-white/15 hover:border-white/25 transition-all duration-500"
+        >
+          {/* Top gradient border */}
           <div
-            className="absolute inset-0 -z-10 opacity-80 transition-all duration-700"
-            style={{ background: getProjectGradient(idx) }}
+            className="absolute inset-x-0 top-0 h-px"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(0, 0, 0, 0) 5%, rgba(255, 255, 255, 0.8) 35%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.8) 65%, rgba(0, 0, 0, 0) 95%)",
+            }}
           />
 
-          {/* header row (desktop) */}
-          <div className="hidden w-full flex-row items-center justify-between px-8 sm:px-12 py-6 lg:flex text-white">
-            <h3 className="max-w-[90%] text-2xl sm:text-xl font-bold tracking-wide transition-all duration-700">
-              {p?.description || p?.title}
-            </h3>
-            <ArrowRight className="size-6" />
-          </div>
-
-          {/* image */}
-          <div className="relative w-full max-w-[88%] translate-y-5 -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.06] lg:group-hover:-rotate-3 transition-all duration-700 will-change-transform">
+          {/* Main content container */}
+          <div className="group relative flex size-full flex-col items-center justify-between overflow-hidden rounded-xl lg:rounded-2xl from-black/40 to-transparent transition-all duration-300 bg-gradient-to-b">
+            {/* Custom gradient background */}
             <div
-              className="relative w-full overflow-hidden rounded-lg border border-white/20"
-              style={{ aspectRatio: "1203/753" }}
-            >
+              className="absolute inset-0 -z-1 opacity-80"
+              style={{
+                background: getProjectGradient(idx),
+              }}
+            />
+
+            {/* Top gradient line */}
+            <div
+              className="absolute inset-x-0 top-px z-10 h-[0.8px] opacity-70"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(0, 0, 0, 0) 20%, rgb(255, 255, 255) 50%, rgba(0, 0, 0, 0) 80%)",
+              }}
+            />
+
+            {/* Title and arrow (visible on large screens) */}
+            <div className="hidden w-full flex-row items-center justify-between px-12 py-8 lg:flex text-white">
+              <h3 className="max-w-[90%] text-3xl font-bold tracking-wide">
+                {p?.description || p?.title}
+              </h3>
+              <ArrowRight className="size-6" />
+            </div>
+
+            {/* Project Image */}
+            <div className="relative w-full max-w-[85%] translate-y-5 -rotate-3 lg:rotate-0 lg:group-hover:scale-[1.08] lg:group-hover:-rotate-3 transition-all duration-300 will-change-transform">
               {p?.image && (
                 <Image
                   src={p.image}
                   alt={p.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 70vw"
-                  priority={idx === 0}
-                  className="object-cover"
+                  width={1203}
+                  height={753}
+                  className="w-full rounded-t-lg border-[1.5px] border-white/20 shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+                  style={{
+                    boxShadow: `0 0 30px rgba(59,130,246,0.5)`,
+                  }}
                 />
               )}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* right edge progress bars (mobile-hidden) */}
-      <div className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 hidden md:block">
-        <div className="flex flex-col space-y-2">
-          {projects.map((_, i) => (
-            <div
-              key={i}
-              className="w-2 h-8 rounded-full transition-all duration-500 relative overflow-hidden"
-              style={{
-                backgroundColor: i === idx ? "white" : "rgba(255,255,255,0.3)",
-                boxShadow: i === idx ? "0 0 8px rgba(255,255,255,0.5)" : "none",
-              }}
-            />
-          ))}
-        </div>
+        </Link>
       </div>
     </div>
   );
 }
 
 function ProjectDetails({ p, isActive, idx }) {
-  const [display, setDisplay] = useState(p);
-  const [anim, setAnim] = useState(false);
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case "Completed":
+        return <CheckCircle className="w-4 h-4 text-green-500" />;
+      case "In Progress":
+        return <Clock className="w-4 h-4 text-yellow-500" />;
+      default:
+        return <Calendar className="w-4 h-4 text-gray-400" />;
+    }
+  };
 
-  useEffect(() => {
-    if (!display || !p || display.id === p.id) return;
-    setAnim(true);
-    const t = setTimeout(() => {
-      setDisplay(p);
-      setAnim(false);
-    }, 150);
-    return () => clearTimeout(t);
-  }, [p, display?.id]);
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Completed":
+        return "bg-green-500/20 text-green-400 border-green-500/30";
+      case "On Going":
+        return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
+      default:
+        return "bg-gray-500/20 text-gray-400 border-gray-500/30";
+    }
+  };
 
   return (
-    <div className="w-full lg:w-[40%] p-6 sm:p-8 flex flex-col justify-center bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-gray-900/95 backdrop-blur-md">
-      <div
-        className={`max-w-md mx-auto transition-all duration-300 ease-out ${
-          anim
-            ? "opacity-0 translate-y-4 scale-95"
-            : "opacity-100 translate-y-0 scale-100"
-        }`}
-      >
-        {/* badges */}
-        <div
-          className={`flex items-center gap-3 mb-4 transition-all duration-500 delay-100 ${
-            anim ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
-          }`}
-        >
-          {display?.featured && (
+    <div className="lg:w-[30%] h-full bg-black/20 backdrop-blur-sm border-l border-white/10 p-8 lg:p-12 flex flex-col justify-center">
+      <div className="space-y-3 max-w-lg">
+        {/* Project Badge and Status */}
+        <div className="flex items-center gap-3">
+          {p?.featured && (
             <Badge className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white border-0">
-              <Star className="w-3 h-3 mr-1" /> Featured
+              <Star className="w-3 h-3 mr-1" />
+              Featured
             </Badge>
           )}
-          {display?.status && <StatusBadge status={display.status} />}
-        </div>
-
-        {/* title + desc */}
-        <div
-          className={`space-y-2 mb-4 transition-all duration-500 delay-200 ${
-            anim ? "opacity-0 translate-x-4" : "opacity-100 translate-x-0"
-          }`}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
-            {display?.title}
-          </h2>
-          {display?.description && (
-            <p className="text-white/80 text-sm leading-relaxed">
-              {display.description}
-            </p>
-          )}
-        </div>
-
-        {/* meta */}
-        <div
-          className={`flex items-center gap-3 text-white/60 mb-6 transition-all duration-500 delay-300 ${
-            anim ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
-          }`}
-        >
-          {display?.category && (
-            <Badge
-              variant="outline"
-              className="text-white/70 border-white/30 bg-white/10 backdrop-blur-sm"
-            >
-              {display.category}
-            </Badge>
-          )}
-          {display?.year && (
-            <>
-              <span>•</span>
-              <span>{display.year}</span>
-            </>
-          )}
-        </div>
-
-        {/* highlights */}
-        {!!display?.highlights?.length && (
-          <div
-            className={`space-y-3 mb-6 transition-all duration-500 delay-400 ${
-              anim ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-            }`}
+          <Badge
+            className={`${getStatusColor(p?.status)} border backdrop-blur-sm`}
           >
+            {getStatusIcon(p?.status)}
+            <span className="ml-1">{p?.status}</span>
+          </Badge>
+        </div>
+
+        {/* Project Title */}
+        <div className="space-y-2">
+          <h2 className="text-lg lg:text-3xl font-bold text-white leading-tight">
+            {p?.title}
+          </h2>
+          <p className="text-white/80 text-sm leading-relaxed">
+            {p?.description}
+          </p>
+        </div>
+
+        {/* Category and Year */}
+        <div className="flex items-center gap-3 text-white/60">
+          <Badge
+            variant="outline"
+            className="text-white/70 border-white/30 bg-white/10 backdrop-blur-sm"
+          >
+            {p?.category}
+          </Badge>
+          <span>•</span>
+          <span>{p?.year}</span>
+        </div>
+
+        {/* Key Highlights */}
+        {p?.highlights && (
+          <div className="space-y-1">
             <h4 className="text-white font-semibold text-lg">Key Highlights</h4>
-            <ul className="space-y-2 text-sm">
-              {display.highlights.slice(0, 4).map((hl, i) => (
-                <li key={i} className="text-white/80 flex items-start gap-2">
-                  <BulletIcon />
-                  <span>{hl}</span>
+            <ul className="space-y-1">
+              {p.highlights.slice(0, 4).map((highlight, hlIndex) => (
+                <li
+                  key={hlIndex}
+                  className="text-white/80 flex items-start gap-3"
+                >
+                  <span className="text-[#EA3546] mt-1">✓</span>
+                  <span>{highlight}</span>
                 </li>
               ))}
             </ul>
           </div>
         )}
 
-        {/* tech */}
-        {!!display?.technologies?.length && (
-          <div
-            className={`space-y-3 mb-6 transition-all duration-500 delay-500 ${
-              anim ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
-            }`}
-          >
-            <h4 className="text-white font-semibold text-lg">Technologies</h4>
-            <div className="flex flex-wrap gap-2">
-              {display.technologies.map((t, i) => (
-                <Badge
-                  key={i}
-                  className="bg-white/10 backdrop-blur-sm text-white/90 border-white/20 hover:bg-white/20 transition-all duration-300"
-                >
-                  {t}
-                </Badge>
-              ))}
-            </div>
+        {/* Technologies */}
+        <div className="space-y-1">
+          <h4 className="text-white font-semibold text-lg">Technologies</h4>
+          <div className="flex flex-wrap gap-2">
+            {p?.technologies?.map((tech, techIndex) => (
+              <Badge
+                key={techIndex}
+                className="bg-white/10 backdrop-blur-sm text-white/90 border-white/20 hover:bg-white/20 transition-colors duration-200"
+              >
+                {tech}
+              </Badge>
+            ))}
           </div>
-        )}
+        </div>
 
-        {/* actions */}
-        <div
-          className={`flex gap-4 pt-2 transition-all duration-500 delay-700 ${
-            anim
-              ? "opacity-0 translate-y-4 scale-95"
-              : "opacity-100 translate-y-0 scale-100"
-          }`}
-        >
-          {display?.liveUrl && (
+        {/* Action Buttons */}
+        <div className="flex gap-4 pt-2">
+          {p?.liveUrl && (
             <Button
               asChild
               className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 border-0 flex-1"
             >
-              <Link
-                href={display.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="w-4 h-4 mr-2" /> Live Demo
+              <Link href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Live Demo
               </Link>
             </Button>
           )}
-          {display?.githubUrl && (
+
+          {p?.githubUrl && (
             <Button
               asChild
               variant="outline"
               className="border-white/30 hover:border-white/50 hover:bg-white/10 text-white backdrop-blur-sm flex-1"
             >
               <Link
-                href={display.githubUrl}
+                href={p.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="w-4 h-4 mr-2" /> Source Code
+                <Github className="w-4 h-4 mr-2" />
+                Source Code
               </Link>
             </Button>
           )}
@@ -578,42 +552,25 @@ export default function Projects() {
       ref={sectionRef}
       style={{ "--section-height": sectionHeight }}
     >
-      {/* Header */}
-      <div className="text-center mb-8 pt-16">
+      {/* Section Header */}
+      <div className="text-center">
         <p className="mb-3 text-xs font-normal tracking-widest text-white/70 uppercase md:text-sm">
           FEATURED CASE STUDIES
         </p>
+
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-comic">
           <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent drop-shadow-lg">
-            Curated work
+            Projects
           </span>
         </h2>
-        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-6 font-comic drop-shadow px-4">
+        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-2 font-comic drop-shadow px-4">
           A showcase of my recent work, featuring full-stack applications,
           mobile apps, and innovative solutions.
         </p>
-
-        {/* Filter buttons */}
-        <div className="flex flex-wrap justify-center gap-2 px-4">
-          {categories.map((cat) => (
-            <Button
-              key={cat}
-              variant={filter === cat ? "default" : "outline"}
-              onClick={() => setFilter(cat)}
-              className={`${
-                filter === cat
-                  ? "bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white"
-                  : "border-gray-700 hover:border-gray-600 hover:bg-gray-800/50 text-gray-300"
-              } transition-all duration-300`}
-            >
-              {cat}
-            </Button>
-          ))}
-        </div>
       </div>
 
-      {/* Desktop: Sticky viewport with scroll hijacking */}
-      <div className="hidden lg:block sticky top-0 h-screen">
+      {/* Main Projects Display */}
+      <div className="hidden lg:flex h-screen max-h-screen w-[90%] mx-auto my-8 px-10 py-10 bg-black/20 backdrop-blur-sm border border-white/10 rounded-3xl shadow-lg overflow-hidden">
         {/* Scroll hijacking indicator */}
         {isHijacked && (
           <div className="absolute top-4 right-4 z-50 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs text-white/70 border border-white/20">
@@ -624,20 +581,11 @@ export default function Projects() {
           </div>
         )}
 
-        <div className="h-screen bg-black/10 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden mx-4">
-          {/* background glows */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-red-900/20" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,theme(colors.purple.600/0.15),transparent_50%)]" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,theme(colors.red.600/0.15),transparent_50%)]" />
+        {/* Left side - Project Visuals */}
+        <ProjectVisuals projects={filtered} idx={activeIndex} />
 
-          <div className="relative flex h-full flex-col lg:flex-row">
-            {/* Left visuals */}
-            <ProjectVisuals projects={filtered} idx={activeIndex} />
-
-            {/* Right details */}
-            <ProjectDetails p={activeProject} isActive idx={activeIndex} />
-          </div>
-        </div>
+        {/* Right side - Project Details */}
+        <ProjectDetails p={activeProject} isActive idx={activeIndex} />
       </div>
 
       {/* Mobile: Individual project cards */}
@@ -651,7 +599,7 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* CTA */}
+      {/* Call to Action */}
       <div className="text-center py-16 px-4">
         <p className="text-white/60 mb-6 text-lg">
           Want to see more projects or discuss a collaboration?
@@ -661,7 +609,8 @@ export default function Projects() {
           className="px-8 py-3 bg-gradient-to-r from-[#EA3546] to-[#662E9B] hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 border-0"
         >
           <Link href="/projects">
-            View All Projects <ArrowRight className="w-4 h-4 ml-2" />
+            View All Projects
+            <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
         </Button>
       </div>
