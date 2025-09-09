@@ -59,7 +59,7 @@ const ProjectVisuals = ({ projects, activeIndex, containerRef }) => {
   };
 
   return (
-    <div className="lg:w-[70%] h-full">
+    <div className="lg:w-[60%] h-full">
       <div
         ref={containerRef}
         className="h-full overflow-y-auto scrollbar-hide"
@@ -385,7 +385,7 @@ const ProjectCard = ({ project, index }) => {
     switch (status) {
       case "Completed":
         return <CheckCircle className="w-4 h-4 text-green-500" />;
-      case "In Progress":
+      case "On Going":
         return <Clock className="w-4 h-4 text-yellow-500" />;
       default:
         return <Calendar className="w-4 h-4 text-gray-400" />;
@@ -396,7 +396,7 @@ const ProjectCard = ({ project, index }) => {
     switch (status) {
       case "Completed":
         return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "In Progress":
+      case "On Going":
         return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
       default:
         return "bg-gray-500/20 text-gray-400 border-gray-500/30";
