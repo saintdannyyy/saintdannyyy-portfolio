@@ -59,7 +59,7 @@ const ProjectVisuals = ({ projects, activeIndex, containerRef }) => {
   };
 
   return (
-    <div className="lg:w-[60%] h-full">
+    <div className="lg:w-[70%] h-full">
       <div
         ref={containerRef}
         className="h-full overflow-y-auto scrollbar-hide"
@@ -156,7 +156,7 @@ const ProjectDetails = ({ project, index }) => {
     switch (status) {
       case "Completed":
         return "bg-green-500/20 text-green-400 border-green-500/30";
-      case "In Progress":
+      case "On Going":
         return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
       default:
         return "bg-gray-500/20 text-gray-400 border-gray-500/30";
@@ -165,9 +165,9 @@ const ProjectDetails = ({ project, index }) => {
 
   return (
     <div className="lg:w-[40%] h-full bg-black/20 backdrop-blur-sm border-l border-white/10 p-8 lg:p-12 flex flex-col justify-center">
-      <div className="space-y-6 max-w-lg">
+      <div className="space-y-3 max-w-lg">
         {/* Project Badge and Status */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3">
           {project.featured && (
             <Badge className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white border-0">
               <Star className="w-3 h-3 mr-1" />
@@ -186,10 +186,10 @@ const ProjectDetails = ({ project, index }) => {
 
         {/* Project Title */}
         <div className="space-y-2">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+          <h2 className="text-lg lg:text-3xl font-bold text-white leading-tight">
             {project.title}
           </h2>
-          <p className="text-white/80 text-lg leading-relaxed">
+          <p className="text-white/80 text-sm leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -208,9 +208,9 @@ const ProjectDetails = ({ project, index }) => {
 
         {/* Key Highlights */}
         {project.highlights && (
-          <div className="space-y-3">
+          <div className="space-y-1">
             <h4 className="text-white font-semibold text-lg">Key Highlights</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               {project.highlights.slice(0, 4).map((highlight, hlIndex) => (
                 <li
                   key={hlIndex}
@@ -225,7 +225,7 @@ const ProjectDetails = ({ project, index }) => {
         )}
 
         {/* Technologies */}
-        <div className="space-y-3">
+        <div className="space-y-1">
           <h4 className="text-white font-semibold text-lg">Technologies</h4>
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech, techIndex) => (
@@ -240,7 +240,7 @@ const ProjectDetails = ({ project, index }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 pt-6">
+        <div className="flex gap-4 pt-2">
           {project.liveUrl && (
             <Button
               asChild
@@ -261,7 +261,7 @@ const ProjectDetails = ({ project, index }) => {
             <Button
               asChild
               variant="outline"
-              className="border-white/30 hover:border-white/50 hover:bg-white/10 text-white backdrop-blur-sm flex-1"
+              className="border-white/30 hover:border-white/50 hover:bg-white/10 text-gray-800 backdrop-blur-sm flex-1"
             >
               <Link
                 href={project.githubUrl}
@@ -323,42 +323,26 @@ export default function Projects() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-transparent" id="projects">
+    <div className="w-full bg-transparent" id="projects">
       {/* Section Header */}
-      <div className="text-center py-16 px-4">
-        <div className="relative z-2 mb-12 text-5xl font-medium tracking-tight text-balance sm:text-5xl md:text-6xl">
-          <p className="mb-3 text-xs font-normal tracking-widest text-white/70 uppercase md:text-sm">
-            FEATURED CASE STUDIES
-          </p>
-          <span className="font-bold">
-            <span className="text-white">Curated</span>{" "}
-            <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent font-bold pe-2 tracking-tight italic">
-              work
-            </span>
-          </span>
-        </div>
+      <div className="text-center">
+        <p className="mb-3 text-xs font-normal tracking-widest text-white/70 uppercase md:text-sm">
+          FEATURED CASE STUDIES
+        </p>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={filter === category ? "default" : "outline"}
-              onClick={() => setFilter(category)}
-              className={`${
-                filter === category
-                  ? "bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white border-0"
-                  : "bg-white/5 backdrop-blur-sm border-white/20 hover:border-white/30 hover:bg-white/10 text-white/70 hover:text-white"
-              } transition-all duration-300`}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-comic">
+          <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent drop-shadow-lg">
+            Projects
+          </span>
+        </h2>
+        <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-2 font-comic drop-shadow px-4">
+          A showcase of my recent work, featuring full-stack applications,
+          mobile apps, and innovative solutions.
+        </p>
       </div>
 
       {/* Main Projects Display */}
-      <div className="flex h-screen max-h-[800px]">
+      <div className="flex h-screen max-h-screen w-[90%] mx-auto my-8 px-10 py-10 bg-black/20 backdrop-blur-sm border border-white/10 rounded-3xl shadow-lg overflow-hidden">
         {/* Left side - Scrolling Project Visuals */}
         <ProjectVisuals
           projects={filteredProjects}
