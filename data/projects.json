@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "KasaPa",
-      "description": "An AI-powered mobile app built to support speech-impaired individuals in Ghana, using local languages and fostering inclusion.",
+      "description": "From Tɛkyerɛma Pa Hackathon 2025, an AI-mobile app built to support speech-impaired individuals in Ghana, using local languages and fostering inclusion.",
       "image": "/projects/twilight.png",
       "technologies": ["React Native", "Python", "RunPod", "ASR", "TTS", "Expo"],
       "category": ["Mobile", "AI"],
@@ -21,9 +21,9 @@
     {
       "id": 2,
       "title": "PicMorph",
-      "description": "A web application for image conversions from one format to another.",
+      "description": "A powerful web-based image conversion platform that transforms images between multiple formats with zero quality loss. Built with modern web technologies to provide fast, reliable, and user-friendly image processing capabilities directly in the browser.",
       "image": "/projects/picmorph.png",
-      "technologies": ["REACTJS", "TailwindCSS", "NodeJS", "FFMPEG"],
+      "technologies": ["React.js", "TailwindCSS", "Node.js", "FFmpeg", "Express.js"],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2025",
@@ -31,8 +31,11 @@
       "githubUrl": "https://github.com/saintdannyyy/PicMorph",
       "featured": true,
       "highlights": [
-        "Real-time Image Conversion",
-        "Quality Loss Reduction"
+        "Support for multiple Image Formats (JPG, PNG, WebP, AVIF, GIF, TIFF, BMP)",
+        "Zero Quality Loss Conversion with Advanced Compression Algorithms",
+        "Batch Processing for Multiple Images Simultaneously", 
+        "Drag & Drop Interface with Progress Tracking",
+        "Client-side Processing for Enhanced Privacy & Speed"
       ]
     },
     {
@@ -48,6 +51,7 @@
       "githubUrl": "https://github.com/saintdannyyy/Mechanic",
       "featured": true,
       "highlights": [
+        "Automation of manual processes",
         "Complete Customer & Vehicle Management System with Registration & Profiles",
         "Job Card & Invoice Generation with PDF Export Functionality",
         "Service & Repair Tracking with Real-time Status Updates",
@@ -59,7 +63,7 @@
     {
       "id": 4,
       "title": "OTConekt",
-        "description": "OTConekt is a cross-platform mobile tele-rehabilitation app connecting individuals seeking occupational therapy with licensed therapists. Features include secure authentication, tailored onboarding, therapist profiles, appointment booking, in-app messaging, progress tracking. Built with React Native (Expo) and Supabase for accessibility and seamless virtual care.",
+        "description": "A cross-platform mobile tele-rehabilitation app connecting individuals seeking occupational therapy with licensed therapists. Features include  appointment booking, in-app messaging, progress tracking.",
         "image": "/projects/otconekt.png",
         "technologies": ["React Native", "Expo", "Supabase", "Firebase Cloud Messaging (planned)", "Jitsi Meet"],
         "category": ["Mobile", "Telehealth"],
