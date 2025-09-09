@@ -17,77 +17,137 @@ import {
 import projectsData from "../data/projects.json";
 
 /**
- * Hook: vertical sticky section that maps native page scroll to an active index.
- * - sectionRef goes on the tall wrapper (height ≈ projects.length * 100vh)
- * - Returns activeIndex and normalized progress [0..1]
+ * Hook: Scroll hijacking for projects section
+ * - Prevents page scroll when in projects section
+ * - Only allows scrolling through projects
+ * - Releases scroll control after completing all projects
  */
-function useNaturalScrollProjects(total, opts = { threshold: 0.3 }) {
+function useScrollHijackProjects(total, opts = { threshold: 0.3 }) {
   const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isHijacked, setIsHijacked] = useState(false);
+  const scrollPosition = useRef(0);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el || total <= 0) return;
 
     let frame = 0;
+    let wheelDelta = 0;
+
     const onScroll = () => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;
         const rect = el.getBoundingClientRect();
         const vh = window.innerHeight;
-        // Only react while the section is on screen by a threshold
-        const visibleTop = Math.max(0, -rect.top);
-        const visibleBottom = Math.min(rect.height, vh - rect.top);
-        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-        const visibilityRatio = visibleHeight / vh;
-        if (visibilityRatio < (opts.threshold ?? 0.3)) return;
 
-        const scrollThrough = Math.max(0, -rect.top);
-        const totalScrollable = Math.max(1, rect.height - vh);
-        const p = Math.min(1, scrollThrough / totalScrollable);
-        setProgress(p);
-        const raw = Math.floor(p * total);
-        const nextIdx = Math.max(0, Math.min(total - 1, raw));
-        setActiveIndex((prev) => (prev === nextIdx ? prev : nextIdx));
+        // Check if projects section is in view
+        const inView = rect.top <= vh * 0.2 && rect.bottom >= vh * 0.8;
+
+        if (inView && !isHijacked) {
+          // Start hijacking
+          setIsHijacked(true);
+          scrollPosition.current = window.scrollY;
+          document.body.style.overflow = "hidden";
+        } else if (!inView && isHijacked) {
+          // Release hijacking
+          setIsHijacked(false);
+          document.body.style.overflow = "";
+        }
       });
     };
 
-    const onResize = () => onScroll();
+    const onWheel = (e) => {
+      if (!isHijacked) return;
+
+      e.preventDefault();
+      wheelDelta += e.deltaY;
+
+      // Sensitivity control
+      const sensitivity = 100;
+      if (Math.abs(wheelDelta) < sensitivity) return;
+
+      const direction = wheelDelta > 0 ? 1 : -1;
+      wheelDelta = 0;
+      const vh = window.innerHeight;
+
+      let newIndex = activeIndex;
+
+      if (direction > 0) {
+        // Scrolling down
+        if (activeIndex < total - 1) {
+          newIndex = activeIndex + 1;
+        } else {
+          // Reached end, release hijacking and continue page scroll
+          setIsHijacked(false);
+          document.body.style.overflow = "";
+          window.scrollTo({
+            top: scrollPosition.current + vh,
+            behavior: "smooth",
+          });
+          return;
+        }
+      } else {
+        // Scrolling up
+        if (activeIndex > 0) {
+          newIndex = activeIndex - 1;
+        } else {
+          // Reached beginning, release hijacking and scroll up
+          setIsHijacked(false);
+          document.body.style.overflow = "";
+          window.scrollTo({
+            top: scrollPosition.current - vh,
+            behavior: "smooth",
+          });
+          return;
+        }
+      }
+
+      setActiveIndex(newIndex);
+      setProgress(newIndex / Math.max(1, total - 1));
+    };
+
     const onKey = (e) => {
+      if (!isHijacked) return;
+
       if (["ArrowDown", "ArrowRight"].includes(e.key)) {
         e.preventDefault();
-        const target = Math.min(total - 1, activeIndex + 1);
-        snapTo(target);
+        if (activeIndex < total - 1) {
+          setActiveIndex(activeIndex + 1);
+          setProgress((activeIndex + 1) / Math.max(1, total - 1));
+        }
       }
       if (["ArrowUp", "ArrowLeft"].includes(e.key)) {
         e.preventDefault();
-        const target = Math.max(0, activeIndex - 1);
-        snapTo(target);
+        if (activeIndex > 0) {
+          setActiveIndex(activeIndex - 1);
+          setProgress((activeIndex - 1) / Math.max(1, total - 1));
+        }
       }
     };
 
-    const snapTo = (i) => {
-      const maxScroll = el.scrollHeight - window.innerHeight;
-      const y = total > 1 ? (i / (total - 1)) * maxScroll : 0;
-      el.scrollTo({ top: y, behavior: "smooth" });
-    };
-
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("keydown", onKey);
     onScroll();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [total, opts.threshold, activeIndex]);
+  }, [total, activeIndex, isHijacked]);
 
-  return { sectionRef, activeIndex, progress };
+  const snapTo = (index) => {
+    setActiveIndex(index);
+    setProgress(index / Math.max(1, total - 1));
+  };
+
+  return { sectionRef, activeIndex, progress, isHijacked, snapTo };
 }
 
 // Pretty gradients per index – preserves your current vibe
@@ -162,7 +222,7 @@ function ProjectVisuals({ projects, idx }) {
 
           {/* header row (desktop) */}
           <div className="hidden w-full flex-row items-center justify-between px-8 sm:px-12 py-6 lg:flex text-white">
-            <h3 className="max-w-[90%] text-2xl sm:text-3xl font-bold tracking-wide transition-all duration-700">
+            <h3 className="max-w-[90%] text-2xl sm:text-xl font-bold tracking-wide transition-all duration-700">
               {p?.description || p?.title}
             </h3>
             <ArrowRight className="size-6" />
@@ -366,41 +426,140 @@ function ProjectDetails({ p, isActive, idx }) {
   );
 }
 
+// Mobile Project Card Component
+function MobileProjectCard({ project, index }) {
+  const technologies = project.technologies || [];
+  const displayTech = technologies.slice(0, 4);
+
+  return (
+    <div className="bg-black/20 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden">
+      {/* Project Image */}
+      {project.image && (
+        <div className="relative w-full h-48 overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-60"
+            style={{ background: getProjectGradient(index) }}
+          />
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="p-6">
+        {/* Title and Status */}
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="text-xl font-bold text-white font-comic">
+            {project.title}
+          </h3>
+          {project.featured && (
+            <Badge className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] text-white border-0 ml-2">
+              <Star className="w-3 h-3 mr-1" />
+              Featured
+            </Badge>
+          )}
+        </div>
+
+        {/* Description */}
+        <p className="text-gray-300 text-sm mb-4 line-clamp-3">
+          {project.description}
+        </p>
+
+        {/* Technologies */}
+        {displayTech.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {displayTech.map((tech, i) => (
+              <Badge
+                key={i}
+                variant="outline"
+                className="text-xs border-white/20 text-white/80 bg-white/5"
+              >
+                {tech}
+              </Badge>
+            ))}
+            {technologies.length > 4 && (
+              <Badge
+                variant="outline"
+                className="text-xs border-white/20 text-white/60 bg-white/5"
+              >
+                +{technologies.length - 4} more
+              </Badge>
+            )}
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex gap-3">
+          {project.liveUrl && (
+            <Button
+              asChild
+              size="sm"
+              className="bg-gradient-to-r from-[#EA3546] to-[#662E9B] hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 border-0 flex-1"
+            >
+              <Link
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="w-4 h-4 mr-2" /> View Live
+              </Link>
+            </Button>
+          )}
+          {project.githubUrl && (
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="border-white/30 hover:border-white/50 hover:bg-white/10 text-white backdrop-blur-sm flex-1"
+            >
+              <Link
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-4 h-4 mr-2" /> Code
+              </Link>
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [filter, setFilter] = useState("All");
   const [filtered, setFiltered] = useState([]);
 
-  // load from JSON (preserves your current data source)
+  // Load projects and auto-filter to featured only
   useEffect(() => {
     const list = projectsData.projects || [];
     setProjects(list);
-    setFiltered(list);
+    // Automatically show only featured projects
+    const featuredProjects = list.filter((p) => p.featured);
+    setFiltered(featuredProjects);
   }, []);
 
-  // filters (kept from your original page)
-  useEffect(() => {
-    if (filter === "All") setFiltered(projects);
-    else if (filter === "Featured")
-      setFiltered(projects.filter((p) => p.featured));
-    else setFiltered(projects.filter((p) => p.category === filter));
-  }, [filter, projects]);
-
-  const categories = useMemo(
-    () => [
-      "All",
-      "Featured",
-      ...Array.from(new Set(projects.map((p) => p.category))),
-    ],
-    [projects]
-  );
-
   const total = filtered.length;
-  const { sectionRef, activeIndex, progress } = useNaturalScrollProjects(
-    total,
-    { threshold: 0.5 }
-  );
+  const { sectionRef, activeIndex, progress, isHijacked, snapTo } =
+    useScrollHijackProjects(total, { threshold: 0.3 });
   const sectionHeight = `${Math.max(total * 100, 300)}vh`;
+
+  // Categories for filtering (though we're showing featured only)
+  const categories = useMemo(() => {
+    const uniqueCategories = [
+      "All",
+      ...new Set(projects.flatMap((p) => p.technologies || [])),
+    ];
+    return uniqueCategories.slice(0, 6); // Limit to prevent UI overflow
+  }, [projects]);
 
   if (total === 0) {
     return (
@@ -414,10 +573,10 @@ export default function Projects() {
 
   return (
     <div
-      className="w-full bg-transparent"
+      className="w-full bg-transparent lg:[height:var(--section-height)]"
       id="projects"
       ref={sectionRef}
-      style={{ height: sectionHeight }}
+      style={{ "--section-height": sectionHeight }}
     >
       {/* Header */}
       <div className="text-center mb-8 pt-16">
@@ -453,9 +612,19 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Sticky viewport */}
-      <div className="sticky top-0 h-screen">
-        <div className="h-screen bg-black/10 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow- mx-4">
+      {/* Desktop: Sticky viewport with scroll hijacking */}
+      <div className="hidden lg:block sticky top-0 h-screen">
+        {/* Scroll hijacking indicator */}
+        {isHijacked && (
+          <div className="absolute top-4 right-4 z-50 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs text-white/70 border border-white/20">
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse" />
+              Scroll through projects ({activeIndex + 1}/{total})
+            </div>
+          </div>
+        )}
+
+        <div className="h-screen bg-black/10 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden mx-4">
           {/* background glows */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-red-900/20" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,theme(colors.purple.600/0.15),transparent_50%)]" />
@@ -469,6 +638,17 @@ export default function Projects() {
             <ProjectDetails p={activeProject} isActive idx={activeIndex} />
           </div>
         </div>
+      </div>
+
+      {/* Mobile: Individual project cards */}
+      <div className="lg:hidden space-y-8 px-4 pb-16">
+        {filtered.map((project, index) => (
+          <MobileProjectCard
+            key={project.id || index}
+            project={project}
+            index={index}
+          />
+        ))}
       </div>
 
       {/* CTA */}
