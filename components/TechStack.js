@@ -63,7 +63,7 @@ export default function TechStack() {
         </h2>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 bg-blue-800/50 border border-white/10 border-r-0 border-l-0 p-6">
         <Ticker items={row1} direction="left" />
         <Ticker items={row2} direction="right" />
       </div>
