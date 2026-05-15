@@ -132,7 +132,7 @@ export default function Hero() {
               </svg>
             </div>
             <p className="text-blue-700 text-md sm:text-2xl font-comic font-semibold mb-6">
-              Software Engineer, Hackathon Junkie, Retired Gymrat
+              Software Engineer | Hackathon Junkie | Retired Gymrat
             </p>
 
             {/* Description */}
