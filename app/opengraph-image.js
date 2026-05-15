@@ -11,10 +11,24 @@ export default async function Image() {
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000";
 
-  const logoData = await fetch(`${baseUrl}/SaIntdannyyy.png`).then((r) =>
+  const logoData = await fetch(`${baseUrl}/SaIntdannyyyOG.png`).then((r) =>
     r.arrayBuffer(),
   );
   const logoBase64 = `data:image/png;base64,${Buffer.from(logoData).toString("base64")}`;
+
+  const interCss = await fetch(
+    "https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap",
+    {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1",
+      },
+    },
+  ).then((r) => r.text());
+  const interFontUrl = interCss.match(
+    /src: url\((.+?)\) format\('truetype'\)/,
+  )?.[1];
+  const interFont = await fetch(interFontUrl).then((r) => r.arrayBuffer());
 
   return new ImageResponse(
     <div
@@ -24,8 +38,8 @@ export default async function Image() {
         background: "#0a0a0a",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        padding: "72px 80px",
+        justifyContent: "space-between",
+        padding: "60px 80px",
         fontFamily: "sans-serif",
         position: "relative",
         overflow: "hidden",
@@ -73,86 +87,115 @@ export default async function Image() {
         }}
       />
 
-      {/* Content */}
+      {/* TOP: Logo */}
+      <img
+        src={logoBase64}
+        style={{
+          height: "80px",
+          width: "auto",
+          objectFit: "cover",
+          objectPosition: "left",
+          opacity: 0.95,
+          position: "relative",
+        }}
+      />
+
+      {/* MIDDLE: Name */}
+      <div
+        style={{
+          color: "#ffffff",
+          fontSize: "72px",
+          fontWeight: 700,
+          lineHeight: 1,
+          letterSpacing: "-2px",
+          fontFamily: "Inter",
+          position: "relative",
+        }}
+      >
+        Daniel Ntiri Addo
+      </div>
+
+      {/* BOTTOM: Pills + terminal + URL */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "0px",
+          gap: "20px",
           position: "relative",
         }}
       >
-        {/* Logo */}
-        <img
-          src={logoBase64}
-          style={{
-            height: "90px",
-            width: "auto",
-            objectFit: "contain",
-            marginBottom: "36px",
-            opacity: 0.95,
-          }}
-        />
-
         {/* Role tags */}
-        <div style={{ display: "flex", gap: "12px", marginBottom: "40px" }}>
-          {[
-            "Software Engineer",
-            "Full Stack Developer",
-            "Hackathon Junkie",
-          ].map((tag) => (
-            <div
-              key={tag}
-              style={{
-                background: "rgba(59,130,246,0.12)",
-                border: "1px solid rgba(59,130,246,0.3)",
-                color: "#93c5fd",
-                borderRadius: "999px",
-                padding: "8px 20px",
-                fontSize: "15px",
-                fontWeight: 500,
-                fontFamily: "monospace",
-              }}
-            >
-              {tag}
-            </div>
-          ))}
+        <div style={{ display: "flex", gap: "12px" }}>
+          {["Software Engineer", "Tech Creator", "Hackathon Junkie"].map(
+            (tag) => (
+              <div
+                key={tag}
+                style={{
+                  background: "rgba(59,130,246,0.12)",
+                  border: "1px solid rgba(59,130,246,0.3)",
+                  color: "#93c5fd",
+                  borderRadius: "999px",
+                  padding: "10px 24px",
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  fontFamily: "monospace",
+                }}
+              >
+                {tag}
+              </div>
+            ),
+          )}
         </div>
 
-        {/* Terminal line */}
+        {/* Terminal line + URL row */}
         <div
           style={{
-            color: "#4b5563",
-            fontSize: "15px",
-            fontFamily: "monospace",
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: "8px",
           }}
         >
-          <span style={{ color: "#3b82f6" }}>❯</span>
-          <span>
-            3+ years shipping full-stack products across healthcare, fintech,
-            edtech & logistics
-          </span>
+          <div
+            style={{
+              color: "#4b5563",
+              fontSize: "30px",
+              fontFamily: "monospace",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <span style={{ color: "#3b82f6" }}> ❯_ </span>
+            {/* <span>
+              3+ years shipping full-stack products across healthcare, fintech,
+              edtech & logistics
+            </span> */}
+          </div>
+          <div
+            style={{
+              color: "#374151",
+              fontSize: "14px",
+              fontFamily: "monospace",
+              letterSpacing: "0.1em",
+              flexShrink: 0,
+              marginLeft: "40px",
+            }}
+          >
+            saintdannyyy.dev
+          </div>
         </div>
       </div>
-
-      {/* Bottom-right: URL */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "40px",
-          right: "80px",
-          color: "#374151",
-          fontSize: "14px",
-          fontFamily: "monospace",
-          letterSpacing: "0.1em",
-        }}
-      >
-        saintdannyyy.dev
-      </div>
     </div>,
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Inter",
+          data: interFont,
+          style: "normal",
+          weight: 700,
+        },
+      ],
+    },
   );
 }
