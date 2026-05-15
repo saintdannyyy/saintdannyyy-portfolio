@@ -10,12 +10,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import {
-  Home as HomeIcon,
-  Mail,
-  User,
-  FolderOpen,
-} from "lucide-react";
+import { Home as HomeIcon, Mail, User, FolderOpen } from "lucide-react";
 import Link from "next/link";
 
 // Custom Icons for social media
@@ -53,7 +48,7 @@ const DATA = {
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/daniel-ntiri-addo/",
+        url: "https://www.linkedin.com/in/saintdannyyy",
         icon: Icons.linkedin,
       },
       Email: {
@@ -83,7 +78,7 @@ export default function NavigationDock() {
                     aria-label={item.label}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full hover:bg-white/10 transition-colors"
+                      "size-12 rounded-full hover:bg-white/10 transition-colors",
                     )}
                   >
                     <item.icon className="size-4" />
@@ -109,7 +104,7 @@ export default function NavigationDock() {
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full hover:bg-white/10 transition-colors"
+                      "size-12 rounded-full hover:bg-white/10 transition-colors",
                     )}
                   >
                     <social.icon className="size-4" />
