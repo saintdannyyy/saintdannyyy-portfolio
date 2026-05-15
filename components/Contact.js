@@ -5,6 +5,7 @@ import {
   Github,
   Linkedin,
   Twitter,
+  Instagram,
   Mail,
   ArrowUpRight,
   MessageCircle,
@@ -33,6 +34,13 @@ const socials = [
     desc: "catch me tweeting random thoughts",
   },
   {
+    name: "Instagram",
+    handle: "@saintdannyyy",
+    href: "https://instagram.com/saintdannyyy",
+    icon: Instagram,
+    desc: "behind the lens & the screen",
+  },
+  {
     name: "Email",
     handle: "danieltesla746@gmail.com",
     href: "mailto:danieltesla746@gmail.com",
@@ -56,17 +64,37 @@ export default function Contact() {
               Let&apos;s build something{" "}
               <span className="text-blue-400">dope.</span>
             </h2>
-            <p className="text-gray-400 text-base max-w-md leading-relaxed">
-              Got a project idea? A collab in mind? Or just want to say hey?
-              I&apos;m always down to chat — no boring corporate small talk, I
-              promise.
-            </p>
+            <div className="font-mono text-sm max-w-md space-y-1.5">
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">got a project idea?</span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">a collab in mind?</span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">a hackathon?</span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">or just want to say hey?</span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-500">
+                  i&apos;m always down to chat.
+                  <span className="text-blue-400 animate-pulse"> _</span>
+                </span>
+              </p>
+            </div>
           </div>
 
           {/* Big email CTA */}
           <Link
             href="mailto:danieltesla746@gmail.com"
-            className="group shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-comic font-bold text-base rounded-2xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/20"
+            className="group shrink-0 inline-flex items-center gap-3 px-4 py-4 bg-blue-800 hover:bg-blue-500 text-white font-comic font-bold text-base rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/20"
           >
             <MessageCircle size={18} />
             Say hi 👋
@@ -78,7 +106,7 @@ export default function Contact() {
         </div>
 
         {/* Socials grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {socials.map(({ name, handle, href, icon: Icon, desc }) => (
             <Link
               key={name}
