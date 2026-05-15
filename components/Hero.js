@@ -93,17 +93,17 @@ export default function Hero() {
           {/* Left: Text */}
           <div className="flex flex-col max-w-2xl">
             {/* Intro line */}
-            <p className="text-gray-500 text-sm font-mono mb-4 tracking-wide">
+            <p className="text-gray-500 text-lg font-mono mb-4 tracking-wide">
               Hey there, I&apos;m
             </p>
 
             {/* Name */}
-            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-bold leading-[0.9] font-comic text-white mb-0">
+            <h1 className="text-[clamp(3rem,9vw,7rem)] font-bold leading-[0.9] font-comic text-white mb-0">
               Daniel Addo
             </h1>
 
             {/* Decorative underline */}
-            <div className="mb-6">
+            <div className="mb-4">
               <svg
                 viewBox="0 0 320 12"
                 fill="none"
@@ -131,15 +131,33 @@ export default function Hero() {
                 />
               </svg>
             </div>
-            <p className="text-blue-400 text-xl sm:text-2xl font-comic font-semibold mb-6">
-              Software Engineer
+            <p className="text-blue-400 text-md sm:text-2xl font-comic font-semibold mb-6">
+              Software Engineer, Hackathon Junkie, Retired Gymrat
             </p>
 
             {/* Description */}
             <p className="text-gray-400 text-base sm:text-lg max-w-lg mb-10 leading-relaxed font-comic">
-              I build stuff people actually use — AI apps, web platforms, mobile
-              experiences. If it solves a real problem and ships clean, I&apos;m
-              all in.
+              <div className="text-sm sm:text-base max-w-lg mb-10 font-mono space-y-1.5">
+                <p>
+                  <span className="text-blue-400 select-none">❯ </span>
+                  <span className="text-gray-400">
+                    3+ years shipping full-stack, real world products across
+                    healthcare, fintech, edtech, insurtech & logistics
+                  </span>
+                </p>
+                <p>
+                  <span className="text-blue-400 select-none">❯ </span>
+                  <span className="text-gray-500">Web,Mobile, AI.</span>
+                </p>
+                <p>
+                  <span className="text-blue-400 select-none">❯ </span>
+                  <span className="text-gray-400">
+                    If it solves a real problem and ships clean, I&apos;m all
+                    in.
+                  </span>
+                  <span className="text-blue-400 animate-pulse"> _</span>
+                </p>
+              </div>
             </p>
 
             {/* CTAs */}
@@ -161,15 +179,20 @@ export default function Hero() {
 
           {/* Right: Profile image */}
           <div className="shrink-0 flex justify-center lg:justify-end">
-            <div className="relative w-72 h-80 sm:w-80 sm:h-[420px] lg:w-[360px] lg:h-[480px] rounded-3xl overflow-hidden ring-1 ring-white/10">
-              <Image
-                src="/hero.png"
-                alt="Daniel Addo"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+            <div className="relative w-80 h-80 sm:w-80 sm:h-[420px] lg:w-[360px] lg:h-[480px] rounded-3xl">
+              {/* Corner accent lines */}
+              <div className="absolute -top-3 -right-3 w-12 h-12 border-t-2 border-r-2 border-blue-500/40 rounded-tr-2xl pointer-events-none z-10" />
+              <div className="absolute -bottom-3 -left-3 w-12 h-12 border-b-2 border-l-2 border-blue-500/40 rounded-bl-2xl pointer-events-none z-10" />
+              <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                <Image
+                  src="/hero.png"
+                  alt="Daniel Addo"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
