@@ -2,7 +2,14 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  ArrowUpRight,
+  Instagram,
+} from "lucide-react";
 
 const links = [
   {
@@ -18,6 +25,12 @@ const links = [
     href: "https://www.linkedin.com/in/saintdannyyy",
   },
   {
+    icon: Instagram,
+    label: "Instagram",
+    handle: "@saintdannyyy",
+    href: "https://instagram.com/saintdannyyy",
+  },
+  {
     icon: Twitter,
     label: "Twitter / X",
     handle: "@saintdannyyy",
@@ -26,8 +39,8 @@ const links = [
   {
     icon: Mail,
     label: "Email",
-    handle: "danieladdo@example.com",
-    href: "mailto:danieladdo@example.com",
+    handle: "danieltesla746@gmail.com",
+    href: "mailto:danieltesla746@gmail.com",
   },
 ];
 
