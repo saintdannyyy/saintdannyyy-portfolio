@@ -5,9 +5,18 @@
       "title": "KasaYie",
       "description": "Award-winning AI assistant that helps Akan-speaking individuals with speech impairments communicate in real time. Fine-tuned OpenAI Whisper on imperfect Akan speech and built the full mobile experience from audio capture to real-time response.",
       "image": "/projects/twilight.png",
-      "technologies": ["React Native", "OpenAI Whisper", "FastAPI", "Python", "Expo"],
-      "category": ["Mobile", "AI"],
-      "status": "On Going",
+      "technologies": [
+        "React Native",
+        "OpenAI Whisper",
+        "FastAPI",
+        "Python",
+        "Expo"
+      ],
+      "category": [
+        "Mobile",
+        "AI"
+      ],
+      "status": "Completed",
       "year": "2025",
       "badge": "Tekyerema Pa Hackathon 2025 · Winner",
       "liveUrl": "https://kasapa.netlify.app/",
@@ -22,15 +31,23 @@
     {
       "id": 2,
       "title": "Wote",
-      "description": "A platform connecting deaf Ghanaians with the world around them. Wote translates Ghanaian Sign Language into English, Twi, and Ewe — making classrooms and everyday interactions more inclusive.",
-      "image": "/projects/picmorph.png",
-      "technologies": ["React Native", "NLP", "Telegram Bot API", "Multi-language"],
-      "category": ["Mobile", "AI"],
-      "status": "On Going",
+      "description": "Wote - AI-powered Ghana Sign Language learning & competitive gaming (Telegram bot + web frontend + ML pipeline) — built for UNICEF Startup Lab (3rd Place, Best AI Implementation).",
+      "image": "/projects/wote.png",
+      "technologies": [
+        "React Native",
+        "NLP",
+        "Telegram Bot API",
+        "Multi-language"
+      ],
+      "category": [
+        "Mobile",
+        "AI"
+      ],
+      "status": "Completed",
       "year": "2025",
       "badge": "UNICEF AI for Inclusion Hackathon 2025",
-      "liveUrl": null,
-      "githubUrl": null,
+      "liveUrl": "https://sign-language-wzvh.vercel.app/",
+      "githubUrl": "https://github.com/saintdannyyy/Unicef-Startup-Lab-Hackathon",
       "featured": true,
       "highlights": [
         "Bidirectional GSL → English / Twi / Ewe translation",
@@ -42,13 +59,19 @@
       "id": 3,
       "title": "Trekr",
       "description": "Open-source application tracker — like a personal CRM for your job search, scholarships, grants, and fellowships. Track every application, interview, contact, and follow-up in one place.",
-      "image": "/projects/mechanic.png",
-      "technologies": ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Clerk Auth"],
+      "image": "/projects/trekr.png",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Clerk Auth"
+      ],
       "category": "Full Stack",
       "status": "On Going",
       "year": "2025",
       "badge": "Open Source · GPL-3.0",
-      "liveUrl": null,
+      "liveUrl": "https://trekrapp.vercel.app/",
       "githubUrl": "https://github.com/saintdannyyy/trekr",
       "featured": true,
       "highlights": [
@@ -61,8 +84,13 @@
       "id": 4,
       "title": "Emissor",
       "description": "A scalable email marketing and automation platform — businesses manage campaigns, schedule sends, segment audiences, and track analytics. Built the backend API architecture, campaign scheduling logic, and multi-role admin dashboards.",
-      "image": "/projects/otconekt.png",
-      "technologies": ["Node.js", "Express.js", "PostgreSQL", "React.js"],
+      "image": "/projects/emissor.png",
+      "technologies": [
+        "Node.js",
+        "Express.js",
+        "PostgreSQL",
+        "React.js"
+      ],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
@@ -80,9 +108,18 @@
       "title": "OTConekt",
       "description": "Cross-platform mobile tele-rehabilitation app connecting patients with licensed occupational therapists remotely — therapist profiles, appointment booking, real-time messaging, and video calls.",
       "image": "/projects/otconekt.png",
-      "technologies": ["React Native", "Node.js", "WebRTC", "Supabase", "Expo"],
-      "category": ["Mobile", "Telehealth"],
-      "status": "On Going",
+      "technologies": [
+        "React Native",
+        "Node.js",
+        "WebRTC",
+        "Supabase",
+        "Expo"
+      ],
+      "category": [
+        "Mobile",
+        "Telehealth"
+      ],
+      "status": "Completed",
       "year": "2025",
       "liveUrl": "https://otconekt.vercel.app/",
       "githubUrl": "https://github.com/saintdannyyy/OTConekt",
@@ -97,8 +134,13 @@
       "id": 6,
       "title": "J100 Coders",
       "description": "Edtech platform teaching kids to code with interactive lessons, progress tracking, and instructor dashboards. Shipped to production with 200+ active students in the first term.",
-      "image": "/projects/coss.png",
-      "technologies": ["PHP", "Node.js", "MongoDB", "JavaScript"],
+      "image": "/projects/j100.png",
+      "technologies": [
+        "PHP",
+        "Node.js",
+        "MongoDB",
+        "JavaScript"
+      ],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
@@ -116,7 +158,13 @@
       "title": "PicMorph",
       "description": "Web-based image conversion platform — transform images between multiple formats with zero quality loss. Batch processing, drag & drop, client-side privacy.",
       "image": "/projects/picmorph.png",
-      "technologies": ["React.js", "TailwindCSS", "Node.js", "FFmpeg", "Express.js"],
+      "technologies": [
+        "React.js",
+        "TailwindCSS",
+        "Node.js",
+        "FFmpeg",
+        "Express.js"
+      ],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2025",
@@ -134,7 +182,14 @@
       "title": "Mechanic Workshop Management System",
       "description": "Full management system for an automotive repair shop — customer management, vehicle tracking, service scheduling, invoicing, and analytics. Delivered for a client at Dzorwulu.",
       "image": "/projects/mechanic.png",
-      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap 5", "Chart.js", "FPDF"],
+      "technologies": [
+        "PHP",
+        "MySQL",
+        "JavaScript",
+        "Bootstrap 5",
+        "Chart.js",
+        "FPDF"
+      ],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
@@ -152,7 +207,12 @@
       "title": "Zest POS",
       "description": "Point of Sale application helping small businesses in Africa thrive. Built the entire front end — component library, responsive interfaces, API integration, and performance optimisation.",
       "image": "/projects/zest.png",
-      "technologies": ["Next.js", "TailwindCSS", "Shadcn", "JavaScript"],
+      "technologies": [
+        "Next.js",
+        "TailwindCSS",
+        "Shadcn",
+        "JavaScript"
+      ],
       "category": "SaaS",
       "status": "Completed",
       "year": "2024",
@@ -169,7 +229,13 @@
       "title": "City of Sellingstar School",
       "description": "Full web platform with CMS for an early years school in Ghana — admin dashboard, appointment booking, gallery management, and responsive design.",
       "image": "/projects/coss.png",
-      "technologies": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript"],
+      "technologies": [
+        "PHP",
+        "MySQL",
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
@@ -186,17 +252,161 @@
       "title": "Wellness Community Academy",
       "description": "Wellness platform with courses, eBooks, and an affiliate management system — commission tracking, payout processing, and analytics. Integrated Paystack for mobile money & card payments.",
       "image": "/projects/wellness.png",
-      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap", "Paystack", "Chart.js", "PHPMailer"],
+      "technologies": [
+        "PHP",
+        "MySQL",
+        "JavaScript",
+        "Bootstrap",
+        "Paystack",
+        "Chart.js",
+        "PHPMailer"
+      ],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2025",
-      "liveUrl": "https://wellnesscommunityacademy.com",
-      "githubUrl": "https://github.com/saintdannyyy/wellnesscommunityacademy",
+      "liveUrl": null,
+      "githubUrl": null,
       "featured": false,
       "highlights": [
         "Affiliate system with 15% direct & 2% indirect referral commission",
         "Paystack integration for Mobile Money & card payments",
         "Automated email notifications & appointment booking"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Yenko",
+      "description": "Real-time urban carpooling and mobility platform matching passengers with drivers on existing routes — cutting transport friction in congested West African cities. Built ride condition filtering, real-time route matching, and seamless mobile payments.",
+      "image": "/projects/yenko.png",
+      "technologies": [
+        "React Native",
+        "Node.js",
+        "WebSockets",
+        "Payments API",
+        "Expo"
+      ],
+      "category": [
+        "Mobile",
+        "Full Stack"
+      ],
+      "status": "In Progress",
+      "year": "2025",
+      "liveUrl": "https://yenkoweb.vercel.app/",
+      "githubUrl": null,
+      "featured": false,
+      "highlights": [
+        "Real-time driver-passenger route matching",
+        "Ride condition filtering for safety and preference",
+        "Mobile payments integration"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "MindLink",
+      "description": "Private, AI-assisted mental health system that helps users track their wellbeing, detect early risk patterns, and connect to the right support — accessible even without internet. Built at the Harvard Health Hackathon (HSIL) 2026.",
+      "image": "/projects/mindlink.png",
+      "technologies": [
+        "React Native",
+        "Python",
+        "FastAPI",
+        "AI/ML",
+        "Expo"
+      ],
+      "category": [
+        "Mobile",
+        "AI",
+        "Healthcare"
+      ],
+      "status": "Completed",
+      "year": "2026",
+      "badge": "Harvard Health Hackathon (HSIL) 2026",
+      "liveUrl": "https://mind-link-hsil-hackathon.vercel.app",
+      "githubUrl": "https://github.com/saintdannyyy/MindLink-HSILHackathon",
+      "featured": false,
+      "highlights": [
+        "AI-powered wellbeing tracking and early risk detection",
+        "Works offline — accessible without internet",
+        "Built at Harvard Health Science Innovation Lab Hackathon 2026"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Ashmore Venture POS",
+      "description": "Production-grade Point of Sale, inventory management, and staff management platform built for Ashmore Ventures — enabling SMEs to manage stock, control staff access, and generate receipts with role-based precision.",
+      "image": null,
+      "technologies": [
+        "React.js",
+        "React Native",
+        "JavaScript",
+        "Node.js",
+        "REST APIs"
+      ],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2024",
+      "liveUrl": null,
+      "githubUrl": null,
+      "featured": false,
+      "highlights": [
+        "Inventory management with real-time stock tracking",
+        "Role-based access control (RBAC) for staff",
+        "Receipt generation and sales analytics",
+        "Reusable component library reducing UI regression across the team"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Inerca Insurance App",
+      "description": "Production mobile platform for a leading insurance company in Botswana — streamlining insurance operations and giving clients a seamless self-service experience from policy management to claims.",
+      "image": null,
+      "technologies": [
+        "React Native",
+        "Node.js",
+        "REST APIs",
+        "Expo"
+      ],
+      "category": [
+        "Mobile",
+        "Insurtech"
+      ],
+      "status": "Completed",
+      "year": "2025",
+      "liveUrl": null,
+      "githubUrl": null,
+      "featured": false,
+      "highlights": [
+        "Client self-service for policy management and claims",
+        "Delivered for a leading insurer in Botswana",
+        "Streamlined insurance operations end-to-end"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Shelta",
+      "description": "Full-stack housing platform for Accra built for the UN-Habitat Quality of Life Hackathon. Connects tenants, landlords, and service providers — verified listings, digitized rent payments via MoMo & bank, QoL neighbourhood scoring, automated maintenance routing, and rent advance loans. PWA-powered for offline access.",
+      "image": null,
+      "technologies": [
+        "React.js",
+        "Node.js",
+        "REST APIs",
+        "PWA",
+        "MoMo Payments"
+      ],
+      "category": [
+        "Full Stack",
+        "PropTech"
+      ],
+      "status": "Completed",
+      "year": "2025",
+      "badge": "UN-Habitat Quality of Life Hackathon 2025",
+      "liveUrl": null,
+      "githubUrl": null,
+      "featured": false,
+      "highlights": [
+        "QoL neighbourhood scoring by proximity to schools, hospitals, transit & markets",
+        "Verified landlords, tenants & service providers",
+        "MoMo + bank payment integration with digital rent receipts",
+        "Offline-capable PWA"
       ]
     }
   ]
