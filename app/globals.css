@@ -90,92 +90,76 @@
   }
 }
 
-/* Portfolio Background Styles */
-@layer components {
-  .portfolio-bg {
-    background: linear-gradient(135deg, #0c0c0c 0%, #2d1b69 25%, #1a1a2e 50%, #16213e 75%, #0f0f23 100%);
-    min-height: 100vh;
-  }
-
-  .portfolio-bg-animated {
-    background: linear-gradient(135deg, #0c0c0c, #691b1b, #2e1a1a, #3e1616, #230f0f);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    min-height: 100vh;
-  }
-
-  /* Radial gradient for more depth */
-  .background-radial {
-    background: radial-gradient(ellipse at top, #000000 0%, #381919 25%, #3e1616 50% #230f0f 75%, #000000 100%);
-    min-height: 100vh;
-  }
-
-  .portfolio-bg-tailwind {
-    @apply bg-gradient-to-br from-black via-red-900 to-black min-h-screen;
-  }
-}
-
 @layer utilities {
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
+  @keyframes scroll-left {
+    from {
+      transform: translateX(0);
     }
 
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
+    to {
+      transform: translateX(-50%);
     }
   }
 
-  @keyframes float {
-
-    0%,
-    100% {
-      transform: translateY(0px) translateX(0px);
+  @keyframes scroll-right {
+    from {
+      transform: translateX(-50%);
     }
 
-    25% {
-      transform: translateY(-10px) translateX(5px);
-    }
-
-    50% {
-      transform: translateY(-5px) translateX(-5px);
-    }
-
-    75% {
-      transform: translateY(-15px) translateX(3px);
+    to {
+      transform: translateX(0);
     }
   }
 
-  @keyframes breathe {
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+  }
 
-    0%,
-    100% {
-      transform: scale(1) rotate(0deg);
-      opacity: 0.4;
+  .animate-scroll-right {
+    animation: scroll-right 30s linear infinite;
+  }
+
+  .animate-scroll-left:hover,
+  .animate-scroll-right:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes draw-underline {
+    from {
+      stroke-dashoffset: 340;
     }
 
-    50% {
-      transform: scale(1.1) rotate(180deg);
-      opacity: 0.7;
+    to {
+      stroke-dashoffset: 0;
     }
   }
 
-  @keyframes morphing {
-    0% {
-      border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  .animate-draw-underline {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: draw-underline 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  }
+
+  .animate-draw-underline-delay {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+    animation: draw-underline 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
 
-    50% {
-      border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 
-    100% {
-      border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
-    }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.35s ease forwards;
   }
 }
 
