@@ -1,191 +1,58 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
-import {
-  Mail,
-  MapPin,
-  Phone,
-  Github,
-  Linkedin,
-  Twitter,
-  Heart,
-  ArrowUp,
-  Code,
-  Coffee,
-} from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
+
+const socialLinks = [
+  { name: "GitHub", href: "https://github.com/saintdannyyy", icon: Github },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/daniel-ntiri-addo/",
+    icon: Linkedin,
+  },
+  { name: "Twitter", href: "https://twitter.com/saintdannyyy", icon: Twitter },
+  { name: "Email", href: "mailto:danieltesla746@gmail.com", icon: Mail },
+];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/saintdannyyy",
-      icon: <Github className="w-5 h-5" />,
-      hoverColor: "hover:text-gray-300",
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/daniel-ntiri-addo/",
-      icon: <Linkedin className="w-5 h-5" />,
-      hoverColor: "hover:text-blue-400",
-    },
-    {
-      name: "Twitter",
-      url: "https://twitter.com/saintdannyyy",
-      icon: <Twitter className="w-5 h-5" />,
-      hoverColor: "hover:text-sky-400",
-    },
-  ];
-
-  const contactInfo = [
-    {
-      icon: <Mail className="w-4 h-4" />,
-      text: "hello@saintdannyyy.dev",
-      href: "mailto:danieltesla746@gmail.com",
-    },
-    {
-      icon: <MapPin className="w-4 h-4" />,
-      text: "Ghana",
-      href: null,
-    },
-    {
-      icon: <Phone className="w-4 h-4" />,
-      text: "+233 20 224 8817",
-      href: "tel:+233202248817",
-    },
-  ];
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900/80 backdrop-blur-sm border-t border-gray-800">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
-          {/* Brand Section */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-white/20">
-                <Image
-                  src="/saintdannyyy.jpg"
-                  alt="Saintdannyyy"
-                  width={40}
-                  height={40}
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold font-comic">
-                <span className="bg-gradient-to-r from-[#EA3546] via-[#662E9B] to-[#F86624] bg-clip-text text-transparent">
-                  Saintdannyyy
-                </span>
-              </h3>
-            </div>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6 font-comic">
-              Full-stack developer passionate about building innovative
-              solutions that make a difference. Let's create something amazing
-              together.
-            </p>
-
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <Link
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-2 bg-gray-800 rounded-lg text-gray-400 ${social.hoverColor} transition-all duration-300 hover:bg-gray-700 hover:scale-110`}
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact Info */}
+    <footer className="border-t border-white/[0.06] mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+          {/* Brand + tagline */}
           <div>
-            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[#662E9B]" />
-              Get in Touch
-            </h4>
-            <ul className="space-y-3">
-              {contactInfo.map((contact, index) => (
-                <li key={index} className="flex items-center gap-3 text-sm">
-                  <div className="text-[#EA3546]">{contact.icon}</div>
-                  {contact.href ? (
-                    <Link
-                      href={contact.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-300"
-                    >
-                      {contact.text}
-                    </Link>
-                  ) : (
-                    <span className="text-gray-400">{contact.text}</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter/CTA */}
-          <div>
-            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-              <Coffee className="w-4 h-4 text-[#662E9B]" />
-              Let's Connect
-            </h4>
-            <p className="text-gray-400 text-sm mb-4">
-              Interested in collaborating? Drop me a message and let's discuss
-              your next project.
+            <p className="text-white font-bold font-comic text-lg mb-1">
+              Daniel Addo
             </p>
-            <Link
-              href="mailto:danieltesla746@gmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#EA3546] to-[#662E9B] rounded-lg text-white text-sm font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
-            >
-              <Mail className="w-4 h-4" />
-              Say Hello
-            </Link>
+            <p className="text-gray-500 text-sm font-mono">
+              © {year} · compiled with &lt;3 in Accra
+            </p>
           </div>
-        </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Copyright */}
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <span>© {currentYear} Saintdannyyy. Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
-              <span>and lots of</span>
-              <Coffee className="w-4 h-4 text-amber-500" />
-            </div>
-
-            {/* Back to Top */}
-            <button
-              onClick={scrollToTop}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 text-sm"
-              aria-label="Scroll to top"
-            >
-              <span>Back to Top</span>
-              <ArrowUp className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-6 pt-6 border-t border-gray-800/50">
-          <div className="text-center">
-            <p className="text-gray-500 text-xs">
-              Built with Next.js, Tailwind CSS, and deployed on Vercel.
+          {/* Social links */}
+          <div className="flex items-center gap-5">
+            {socialLinks.map(({ name, href, icon: Icon }) => (
               <Link
-                href="https://github.com/saintdannyyy/saintdannyyy-portfolio"
-                target="_blank"
-                className="text-[#662E9B] hover:text-[#EA3546] transition-colors duration-300 ml-1"
+                key={name}
+                href={href}
+                target={href.startsWith("mailto") ? "_self" : "_blank"}
+                rel="noopener noreferrer"
+                aria-label={name}
+                className="text-gray-500 hover:text-blue-400 transition-colors duration-200"
               >
-                View source code
+                <Icon size={18} />
               </Link>
-            </p>
+            ))}
+
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              aria-label="Back to top"
+              className="text-gray-500 hover:text-white transition-colors duration-200 ml-2"
+            >
+              <ArrowUp size={18} />
+            </button>
           </div>
         </div>
       </div>
