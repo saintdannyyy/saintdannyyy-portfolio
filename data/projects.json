@@ -2,26 +2,119 @@
   "projects": [
     {
       "id": 1,
-      "title": "KasaPa",
-      "description": "From Tɛkyerɛma Pa Hackathon 2025, an AI-mobile app built to support speech-impaired individuals in Ghana, using local languages and fostering inclusion.",
+      "title": "KasaYie",
+      "description": "Award-winning AI assistant that helps Akan-speaking individuals with speech impairments communicate in real time. Fine-tuned OpenAI Whisper on imperfect Akan speech and built the full mobile experience from audio capture to real-time response.",
       "image": "/projects/twilight.png",
-      "technologies": ["React Native", "Python", "RunPod", "ASR", "TTS", "Expo"],
+      "technologies": ["React Native", "OpenAI Whisper", "FastAPI", "Python", "Expo"],
       "category": ["Mobile", "AI"],
       "status": "On Going",
       "year": "2025",
+      "badge": "Tekyerema Pa Hackathon 2025 · Winner",
       "liveUrl": "https://kasapa.netlify.app/",
       "githubUrl": "https://github.com/saintdannyyy/KasaYie",
       "featured": true,
       "highlights": [
-        "Uses OpenAi whisper ASR model",
-        "Hackathon Project",
-        "Support for Akan speaking speech impaired"
+        "Fine-tuned OpenAI Whisper on slurred and stammering Akan speech",
+        "Full mobile UX from audio capture to real-time AI response",
+        "Hackathon winner — Tekyerema Pa 2025"
       ]
     },
     {
       "id": 2,
+      "title": "Wote",
+      "description": "A platform connecting deaf Ghanaians with the world around them. Wote translates Ghanaian Sign Language into English, Twi, and Ewe — making classrooms and everyday interactions more inclusive.",
+      "image": "/projects/picmorph.png",
+      "technologies": ["React Native", "NLP", "Telegram Bot API", "Multi-language"],
+      "category": ["Mobile", "AI"],
+      "status": "On Going",
+      "year": "2025",
+      "badge": "UNICEF AI for Inclusion Hackathon 2025",
+      "liveUrl": null,
+      "githubUrl": null,
+      "featured": true,
+      "highlights": [
+        "Bidirectional GSL → English / Twi / Ewe translation",
+        "UNICEF AI for Inclusion Hackathon 2025",
+        "Making classrooms and public spaces accessible for deaf Ghanaians"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Trekr",
+      "description": "Open-source application tracker — like a personal CRM for your job search, scholarships, grants, and fellowships. Track every application, interview, contact, and follow-up in one place.",
+      "image": "/projects/mechanic.png",
+      "technologies": ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Clerk Auth"],
+      "category": "Full Stack",
+      "status": "On Going",
+      "year": "2025",
+      "badge": "Open Source · GPL-3.0",
+      "liveUrl": null,
+      "githubUrl": "https://github.com/saintdannyyy/trekr",
+      "featured": true,
+      "highlights": [
+        "Multi-user with Google SSO via Clerk",
+        "Full-stack Next.js + PostgreSQL",
+        "Public open source under GPL-3.0 with contributor docs"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Emissor",
+      "description": "A scalable email marketing and automation platform — businesses manage campaigns, schedule sends, segment audiences, and track analytics. Built the backend API architecture, campaign scheduling logic, and multi-role admin dashboards.",
+      "image": "/projects/otconekt.png",
+      "technologies": ["Node.js", "Express.js", "PostgreSQL", "React.js"],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2024",
+      "liveUrl": null,
+      "githubUrl": null,
+      "featured": true,
+      "highlights": [
+        "Campaign management, scheduling, and audience segmentation",
+        "Multi-role admin dashboards",
+        "Designed the full backend API architecture"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "OTConekt",
+      "description": "Cross-platform mobile tele-rehabilitation app connecting patients with licensed occupational therapists remotely — therapist profiles, appointment booking, real-time messaging, and video calls.",
+      "image": "/projects/otconekt.png",
+      "technologies": ["React Native", "Node.js", "WebRTC", "Supabase", "Expo"],
+      "category": ["Mobile", "Telehealth"],
+      "status": "On Going",
+      "year": "2025",
+      "liveUrl": "https://otconekt.vercel.app/",
+      "githubUrl": "https://github.com/saintdannyyy/OTConekt",
+      "featured": true,
+      "highlights": [
+        "Therapist profiles with scheduling and credentials",
+        "Real-time messaging and video calls via WebRTC",
+        "Appointment booking with calendar integration"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "J100 Coders",
+      "description": "Edtech platform teaching kids to code with interactive lessons, progress tracking, and instructor dashboards. Shipped to production with 200+ active students in the first term.",
+      "image": "/projects/coss.png",
+      "technologies": ["PHP", "Node.js", "MongoDB", "JavaScript"],
+      "category": "Full Stack",
+      "status": "Completed",
+      "year": "2024",
+      "liveUrl": null,
+      "githubUrl": null,
+      "featured": false,
+      "highlights": [
+        "Multi-role interfaces for students, instructors, and admins",
+        "Real-time progress tracking",
+        "200+ active students in the first term"
+      ]
+    },
+    {
+      "id": 7,
       "title": "PicMorph",
-      "description": "A powerful web-based image conversion platform that transforms images between multiple formats with zero quality loss. Built with modern web technologies to provide fast, reliable, and user-friendly image processing capabilities directly in the browser.",
+      "description": "Web-based image conversion platform — transform images between multiple formats with zero quality loss. Batch processing, drag & drop, client-side privacy.",
       "image": "/projects/picmorph.png",
       "technologies": ["React.js", "TailwindCSS", "Node.js", "FFmpeg", "Express.js"],
       "category": "Full Stack",
@@ -29,110 +122,81 @@
       "year": "2025",
       "liveUrl": "https://picmorph-five.vercel.app/",
       "githubUrl": "https://github.com/saintdannyyy/PicMorph",
-      "featured": true,
+      "featured": false,
       "highlights": [
-        "Support for multiple Image Formats (JPG, PNG, WebP, AVIF, GIF, TIFF, BMP)",
-        "Zero Quality Loss Conversion with Advanced Compression Algorithms",
-        "Batch Processing for Multiple Images Simultaneously", 
-        "Drag & Drop Interface with Progress Tracking",
-        "Client-side Processing for Enhanced Privacy & Speed"
+        "Support for JPG, PNG, WebP, AVIF, GIF, TIFF, BMP",
+        "Batch processing with drag & drop",
+        "Client-side processing for privacy"
       ]
     },
     {
-      "id": 3,
+      "id": 8,
       "title": "Mechanic Workshop Management System",
-      "description": "A comprehensive web-based management system for automotive repair shops and mechanic workshops. Developed for Mr Nash, an automobile expert at Dzorwulu, to streamline workshop operations including customer management, vehicle tracking, service scheduling, invoicing, and business analytics.",
+      "description": "Full management system for an automotive repair shop — customer management, vehicle tracking, service scheduling, invoicing, and analytics. Delivered for a client at Dzorwulu.",
       "image": "/projects/mechanic.png",
-      "technologies": ["PHP", "MySQL", "HTML5", "CSS3", "Bootstrap 5", "JavaScript", "Highcharts", "Chart.js", "FPDF", "Font Awesome"],
+      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap 5", "Chart.js", "FPDF"],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
       "liveUrl": "https://mechanic.codlogics.com/Mechanic",
       "githubUrl": "https://github.com/saintdannyyy/Mechanic",
-      "featured": true,
+      "featured": false,
       "highlights": [
-        "Automation of manual processes",
-        "Complete Customer & Vehicle Management System with Registration & Profiles",
-        "Job Card & Invoice Generation with PDF Export Functionality",
-        "Service & Repair Tracking with Real-time Status Updates",
-        "Business Analytics Dashboard with Revenue Trends & Performance Metrics",
-        "Receipt Storage & Management with Automated Processing",
-        "REST API Endpoints for Data Management & Search Functionality"
+        "Job card & invoice generation with PDF export",
+        "Business analytics dashboard with revenue trends",
+        "REST API endpoints for data management"
       ]
     },
     {
-      "id": 4,
-      "title": "OTConekt",
-        "description": "A cross-platform mobile tele-rehabilitation app connecting individuals seeking occupational therapy with licensed therapists. Features include  appointment booking, in-app messaging, progress tracking.",
-        "image": "/projects/otconekt.png",
-        "technologies": ["React Native", "Expo", "Supabase", "Firebase Cloud Messaging (planned)", "Jitsi Meet"],
-        "category": ["Mobile", "Telehealth"],
-        "status": "On Going",
-        "year": "2025",
-        "liveUrl": "https://otconekt.vercel.app/",
-        "githubUrl": "https://github.com/saintdannyyy/OTConekt",
-        "featured": true,
-        "highlights": [
-          "Therapist Profiles with scheduling and credentials",
-          "Appointment Booking and calendar integration",
-          "In-App Messaging for real-time communication",
-          "Progress Logs and tracking tools",
-          "Admin Dashboard for moderation (optional)",
-          "Planned: Push Notifications & Video Calls"
-        ]
-    },
-    {
-      "id": 5,
-      "title": "Zest",
-      "description": "The Point of Sale Application that helps small businesses in Africa thrive.",
+      "id": 9,
+      "title": "Zest POS",
+      "description": "Point of Sale application helping small businesses in Africa thrive. Built the entire front end — component library, responsive interfaces, API integration, and performance optimisation.",
       "image": "/projects/zest.png",
-      "technologies": ["Next.js", "TailwindCSS", "Shadcn", "PostMan"],
+      "technologies": ["Next.js", "TailwindCSS", "Shadcn", "JavaScript"],
       "category": "SaaS",
       "status": "Completed",
       "year": "2024",
       "liveUrl": "https://tryzest.shop/",
       "githubUrl": null,
-      "featured": true,
+      "featured": false,
       "highlights": [
-        "Point of Sale"
+        "Owned the full front-end architecture",
+        "Optimised for low-bandwidth connections in African markets"
       ]
     },
     {
-      "id": 6,
-      "title": "City of Sellingstar School (COSS)",
-      "description": "A comprehensive web platform with advanced CMS for City of Sellingstar School, an early years educational institution serving children aged 6 months to 5 years in Ghana. Features a complete admin dashboard for content management, appointment booking system, and gallery management.",
+      "id": 10,
+      "title": "City of Sellingstar School",
+      "description": "Full web platform with CMS for an early years school in Ghana — admin dashboard, appointment booking, gallery management, and responsive design.",
       "image": "/projects/coss.png",
-      "technologies": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript", "FontAwesome"],
+      "technologies": ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript"],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2024",
       "liveUrl": "https://cossghana.com",
       "githubUrl": "https://github.com/saintdannyyy/coss",
-      "featured": true,
+      "featured": false,
       "highlights": [
-        "Complete CMS with Admin Dashboard for Dynamic Page & Section Management",
-        "Appointment Booking & Mail Management",
-        "Responsive Design with Modern UI"
+        "Complete CMS with dynamic page & section management",
+        "Appointment booking & mail management"
       ]
     },
     {
-      "id": 7,
+      "id": 11,
       "title": "Wellness Community Academy",
-      "description": "A comprehensive wellness platform providing health resources, courses, and eBooks with affiliate management system. Features commission tracking, payout processing, and analytics for wellness program promotion.",
+      "description": "Wellness platform with courses, eBooks, and an affiliate management system — commission tracking, payout processing, and analytics. Integrated Paystack for mobile money & card payments.",
       "image": "/projects/wellness.png",
-      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap", "DataTables", "SweetAlert2", "Paystack", "Chart.js", "PHPMailer"],
+      "technologies": ["PHP", "MySQL", "JavaScript", "Bootstrap", "Paystack", "Chart.js", "PHPMailer"],
       "category": "Full Stack",
       "status": "Completed",
       "year": "2025",
       "liveUrl": "https://wellnesscommunityacademy.com",
       "githubUrl": "https://github.com/saintdannyyy/wellnesscommunityacademy",
-      "featured": true,
+      "featured": false,
       "highlights": [
-        "Advanced Affiliate Management System with 15% Direct & 2% Indirect Referral Commission",
-        "Admin Dashboard with Real-time Analytics & Data Visualization",
-        "Integrated Payment Processing with Paystack for Mobile Money & Card Payments",
-        "Comprehensive eBook & Course Management System",
-        "Automated Email Notifications & Appointment Booking"
+        "Affiliate system with 15% direct & 2% indirect referral commission",
+        "Paystack integration for Mobile Money & card payments",
+        "Automated email notifications & appointment booking"
       ]
     }
   ]
