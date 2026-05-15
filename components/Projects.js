@@ -64,7 +64,7 @@ export default function Projects() {
             </span>
             <div className="flex items-end justify-between mb-10">
               <h2 className="text-4xl font-bold font-comic text-white">
-                Sneak Peek of Stuff I&apos;ve Built.
+                Things I&apos;ve shipped.
               </h2>
               <div className="flex items-center gap-6">
                 <span className="font-mono text-sm text-gray-600">
