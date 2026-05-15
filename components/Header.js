@@ -29,7 +29,7 @@ export default function Header() {
             alt="Daniel Addo"
             width={240}
             height={100}
-            className="object-contain w-auto h-25"
+            className="object-contain w-auto h-[70px] sm:h-[90px]"
             priority
           />
         </Link>
