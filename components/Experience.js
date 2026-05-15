@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight, Camera } from "lucide-react";
 
 const experiences = [
   {
@@ -72,6 +72,129 @@ const experiences = [
   },
 ];
 
+const hackathons = [
+  {
+    id: 1,
+    event: "Harvard Health Hackathon",
+    year: "2026",
+    placement: null,
+    project: "MindLink",
+    description:
+      "Led the team to build MindLink, a private, AI-assisted mental health system that helps users track their wellbeing, detect early risk patterns, and connect to the right support. Designed to work even without internet access. This project got funding opportunities from the Harvard Innovation Labs.",
+    image: "/hsil.jpg",
+    color: "blue",
+  },
+  {
+    id: 2,
+    event: "Enactus Ghana National Competition",
+    year: "2025",
+    placement: "1st Runner-Up 🥈",
+    project: "Project UpCrafts",
+    description:
+      'Served as Tech Lead for the University of Ghana Enactus team. Project UpCrafts transforms plastic waste into stylish, eco-friendly fashion bags. Placed 2nd Runner-Up at the national competition judged by KPMG Ghana under the theme "Entrepreneurship Without Borders".',
+    image: "/enactus.jpg",
+    color: "blue",
+  },
+  {
+    id: 3,
+    event: "UNICEF Innovation Challenge",
+    year: "2025",
+    placement: "2nd Runner-Up 🏆",
+    project: "Wote",
+    description:
+      "Team Lead — built Wote, a bidirectional AI communication platform connecting deaf Ghanaians with the world through Ghanaian Sign Language. Real-time translation to English, Twi, and Ewe via a data-rich mobile app and Telegram bot — making classrooms and everyday interactions more inclusive.",
+    image: "/unicef.jpg",
+    color: "emerald",
+  },
+  {
+    id: 4,
+    event: "Tɛkyerɛma Pa Hackathon",
+    year: "2025",
+    placement: "2nd Runner-Up 🥈",
+    project: "KasaYie",
+    description:
+      "Team Lead — built KasaYie, an AI-powered Akan speech recognition system supporting individuals with speech impairments. Competed at the grand finale held under the Tɛkyerɛma Pa Project — a UG × UCL partnership funded by UKAid's AT2030 programme, focused on developing inclusive Akan ASR models for native-language communication.",
+    image: "/tekyeremapa.jpg",
+    color: "amber",
+  },
+  {
+    id: 5,
+    event: "UN-Habitat Quality of Life Hackathon",
+    year: "2025",
+    placement: null,
+    project: "Shelta",
+    description:
+      "Team Lead — built Shelta, a full-stack housing platform for Accra tackling urban affordability. Verified landlords, digitized rent payments (MoMo + bank), QoL neighbourhood scoring, maintenance routing to service providers, and rent advance loans. Powered by PWA for offline access.",
+    image: "/unqol.jpg",
+    color: "emerald",
+  },
+  {
+    id: 6,
+    event: "Global Challenge Lab",
+    year: "2022",
+    placement: null,
+    project: null,
+    description:
+      "Selected for GCL22 — a high-intensity 14-day virtual hackathon powered by Imperial Enterprise Lab, Tsinghua University & TU Munich, and supported by Futurize. Collaborated with international students and experts to develop an entrepreneurial solution tackling a UN Sustainable Development Goal.",
+    image: "/gcl.png",
+    color: "violet",
+  },
+];
+
+const leadership = [
+  {
+    id: 1,
+    role: "Community Ambassador",
+    org: "ALX Africa",
+    period: "2026 – Present",
+    description:
+      "Representing ALX Ghana's  community, mentoring peers, championing tech education, and connecting engineers across Ghana.",
+    image: "/alx.png",
+    color: "blue",
+  },
+
+  {
+    id: 3,
+    role: "Tech Lead",
+    org: "DLCF Legon",
+    period: "2023 – Present",
+    description:
+      "In charge of the sound team at DLCF Legon — managing audio for weekly church services, campus programs, and national-scale events. Also provides technical support across the fellowship and trains team members on sound and tech operations.",
+    image: null,
+    color: "emerald",
+  },
+  {
+    id: 4,
+    role: "Tech Support",
+    org: "Enactus UG",
+    period: "2025",
+    description:
+      'Provided technical support for the University of Ghana Enactus team — Project UpCrafts, transforming plastic waste into eco-friendly fashion bags. The team placed 2nd Runner-Up at the 2025 Enactus Ghana National Competition judged by KPMG Ghana, under the theme "Entrepreneurship Without Borders".',
+    image: null,
+    color: "amber",
+  },
+  {
+    id: 5,
+    role: "Electoral Commissioner",
+    org: "Computer Science Department, UG",
+    period: "2025",
+    description:
+      "Led and oversaw the election of new departmental executives for the Computer Science Department at the University of Ghana. Managed the end-to-end electoral process while also serving as an executive of the department.",
+    image: null,
+    color: "blue",
+  },
+  {
+    id: 6,
+    role: "Electoral Commissioner",
+    org: "Mensah Sarbah Hall, UG",
+    period: "2025",
+    description:
+      "Led and oversaw the election of new hall executives at Mensah Sarbah Hall, University of Ghana. Managed the full electoral process and served as an executive of the hall.",
+    image: null,
+    color: "violet",
+  },
+];
+
 const colorMap = {
   blue: {
     dot: "bg-blue-500",
@@ -106,6 +229,131 @@ const colorMap = {
     bullet: "bg-amber-500/70",
   },
 };
+
+function ImageSlot({ src, alt }) {
+  if (src) {
+    return (
+      <div className="relative w-full h-50 rounded-xl overflow-hidden mb-4">
+        <img src={src} alt={alt} className="object-cover w-full h-full" />
+      </div>
+    );
+  }
+  return (
+    <div className="w-full h-44 rounded-xl bg-white/[0.03] border border-dashed border-white/[0.08] flex flex-col items-center justify-center gap-2 mb-4">
+      <Camera size={16} className="text-gray-700" />
+      <span className="text-gray-700 text-xs font-mono">add photo</span>
+    </div>
+  );
+}
+
+function HackathonCard({ h, index }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const c = colorMap[h.color];
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 100);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.1 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease",
+      }}
+      className="flex flex-col rounded-2xl border border-white/[0.06] bg-[#111] p-5 hover:border-white/[0.14] transition-all duration-300 overflow-hidden relative"
+    >
+      <div
+        className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${c.line} to-transparent`}
+      />
+      <ImageSlot src={h.image} alt={h.event} />
+      <div className="flex items-start justify-between gap-2 mb-1">
+        <h3 className="text-base font-bold font-comic text-white leading-snug">
+          {h.event}
+        </h3>
+        {h.placement && (
+          <span
+            className={`shrink-0 px-2 py-0.5 text-xs font-mono rounded-full border ${c.badge}`}
+          >
+            {h.placement}
+          </span>
+        )}
+      </div>
+      {h.project && (
+        <p className={`text-xs font-mono ${c.accent} mb-1`}>→ {h.project}</p>
+      )}
+      <p className="text-xs font-mono text-gray-600 mb-3">{h.year}</p>
+      <p className="text-gray-500 text-sm leading-relaxed">{h.description}</p>
+    </div>
+  );
+}
+
+function LeadershipCard({ l, index }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const c = colorMap[l.color];
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 100);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.1 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: "opacity 0.5s ease, transform 0.5s ease",
+      }}
+      className="flex flex-col rounded-2xl border border-white/[0.06] bg-[#111] p-5 hover:border-white/[0.14] transition-all duration-300 overflow-hidden relative"
+    >
+      <div
+        className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r ${c.line} to-transparent`}
+      />
+      <ImageSlot src={l.image} alt={l.role} />
+      <div className="flex items-start justify-between gap-2 mb-1">
+        <h3 className="text-base font-bold font-comic text-white leading-snug">
+          {l.role}
+        </h3>
+        <span
+          className={`shrink-0 px-2 py-0.5 text-xs font-mono rounded-full border ${c.badge}`}
+        >
+          {l.period}
+        </span>
+      </div>
+      <p className={`text-sm font-semibold font-mono ${c.accent} mb-3`}>
+        {l.org}
+      </p>
+      <p className="text-gray-500 text-sm leading-relaxed">{l.description}</p>
+    </div>
+  );
+}
 
 function ExperienceCard({ exp, index }) {
   const ref = useRef(null);
@@ -240,6 +488,7 @@ function ExperienceCard({ exp, index }) {
 export default function Experience() {
   const lineRef = useRef(null);
   const [lineH, setLineH] = useState(0);
+  const [activeTab, setActiveTab] = useState("Work");
 
   useEffect(() => {
     const el = lineRef.current;
@@ -263,30 +512,64 @@ export default function Experience() {
         <span className="text-blue-400 text-xs font-mono uppercase tracking-[0.2em] mb-2 block">
           02.experience.md
         </span>
-        <div className="flex items-end justify-between mb-20">
-          <h2 className="text-4xl sm:text-5xl font-bold font-comic text-white">
-            Where I&apos;ve worked.
-          </h2>
-          <span className="hidden sm:block font-mono text-xs text-gray-700">
-            {experiences.length} roles
-          </span>
-        </div>
-
-        <div ref={lineRef} className="relative">
-          {/* Animated center line */}
-          <div
-            className="hidden lg:block absolute left-1/2 -translate-x-px top-0 w-px bg-gradient-to-b from-blue-500/30 via-white/10 to-transparent origin-top transition-all duration-1000 ease-out"
-            style={{ height: `${lineH}%` }}
-          />
-          {/* Mobile left line */}
-          <div className="lg:hidden absolute left-1.5 top-0 bottom-0 w-px bg-white/[0.06]" />
-
-          <div className="space-y-12 lg:space-y-16">
-            {experiences.map((exp, i) => (
-              <ExperienceCard key={exp.id} exp={exp} index={i} />
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
+          <div>
+            <h2 className="text-2xl sm:text-5xl font-bold font-comic text-white">
+              The journey so far.
+            </h2>
+            <p className="text-gray-600 font-mono text-xs mt-2">
+              work · hackathons · leadership
+            </p>
+          </div>
+          <div className="flex gap-1 p-1 bg-white/[0.04] border border-white/[0.06] rounded-xl w-fit">
+            {["Work", "Hackathons", "Leadership"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-1.5 text-xs font-mono rounded-lg transition-all duration-200 ${
+                  activeTab === tab
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-500 hover:text-gray-300"
+                }`}
+              >
+                {tab}
+              </button>
             ))}
           </div>
         </div>
+
+        {activeTab === "Work" && (
+          <div ref={lineRef} className="relative">
+            {/* Animated center line */}
+            <div
+              className="hidden lg:block absolute left-1/2 -translate-x-px top-0 w-px bg-gradient-to-b from-blue-500/30 via-white/10 to-transparent origin-top transition-all duration-1000 ease-out"
+              style={{ height: `${lineH}%` }}
+            />
+            {/* Mobile left line */}
+            <div className="lg:hidden absolute left-1.5 top-0 bottom-0 w-px bg-white/[0.06]" />
+            <div className="space-y-12 lg:space-y-16">
+              {experiences.map((exp, i) => (
+                <ExperienceCard key={exp.id} exp={exp} index={i} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "Hackathons" && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {hackathons.map((h, i) => (
+              <HackathonCard key={h.id} h={h} index={i} />
+            ))}
+          </div>
+        )}
+
+        {activeTab === "Leadership" && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {leadership.map((l, i) => (
+              <LeadershipCard key={l.id} l={l} index={i} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
