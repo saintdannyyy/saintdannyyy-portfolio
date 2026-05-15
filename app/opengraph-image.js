@@ -12,7 +12,7 @@ export default async function Image() {
     : "http://localhost:3000";
 
   const logoData = await fetch(`${baseUrl}/SaIntdannyyy.png`).then((r) =>
-    r.arrayBuffer()
+    r.arrayBuffer(),
   );
   const logoBase64 = `data:image/png;base64,${Buffer.from(logoData).toString("base64")}`;
 
@@ -86,27 +86,13 @@ export default async function Image() {
         <img
           src={logoBase64}
           style={{
-            height: "52px",
+            height: "90px",
             width: "auto",
             objectFit: "contain",
-            marginBottom: "28px",
-            opacity: 0.9,
+            marginBottom: "36px",
+            opacity: 0.95,
           }}
         />
-
-        {/* Name */}
-        <div
-          style={{
-            color: "#ffffff",
-            fontSize: "76px",
-            fontWeight: 800,
-            lineHeight: 1.05,
-            letterSpacing: "-1px",
-            marginBottom: "20px",
-          }}
-        >
-          Daniel Ntiri Addo
-        </div>
 
         {/* Role tags */}
         <div style={{ display: "flex", gap: "12px", marginBottom: "40px" }}>
