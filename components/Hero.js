@@ -136,49 +136,46 @@ export default function Hero() {
             </p>
 
             {/* Description */}
-            <p className="text-gray-400 text-base sm:text-lg max-w-lg mb-10 leading-relaxed font-comic">
-              <div className="text-sm sm:text-base max-w-lg mb-10 font-mono space-y-1.5">
-                <p>
-                  <span className="text-blue-400 select-none">❯ </span>
-                  <span className="text-gray-400">
-                    3+ years shipping full-stack, real world products across
-                    healthcare, fintech, edtech, insurtech & logistics
-                  </span>
-                </p>
-                <p>
-                  <span className="text-blue-400 select-none">❯ </span>
-                  <span className="text-gray-500">Web,Mobile, AI.</span>
-                </p>
-                <p>
-                  <span className="text-blue-400 select-none">❯ </span>
-                  <span className="text-gray-400">
-                    If it solves a real problem and ships clean, I&apos;m all
-                    in.
-                  </span>
-                </p>
-                <p>
-                  <span className="text-blue-400 select-none">❯ </span>
-                  <span className="text-gray-400">
-                    Can often be found at hackathons, tech events, or on Twitter
-                    ranting about tech.
-                  </span>
-                </p>
-                <p>
-                  <span className="text-blue-400 select-none">❯ </span>
-                  <span className="text-gray-400">
-                    Tech gadgets excite me, but I promise I won&apos;t talk
-                    about them much.
-                  </span>
-                </p>
-                <p>
-                  <span className="text-blue-400 select-none">❯ </span>
-                  <span className="text-gray-400">
-                    Choosing SAMSUNG over Apple is a hill I will die on.
-                  </span>
-                  <span className="text-blue-400 animate-pulse"> _</span>
-                </p>
-              </div>
-            </p>
+            <div className="text-sm sm:text-base max-w-lg mb-10 font-mono space-y-1.5">
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">
+                  3+ years shipping full-stack, real world products across
+                  healthcare, fintech, edtech, insurtech & logistics
+                </span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-500">Web,Mobile, AI.</span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">
+                  If it solves a real problem and ships clean, I&apos;m all in.
+                </span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">
+                  Can often be found at hackathons, tech events, or on Twitter
+                  ranting about tech.
+                </span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">
+                  Tech gadgets excite me, but I promise I won&apos;t talk about
+                  them much.
+                </span>
+              </p>
+              <p>
+                <span className="text-blue-400 select-none">❯ </span>
+                <span className="text-gray-400">
+                  Choosing SAMSUNG over Apple is a hill I will die on.
+                </span>
+                <span className="text-blue-400 animate-pulse"> _</span>
+              </p>
+            </div>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-3">
