@@ -109,7 +109,7 @@ export default function About() {
               <p className="text-gray-500 text-lg font-comic mb-1">
                 I am a ...
               </p>
-              <h2 className="text-5xl xl:text-6xl font-bold font-comic text-blue-400 mb-5 leading-tight">
+              <h2 className="text-3xl xl:text-5xl font-bold font-comic text-blue-400 mb-5 leading-tight">
                 {current.label}
               </h2>
               <div className="text-gray-300 text-base leading-relaxed font-comic mb-7 max-w-md space-y-1">
