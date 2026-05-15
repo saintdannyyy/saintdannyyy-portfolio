@@ -98,7 +98,7 @@ export default function Hero() {
             </p>
 
             {/* Name */}
-            <h1 className="text-[clamp(3rem,9vw,7rem)] font-bold leading-[0.9] font-comic text-white mb-0">
+            <h1 className="text-[clamp(3rem,9vw,6rem)] font-bold leading-[0.9] font-comic text-white mb-0">
               Daniel Addo
             </h1>
 
@@ -131,7 +131,7 @@ export default function Hero() {
                 />
               </svg>
             </div>
-            <p className="text-blue-400 text-md sm:text-2xl font-comic font-semibold mb-6">
+            <p className="text-blue-700 text-md sm:text-2xl font-comic font-semibold mb-6">
               Software Engineer, Hackathon Junkie, Retired Gymrat
             </p>
 
@@ -155,6 +155,26 @@ export default function Hero() {
                     If it solves a real problem and ships clean, I&apos;m all
                     in.
                   </span>
+                </p>
+                <p>
+                  <span className="text-blue-400 select-none">❯ </span>
+                  <span className="text-gray-400">
+                    Can often be found at hackathons, tech events, or on Twitter
+                    ranting about tech.
+                  </span>
+                </p>
+                <p>
+                  <span className="text-blue-400 select-none">❯ </span>
+                  <span className="text-gray-400">
+                    Tech gadgets excite me, but I promise I won&apos;t talk
+                    about them much.
+                  </span>
+                </p>
+                <p>
+                  <span className="text-blue-400 select-none">❯ </span>
+                  <span className="text-gray-400">
+                    Choosing SAMSUNG over Apple is a hill I will die on.
+                  </span>
                   <span className="text-blue-400 animate-pulse"> _</span>
                 </p>
               </div>
@@ -164,7 +184,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-comic text-sm font-semibold rounded-full transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-800 hover:bg-blue-500 text-white font-comic text-sm font-semibold rounded-full transition-colors duration-200"
               >
                 Let&apos;s Connect 👋
               </Link>
