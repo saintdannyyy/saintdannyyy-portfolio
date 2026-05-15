@@ -25,7 +25,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="shrink-10 -my-16 -mx-4">
           <Image
-            src="/Saintdannyyy.png"
+            src="/SaIntdannyyy.png"
             alt="Daniel Addo"
             width={240}
             height={100}
