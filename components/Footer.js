@@ -1,16 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Instagram,
+  Twitter,
+  Mail,
+  ArrowUp,
+} from "lucide-react";
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/saintdannyyy", icon: Github },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/daniel-ntiri-addo/",
+    href: "https://www.linkedin.com/in/saintdannyyy",
     icon: Linkedin,
   },
+  {
+    name: "Instagram",
+    href: "https://instagram.com/saintdannyyy",
+    icon: Instagram,
+  },
   { name: "Twitter", href: "https://twitter.com/saintdannyyy", icon: Twitter },
+
   { name: "Email", href: "mailto:danieltesla746@gmail.com", icon: Mail },
 ];
 
@@ -24,7 +37,7 @@ export default function Footer() {
           {/* Brand + tagline */}
           <div>
             <p className="text-white font-bold font-comic text-lg mb-1">
-              Daniel Addo
+              Daniel Addo (saintdannyyy)
             </p>
             <p className="text-gray-500 text-sm font-mono">
               © {year} · compiled with &lt;3 in Accra
