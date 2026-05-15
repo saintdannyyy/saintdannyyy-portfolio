@@ -191,7 +191,7 @@ export default function Projects() {
           </span>
           <div className="flex items-end justify-between mt-3 mb-10">
             <h2 className="text-4xl font-bold font-comic text-white">
-              Selected work.
+              Things I've shipped.
             </h2>
             <Link
               href="/projects"
