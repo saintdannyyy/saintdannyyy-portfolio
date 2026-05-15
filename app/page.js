@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Clients from "@/components/Clients";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
@@ -12,6 +13,7 @@ export default function Home() {
     <div className="flex flex-col w-full min-h-screen bg-[#0a0a0a] text-white">
       <Header />
       <Hero />
+      <Clients />
       <Projects />
       <About />
       <Experience />
