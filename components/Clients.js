@@ -7,7 +7,7 @@ const clients = [
   { name: "Zest Ghana", logo: "/ZEST.jpg" },
   { name: "NPA Ghana", logo: "/NPA.png" },
   { name: "GEA", logo: "/GEA.png" },
-  { name: "Inerca insurance", logo: "/Inerca.jpg" },
+  { name: "Inerca insurance", logo: "/inerca.jpg" },
   { name: "Quivertech Solutions", logo: "/quivertech.svg" },
   { name: "COSS", logo: "/coss.jpg" },
 ];
