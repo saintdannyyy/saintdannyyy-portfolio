@@ -39,14 +39,6 @@ export const metadata = {
     "Ghana tech talent",
   ],
   authors: [{ name: "Daniel Ntiri Addo" }],
-  icons: {
-    icon: [
-      { url: "/favicon.jpg", sizes: "any" },
-      { url: "/favicon.ico", sizes: "16x16", type: "image/x-icon" },
-    ],
-    shortcut: "/favicon.jpg",
-    apple: "/favicon.jpg",
-  },
   openGraph: {
     title: "Daniel Ntiri Addo | Software Engineer & Tech Creator",
     description:
