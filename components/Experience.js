@@ -233,7 +233,7 @@ const colorMap = {
 function ImageSlot({ src, alt }) {
   if (src) {
     return (
-      <div className="relative w-full h-50 rounded-xl overflow-hidden mb-4">
+      <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
         <img src={src} alt={alt} className="object-cover w-full h-full" />
       </div>
     );
