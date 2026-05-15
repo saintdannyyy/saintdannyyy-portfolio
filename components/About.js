@@ -12,8 +12,11 @@ const personas = [
     icon: Code2,
     image: "/saintdannyyy.jpg",
     skills: ["Full Stack Development", "Web & Mobile", "AI Integration"],
-    description:
-      "I turn caffeine and late nights into apps that actually work in real life. Full-stack, mobile, AI, any idea crazy enough — if it can be built, I'll figure it out.",
+    description: [
+      "3+ years shipping full-stack apps that work in real life.",
+      "Healthcare, fintech, edtech, logistics, insurance.",
+      "Crazy enough? if it can be built, I'll figure it out.",
+    ],
   },
   {
     id: "videographer",
@@ -22,8 +25,10 @@ const personas = [
     icon: Camera,
     image: "/video.jpg",
     skills: ["Cinematic Production", "Events Coverage", "Video Editing"],
-    description:
-      "I point a camera at life and make it look cinematic. Events, short films, content — I chase the shot that tells the whole story.",
+    description: [
+      "I point a camera at life and make it look cinematic.",
+      "Events, short films, content — I chase the shot that tells the whole story.",
+    ],
   },
   {
     id: "sound-engineer",
@@ -32,8 +37,10 @@ const personas = [
     icon: Headphones,
     image: "/sound.PNG",
     skills: ["Mixing & Mastering", "Sound Design", "Live Recording"],
-    description:
-      "Behind the board, every frequency matters. I mix, master, and make sure the vibe hits — whether it's a live set or a studio session.",
+    description: [
+      "Behind the board, every frequency matters.",
+      "I mix, master, and make sure the vibe hits — whether it's a live set or a studio session.",
+    ],
   },
   {
     id: "content-creator",
@@ -105,9 +112,13 @@ export default function About() {
               <h2 className="text-5xl xl:text-6xl font-bold font-comic text-blue-400 mb-5 leading-tight">
                 {current.label}
               </h2>
-              <p className="text-gray-300 text-base leading-relaxed font-comic mb-7 max-w-md">
-                {current.description}
-              </p>
+              <div className="text-gray-300 text-base leading-relaxed font-comic mb-7 max-w-md space-y-1">
+                {Array.isArray(current.description) ? (
+                  current.description.map((line, i) => <p key={i}>{line}</p>)
+                ) : (
+                  <p>{current.description}</p>
+                )}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {current.skills.map((skill) => (
                   <span
@@ -241,9 +252,13 @@ export default function About() {
               <h2 className="text-3xl font-bold font-comic text-blue-400 mb-3">
                 {current.label}
               </h2>
-              <p className="text-gray-300 text-sm leading-relaxed font-comic mb-4">
-                {current.description}
-              </p>
+              <div className="text-gray-300 text-sm leading-relaxed font-comic mb-4 space-y-1">
+                {Array.isArray(current.description) ? (
+                  current.description.map((line, i) => <p key={i}>{line}</p>)
+                ) : (
+                  <p>{current.description}</p>
+                )}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {current.skills.map((skill) => (
                   <span
