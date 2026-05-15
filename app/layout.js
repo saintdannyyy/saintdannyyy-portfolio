@@ -1,6 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
+  metadataBase: new URL("https://saintdannyyy.vercel.app"),
   title: "Daniel Ntiri Addo | Software Engineer, Full Stack Developer & Tech Innovator",
   description:
     "Daniel Ntiri Addo is a Ghanaian software engineer, full stack developer, and digital innovator. Explore his professional portfolio, cutting-edge projects, and technical expertise in web, mobile, and AI development. Connect for collaboration, consulting, and technology solutions.",
