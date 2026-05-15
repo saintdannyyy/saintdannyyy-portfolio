@@ -89,26 +89,57 @@ export default function Hero() {
 
       {/* ── Main content ── */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 lg:gap-0">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-14">
           {/* Left: Text */}
-          <div className="max-w-3xl">
-            {/* Eyebrow */}
-            <p className="text-blue-400 text-xs font-mono uppercase tracking-[0.2em] mb-8">
-              // introduction
+          <div className="flex flex-col max-w-2xl">
+            {/* Intro line */}
+            <p className="text-gray-500 text-sm font-mono mb-4 tracking-wide">
+              Hey there, I&apos;m
             </p>
 
-            {/* Main Heading */}
-            <h1 className="text-[clamp(3.5rem,10vw,8rem)] font-bold leading-[0.92] font-comic text-white mb-8">
-              Daniel
-              <br />
-              <span className="text-blue-400">Addo.</span>
+            {/* Name */}
+            <h1 className="text-[clamp(3.5rem,9vw,7rem)] font-bold leading-[0.9] font-comic text-white mb-0">
+              Daniel Addo
             </h1>
 
-            {/* Descriptor */}
-            <p className="text-gray-400 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed font-comic">
-              Software Engineer &amp; Creative Technologist — building
-              full-stack products with AI integration. Ghana&#8209;based,
-              global&#8209;minded.
+            {/* Decorative underline */}
+            <div className="mb-6">
+              <svg
+                viewBox="0 0 320 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-64 sm:w-80 lg:w-96 h-3"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M2 8 C40 2, 80 11, 120 6 C160 1, 200 10, 240 5 C270 2, 295 9, 318 5"
+                  stroke="#3B82F6"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  fill="none"
+                  opacity="0.6"
+                  className="animate-draw-underline"
+                />
+                <path
+                  d="M2 8 C40 2, 80 11, 120 6 C160 1, 200 10, 240 5 C270 2, 295 9, 318 5"
+                  stroke="#93C5FD"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  fill="none"
+                  opacity="0.3"
+                  className="animate-draw-underline-delay"
+                />
+              </svg>
+            </div>
+            <p className="text-blue-400 text-xl sm:text-2xl font-comic font-semibold mb-6">
+              Software Engineer
+            </p>
+
+            {/* Description */}
+            <p className="text-gray-400 text-base sm:text-lg max-w-lg mb-10 leading-relaxed font-comic">
+              I build stuff people actually use — AI apps, web platforms, mobile
+              experiences. If it solves a real problem and ships clean, I&apos;m
+              all in.
             </p>
 
             {/* CTAs */}
@@ -117,27 +148,28 @@ export default function Hero() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-comic text-sm font-semibold rounded-full transition-colors duration-200"
               >
-                Get in touch
+                Let&apos;s Connect 👋
               </Link>
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-white/15 hover:border-white/40 hover:bg-white/5 text-white font-comic text-sm font-semibold rounded-full transition-all duration-200"
               >
-                View projects →
+                See what I&apos;ve built
               </Link>
             </div>
           </div>
 
           {/* Right: Profile image */}
-          <div className="hidden lg:block shrink-0">
-            <div className="relative w-64 h-64 rounded-2xl overflow-hidden ring-1 ring-white/10">
+          <div className="shrink-0 flex justify-center lg:justify-end">
+            <div className="relative w-72 h-80 sm:w-80 sm:h-[420px] lg:w-[360px] lg:h-[480px] rounded-3xl overflow-hidden ring-1 ring-white/10">
               <Image
                 src="/hero.png"
                 alt="Daniel Addo"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
