@@ -13,7 +13,7 @@ const personas = [
     image: "/saintdannyyy.jpg",
     skills: ["Full Stack Development", "Web & Mobile", "AI Integration"],
     description:
-      "Crafting scalable web and mobile applications — turning complex problems into elegant, production-ready code.",
+      "I turn caffeine and late nights into apps that actually work in real life. Full-stack, mobile, AI, any idea crazy enough — if it can be built, I'll figure it out.",
   },
   {
     id: "videographer",
@@ -23,7 +23,7 @@ const personas = [
     image: "/video.jpg",
     skills: ["Cinematic Production", "Events Coverage", "Video Editing"],
     description:
-      "Capturing life's moments and transforming them into compelling visual narratives that resonate.",
+      "I point a camera at life and make it look cinematic. Events, short films, content — I chase the shot that tells the whole story.",
   },
   {
     id: "sound-engineer",
@@ -33,17 +33,17 @@ const personas = [
     image: "/sound.PNG",
     skills: ["Mixing & Mastering", "Sound Design", "Live Recording"],
     description:
-      "Engineering crystal-clear audio experiences — making every note land exactly right during live events.",
+      "Behind the board, every frequency matters. I mix, master, and make sure the vibe hits — whether it's a live set or a studio session.",
   },
   {
     id: "content-creator",
-    label: "Content Creator",
+    label: "Freestyle Tech Content Creator",
     short: "Content",
     icon: PenLine,
     image: "/content.jpg",
     skills: ["Content Strategy", "Social Media", "Creative Direction"],
     description:
-      "Creating engaging content that spreads knowledge of the ever-evolving world of tech and creativity.",
+      "Tech can be fun to talk about — I make it that way. Strategy, storytelling, the occasional unhinged post. All on purpose.",
   },
 ];
 
