@@ -27,7 +27,7 @@ const ticker = [
 
 export default function Clients() {
   return (
-    <section className="py-3 w-full border-y border-white/[0.06] bg-blue-800/50 overflow-hidden">
+    <section className="mt-3 sm:mt-0 py-3 w-full border-y border-white/[0.06] bg-blue-800/50 overflow-hidden">
       <p className="text-center text-gray-200 text-[15px] font-semibold font-mono uppercase tracking-[0.3em] mb-3">
         <span className="text-blue-400 select-none">{"<"}</span>
         my code runs at{" "}
